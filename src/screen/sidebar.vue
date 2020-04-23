@@ -3,7 +3,7 @@
     <nb-content :style="stylesObj.drawerContent" :bounces="false">
       <nb-list>
         <nb-list-item>
-          <nb-text>{{userData.email}}</nb-text>
+          <nb-text>{{userData.fname}}</nb-text>
         </nb-list-item>
         <nb-list-item>
           <nb-text :on-press="logout">Logout</nb-text>

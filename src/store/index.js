@@ -15,7 +15,7 @@ const store = new Vuex.Store({
   mutations,
 
   state: {
-    activeType: 'posts',
+    activeType: '',
     posts: [],
     logging_in: false,
     userObj: {},

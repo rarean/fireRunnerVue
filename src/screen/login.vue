@@ -9,8 +9,8 @@
       </nb-header>
       <nb-content padder>
         <nb-form>
-            <nb-item :error="!$v.emailValue.required && $v.emailValue.$dirty">
-              <nb-input placeholder="First Name" v-model="emailValue" auto-capitalize="none" :on-blur="() => $v.emailValue.$touch()"/>
+            <nb-item :error="!$v.fnameValue.required && $v.fnameValue.$dirty">
+              <nb-input placeholder="First Name" v-model="fnameValue" auto-capitalize="none" :on-blur="() => $v.fnameValue.$touch()"/>
             </nb-item>
             <nb-item last :error="!$v.password.required && $v.password.$dirty">
               <nb-input placeholder="Last Name" v-model="password" auto-capitalize="none" :on-blur="() => $v.password.$touch()" />
@@ -33,7 +33,7 @@ import { Toast } from 'native-base';
 import { NavigationActions } from 'vue-native-router';
 import launchScreenBg from "../../assets/launchscreen-bg.png";
 import launchscreenLogo from "../../assets/logo-kitchen-sink.png";
-import { required, email } from 'vuelidate/lib/validators'
+import { required } from 'vuelidate/lib/validators'
 import store from '../store';
 
 export default {
@@ -48,9 +48,8 @@ export default {
     }
   },
   validations: {
-    emailValue: {
-      required,
-      email
+    fnameValue: {
+      required
     },
     password: {
       required
@@ -58,17 +57,17 @@ export default {
   },
   data: function() {
     return {
-      emailValue: '',
+      fnameValue: '',
       password: '',
       loaded: false
     };
   },
   created() {
-    AsyncStorage.getItem('email').then((val) => {
+    AsyncStorage.getItem('fname').then((val) => {
       if (val) {
         this.loaded = true
         this.navigation.navigate('Home')
-        store.dispatch('SET_USER', {userObj: {email: val}})
+        store.dispatch('SET_USER', {userObj: {fname: val}})
       } else {
         this.loaded = true
       }
@@ -76,14 +75,14 @@ export default {
   },
   methods: {
     login() {
-      if (this.emailValue && this.password) {
+      if (this.fnameValue && this.password) {
         store.dispatch('LOGIN', {
-          userObj: {email: this.emailValue},
+          userObj: {fname: this.fnameValue},
           navigate: this.navigation.navigate
         });
       } else {
         Toast.show({
-          text: 'Invalid Email or Password',
+          text: 'First and Last Name Required',
           buttonText: 'Okay'
         })
       }
