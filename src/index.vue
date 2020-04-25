@@ -17,9 +17,10 @@ import LoginScreen from "./screen/login.vue";
 import HomeScreen from "./screen/home.vue";
 import Sidebar from "./screen/sidebar.vue";
 
+console.disableYellowBox = true;
 const Drawer = createDrawerNavigator(
   {
-    Home: { screen: HomeScreen },
+    Home: { screen: HomeScreen }
   },
   {
     initialRouteName: "Home",

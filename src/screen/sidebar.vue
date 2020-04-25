@@ -37,6 +37,7 @@ export default {
       logout() {
           store.dispatch('LOGOUT', () => this.navigation.dispatch(resetAction))
         }
+        //openPage(){ this.navigation.dispatch(page)}
   },
   computed: {
     userData () {

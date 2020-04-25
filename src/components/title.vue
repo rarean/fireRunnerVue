@@ -1,0 +1,20 @@
+<template>
+    <nb-body class="centered">
+      <nb-title>{{ name }}</nb-title>
+    </nb-body>
+</template>
+
+<script>
+export default {
+  props: {
+    name: { Type: String }
+  }
+};
+</script>
+
+<style>
+  .centered {
+    align-items: center;
+    justify-content: center;
+  }
+</style>

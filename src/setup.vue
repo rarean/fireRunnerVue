@@ -1,7 +1,9 @@
-<template>
-    <view class="container">
-      <app-loading v-if="!isAppReady"></app-loading>
-      <app v-if="isAppReady"></app>
+<template v-if="!isAppReady" >
+    <view v-if="!isAppReady" class="container">
+      <app-loading></app-loading>
+    </view>
+    <view v-else class="container">
+      <app></app>
     </view>
 </template>
 
@@ -31,7 +33,7 @@ export default {
       try {
         this.isAppReady = false;
         await Font.loadAsync({
-          Roboto: require("../node_modules/native-base/Fonts/Roboto.ttf"),
+          Roboto: require("native-base/Fonts/Roboto.ttf"),
           Roboto_medium: require("../node_modules/native-base/Fonts/Roboto_medium.ttf"),
           Ionicons: require("../node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf")
         });
