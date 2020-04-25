@@ -22,31 +22,21 @@
                     :data="itemType" />
                 <nb-spinner v-if="loading"></nb-spinner>
             </nb-list-->
-        <!--nb-content class="container">
+        <nb-content class="container">
         <nb-form>
-          <nb-item >
-            <nb-input placeholder="Date" v-model="dateValue" auto-capitalize="none" />
-          </nb-item>
-          <nb-item >
-            <nb-input placeholder="Incident#" v-model="incident" auto-capitalize="none" />
-          </nb-item>
-          <nb-item >
-            <nb-input placeholder="Incident Reported:" v-model="inciReported" auto-capitalize="none" />
-          </nb-item>
-          <nb-item >
-            <nb-input placeholder="Personnel#" v-model="personnelNum" auto-capitalize="none" />
-          </nb-item>
-          <nb-item >
-            <nb-input placeholder="Medic Unit(s)" v-model="medicUnit" auto-capitalize="none" />
-          </nb-item>
-          <nb-item >
-            <nb-input placeholder="Situation Found#" v-model="situation" auto-capitalize="none" />
-          </nb-item>
+          <input-text label="Date" v-model="dateValue" />
+          <input-text label="Incident#" v-model="incident"/>
+          <input-text label="Incident Reported:" v-model="inciReported"/>
+          <input-text label="Personnel#" v-model="personnelNum"/>
+          <input-text label="Medic Unit(s)" v-model="medicUnit"/>
+          <input-text label="Situation Found#" v-model="situation"/>
         </nb-form>
         <view class="btn">
-          <nb-button rounded large on-press="save"><nb-text>Save</nb-text></nb-button>
+          <nb-button rounded large on-press="save">
+            <nb-text>Save</nb-text>
+           </nb-button>
         </view>
-        </nb-content-->
+        </nb-content>
     </nb-container>
 </template>
 
@@ -55,12 +45,13 @@ import React from 'react';
 import Item from '../components/item';
 import { Dimensions } from 'react-native';
 import Title from "../components/title";
+import InputText from "../components/inputText";
 import store from '../store';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export default {
-  components: { Item, Title },
+  components: { Item, Title, InputText },
   props: { navigation: Object },
   data: function(){
     return {
