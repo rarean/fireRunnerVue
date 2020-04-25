@@ -22,6 +22,20 @@ export function LOGIN ({ commit, state}, {userObj, navigate}) {
   })
 }
 
+export function SAVE ({ commit, state}, {userObj}) {
+  commit('SAVING', true)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      commit('LOGIN_SUCCESFULL', {userObj})
+      resolve();
+    }, 1000)
+  })
+}
+
+export function SAVED ({ commit, state}) {
+  commit('SAVING', false)
+}
+
 export function SET_USER({commit, state}, {userObj}) {
   return commit('LOGIN_SUCCESFULL', {userObj})
 }

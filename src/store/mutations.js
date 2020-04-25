@@ -15,3 +15,7 @@ export function LOGIN_SUCCESFULL (state, {userObj}) {
   state.userObj = userObj;
   state.logging_in = false;
 }
+
+export function SAVING (state, status) {
+  state.saving = status;
+}
