@@ -1,8 +1,8 @@
-<template v-if="!isAppReady" >
+<template >
     <view v-if="!isAppReady" class="container">
       <app-loading></app-loading>
     </view>
-    <view v-else class="container">
+    <view v-else-if="isAppReady" class="container">
       <app></app>
     </view>
 </template>

@@ -1,9 +1,16 @@
 <template>
   <nb-container v-if="loaded" :style="{backgroundColor: '#fff'}">
       <nb-header>
-          <title :name="titleName"/>
+        <nb-left/>
+        <title :name="titleName"/>
+        <nb-right>
+          <nb-button transparent>
+            <nb-icon name="flame"/>
+            <nb-text>FireRunner</nb-text>
+           </nb-button>
+        </nb-right>
       </nb-header>
-      <nb-content padder>
+      <nb-content :style="{margin:20, padding:20}">
         <nb-form>
             <nb-item :error="!$v.fnameValue.required && $v.fnameValue.$dirty">
               <nb-input placeholder="First Name" v-model="fnameValue" auto-capitalize="none" :on-blur="() => $v.fnameValue.$touch()"/>
@@ -11,13 +18,13 @@
             <nb-item last :error="!$v.password.required && $v.password.$dirty">
               <nb-input placeholder="Last Name" v-model="password" auto-capitalize="none" :on-blur="() => $v.password.$touch()" />
             </nb-item>
-          </nb-form>
-          <view :style="{marginTop:10}">
-            <nb-button block :on-press="login">
+        </nb-form>
+        <view class="btn">
+            <nb-button large rounded :on-press="login">
               <nb-spinner v-if="logging_in" size="small" />
-              <nb-text>New Worksheet</nb-text>
+              <nb-text class="center">New Worksheet</nb-text>
             </nb-button>
-          </view>
+        </view>
       </nb-content>
   </nb-container>
   <nb-spinner v-if="!loaded"></nb-spinner>
@@ -63,7 +70,6 @@ export default {
     };
   },
   created() {
-      console.log("Login",this.navigation);
     AsyncStorage.getItem('fname').then((val) => {
       if (val) {
         this.loaded = true
@@ -91,3 +97,12 @@ export default {
   }
 };
 </script>
+
+<style>
+  .btn {
+    margin: 20;
+    padding: 20;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

@@ -15,6 +15,5 @@ export default {
 <style>
   .centered {
     align-items: center;
-    justify-content: center;
   }
 </style>

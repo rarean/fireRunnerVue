@@ -7,18 +7,46 @@
                 <nb-icon name="menu" />
             </nb-button>
           </nb-left>
-            <title :name="titleName"/>
-          <nb-right />
+            <title :name="titleName" v-on:handle-menu="()=> console.log('handleMenu')" />
+          <nb-right>
+            <nb-button transparent>
+              <nb-icon name="flame"/>
+              <nb-text>FireRunner</nb-text>
+             </nb-button>
+          </nb-right>
         </nb-header>
-        <nb-content>
-            <nb-list>
-                <!--item
+            <!--nb-list>
+                <item
                     v-if="!loading"
                     v-for="(itemType, types) in items"
                     :data="itemType" />
-                <nb-spinner v-if="loading"></nb-spinner-->
-            </nb-list>
-        </nb-content>
+                <nb-spinner v-if="loading"></nb-spinner>
+            </nb-list-->
+        <!--nb-content class="container">
+        <nb-form>
+          <nb-item >
+            <nb-input placeholder="Date" v-model="dateValue" auto-capitalize="none" />
+          </nb-item>
+          <nb-item >
+            <nb-input placeholder="Incident#" v-model="incident" auto-capitalize="none" />
+          </nb-item>
+          <nb-item >
+            <nb-input placeholder="Incident Reported:" v-model="inciReported" auto-capitalize="none" />
+          </nb-item>
+          <nb-item >
+            <nb-input placeholder="Personnel#" v-model="personnelNum" auto-capitalize="none" />
+          </nb-item>
+          <nb-item >
+            <nb-input placeholder="Medic Unit(s)" v-model="medicUnit" auto-capitalize="none" />
+          </nb-item>
+          <nb-item >
+            <nb-input placeholder="Situation Found#" v-model="situation" auto-capitalize="none" />
+          </nb-item>
+        </nb-form>
+        <view class="btn">
+          <nb-button rounded large on-press="save"><nb-text>Save</nb-text></nb-button>
+        </view>
+        </nb-content-->
     </nb-container>
 </template>
 
@@ -34,6 +62,16 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 export default {
   components: { Item, Title },
   props: { navigation: Object },
+  data: function(){
+    return {
+      dateValue:'',
+      incident:'',
+      inciReported:'',
+      personnelNum:'',
+      medicUnit:'',
+      situation:''
+    };
+  },
   computed: {
     titleName(){
       return this.navigation.state.routeName;
@@ -50,17 +88,53 @@ export default {
   created () {
     console.log("created",store.state);
     console.log("created2", this.navigation);
-    console.log("created3", this.$props)
     //this.fetchList(store.state.activeType);
   },
   methods: {
-    handleMenuBtn: function(){
-      console.log("slideDrawer", this.$props.navigation)
-      this.navigation.openDrawer();
-    },
     fetchList (type) {
       return store.dispatch('FETCH_LIST_DATA', { type: type });
+    },
+    onHandleMenu(){
+      console.log("handleMenu");
     }
   }
 };
 </script>
+
+<style>
+  .container {
+    margin: 20;
+    padding: 20;
+  }
+  .btn {
+    margin: 20;
+    padding: 20;
+    justify-content: center;
+    align-items: center;
+  }
+  .score {
+    width: 40;
+    height: 40;
+    background-color: #fff;
+    border-radius: 20;
+    justify-content: center;
+    align-items: center;
+    margin-right: 16;
+  }
+  .score-text {
+    color: #ff6600;
+    font-weight: bold;
+  }
+  .detail {
+    flex: 1
+  }
+  .name {
+    color: #666;
+    font-size: 12;
+    margin-bottom: 6;
+  }
+  .title {
+    color: #333;
+    font-size: 14;
+  }
+</style>
