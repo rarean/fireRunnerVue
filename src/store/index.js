@@ -1,6 +1,6 @@
 import Vue from "vue-native-core";
 import Vuex from "vuex";
-import * as mutations from './mutations';
+import * as mutations from "./mutations";
 //import * as actions from './actions';
 
 Vue.use(Vuex);
@@ -17,12 +17,12 @@ const store = new Vuex.Store({
       lname: ""
     },
     incident: {
-      date:"",
-      num:"",
-      rep:"",
-      personnel:"",
-      medic:"",
-      situation:""
+      date: "",
+      num: "",
+      rep: "",
+      personnel: "",
+      medic: "",
+      situation: ""
     },
     aid: {},
     structure: {},

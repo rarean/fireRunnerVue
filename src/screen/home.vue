@@ -1,21 +1,26 @@
 <template>
-    <nb-container :style="{flex:1, backgroundColor: '#fff'}">
-        <nb-header>
-          <nb-left>
-            <nb-button transparent
-              :on-press="() => this.props.navigation.openDrawer()" >
-                <nb-icon name="menu" />
-            </nb-button>
-          </nb-left>
-            <title :name="titleName" v-on:handle-menu="()=> console.log('handleMenu')" />
-          <nb-right>
-            <nb-button transparent>
-              <nb-icon name="flame"/>
-              <nb-text>FireRunner</nb-text>
-             </nb-button>
-          </nb-right>
-        </nb-header>
-            <!--nb-list>
+  <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
+    <nb-header>
+      <nb-left>
+        <nb-button
+          transparent
+          :on-press="() => this.props.navigation.openDrawer()"
+        >
+          <nb-icon name="menu" />
+        </nb-button>
+      </nb-left>
+      <title
+        :name="titleName"
+        v-on:handle-menu="() => console.log('handleMenu')"
+      />
+      <nb-right>
+        <nb-button transparent>
+          <nb-icon name="flame" />
+          <nb-text>FireRunner</nb-text>
+        </nb-button>
+      </nb-right>
+    </nb-header>
+    <!--nb-list>
                 <item
                     v-if="!loaded"
                     v-for="(itemType, types) in items"
@@ -56,25 +61,24 @@
       </view>
     </nb-content>
     <nb-spinner v-if="!loaded"></nb-spinner>
-  <nb-footer>
-    <nb-left>
-      <nb-button :on-press="()=> this.props.navigation.goBack()">
-        <nb-icon name="arrow-back" />
-       </nb-button>
-   </nb-left>
-    <nb-body class="center">
-      <nb-button :on-press="()=> this.props.navigation.navigate('Home')">
-        <nb-icon name="home" />
-       </nb-button>
-    </nb-body>
-    <nb-right>
-      <nb-button :on-press="()=> this.props.navigation.goBack()">
-        <nb-icon name="arrow-forward" />
-       </nb-button>
-   </nb-right>
-  </nb-footer>
+    <nb-footer>
+      <nb-left>
+        <nb-button :on-press="() => this.props.navigation.goBack()">
+          <nb-icon name="arrow-back" />
+        </nb-button>
+      </nb-left>
+      <nb-body class="center">
+        <nb-button :on-press="() => this.props.navigation.navigate('Home')">
+          <nb-icon name="home" />
+        </nb-button>
+      </nb-body>
+      <nb-right>
+        <nb-button :on-press="() => this.props.navigation.goBack()">
+          <nb-icon name="arrow-forward" />
+        </nb-button>
+      </nb-right>
+    </nb-footer>
   </nb-container>
-
 </template>
 
 <script>
@@ -152,7 +156,7 @@ export default {
     fetchList(type) {
       //return store.dispatch("FETCH_LIST_DATA", { type: type });
     },
-    save(){
+    save() {
       console.log("save", store.state);
     }
   }

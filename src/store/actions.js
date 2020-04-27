@@ -1,25 +1,24 @@
-import { fetchPosts } from './fetch';
-import { AsyncStorage } from 'react-native';
+import { fetchPosts } from "./fetch";
+import { AsyncStorage } from "react-native";
 
 // ensure data for rendering given list type
-export function FETCH_LIST_DATA ({ commit, dispatch }, { type }) {
-  commit('FETCHING_LISTS');
-  return fetchPosts(type)
-    .then(posts => {
-      return commit('SET_POSTS', { posts })
-    });
+export function FETCH_LIST_DATA({ commit, dispatch }, { type }) {
+  commit("FETCHING_LISTS");
+  return fetchPosts(type).then(posts => {
+    return commit("SET_POSTS", { posts });
+  });
 }
 
-export function LOGIN ({ commit, state}, {userObj, navigate}) {
-  commit('LOGGING_IN', true)
+export function LOGIN({ commit, state }, { userObj, navigate }) {
+  commit("LOGGING_IN", true);
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      commit('LOGIN_SUCCESFULL', {userObj})
-      AsyncStorage.setItem('fname', userObj.fname)
-      navigate('Home');
+      commit("LOGIN_SUCCESFULL", { userObj });
+      AsyncStorage.setItem("fname", userObj.fname);
+      navigate("Home");
       resolve();
-    }, 1000)
-  })
+    }, 1000);
+  });
 }
 
 //export function SAVE ({ commit, state}, {userObj}) {
@@ -36,15 +35,15 @@ export function LOGIN ({ commit, state}, {userObj, navigate}) {
 //  commit('SAVING', false)
 //}
 
-export function SET_USER({commit, state}, {userObj}) {
-  return commit('LOGIN_SUCCESFULL', {userObj})
+export function SET_USER({ commit, state }, { userObj }) {
+  return commit("LOGIN_SUCCESFULL", { userObj });
 }
 
-export function LOGOUT ({ commit, state}, callback) {
+export function LOGOUT({ commit, state }, callback) {
   return new Promise((resolve, reject) => {
-      AsyncStorage.removeItem('fname').then(() => {
-        callback();
-        resolve();
-      })
-  })
+    AsyncStorage.removeItem("fname").then(() => {
+      callback();
+      resolve();
+    });
+  });
 }

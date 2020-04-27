@@ -1,9 +1,8 @@
 <template>
-    <root>
-      <app-navigation></app-navigation>
-    </root>
+  <root>
+    <app-navigation></app-navigation>
+  </root>
 </template>
-
 
 <script>
 import React from "react";
@@ -11,7 +10,7 @@ import {
   createAppContainer,
   createStackNavigator,
   createDrawerNavigator
-  } from "vue-native-router";
+} from "vue-native-router";
 import { Root } from "native-base";
 import LoginScreen from "./screen/login.vue";
 import HomeScreen from "./screen/home.vue";
@@ -27,7 +26,7 @@ const Drawer = createDrawerNavigator(
     contentOptions: {
       activeTintColor: "#e91e63"
     },
-    contentComponent: props => <Sidebar {...props}/>
+    contentComponent: props => <Sidebar {...props} />
   }
 );
 
