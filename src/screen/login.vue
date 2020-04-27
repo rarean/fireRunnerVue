@@ -1,7 +1,12 @@
 <template>
   <nb-container v-if="loaded" :style="{ backgroundColor: '#fff' }">
     <nb-header>
-      <nb-left />
+      <nb-left>
+        <nb-button transparent
+          :on-press="() => this.props.navigation.openDrawer()" >
+          <nb-icon name="menu" />
+        </nb-button>
+      </nb-left>
       <title :name="titleName" />
       <nb-right>
         <nb-button transparent>

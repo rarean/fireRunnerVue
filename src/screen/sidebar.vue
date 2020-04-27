@@ -5,6 +5,15 @@
         <nb-list-item>
           <nb-text>Hello {{ userData.fname }}</nb-text>
         </nb-list-item>
+        <nb-list-item
+          v-for="screen in screens"
+          :key="screen.route"
+          button
+          noBorder
+          :onPress="() => handleListItemClick(screen)"
+        >
+          <nb-text>{{screen.name}}
+        </nb-list-item>
         <nb-list-item>
           <nb-text :on-press="logout">Logout</nb-text>
         </nb-list-item>
@@ -16,9 +25,8 @@
 <script>
 import { Dimensions, Platform } from "react-native";
 import drawerCover from "../../assets/drawer-cover.png";
-import { NavigationActions, StackActions } from "vue-native-router";
 import drawerImage from "../../assets/logo-kitchen-sink.png";
-import thumbnail from "../../assets/user.png";
+import { NavigationActions, StackActions } from "vue-native-router";
 import store from "../store";
 
 const deviceHeight = Dimensions.get("window").height;
@@ -27,6 +35,7 @@ const resetAction = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({ routeName: "Login" })]
 });
+
 export default {
   props: {
     navigation: {
@@ -34,6 +43,9 @@ export default {
     }
   },
   methods: {
+    handleListItemClick(dataObj){
+      this.navigation.navigate(dataObj.route);
+    },
     logout() {
       //store.dispatch('LOGOUT', () => this.navigation.dispatch(resetAction))
     }
@@ -46,16 +58,30 @@ export default {
   },
   data: {
     stylesObj: {
-      profilePic: {
-        height: 40,
-        width: 40,
-        borderRadius: Platform.OS === "android" ? 40 : 20
-      },
       drawerContent: {
         paddingTop: Platform.OS === "android" ? 20 : 30
       }
     },
-    thumbnail: thumbnail
+    screens:[
+      {
+      name:"Login",
+      route:"Login",
+      icon:"",
+      bg:"#C5F422"
+      },
+      {
+      name:"Home",
+      route:"Home",
+      icon:"home",
+      bg:"#C5F422"
+      },
+      {
+      name:"PDF",
+      route:"PDF",
+      icon:"",
+      bg:"#C5F422"
+      }
+    ]
   }
 };
 </script>

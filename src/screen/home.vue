@@ -2,10 +2,8 @@
   <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
     <nb-header>
       <nb-left>
-        <nb-button
-          transparent
-          :on-press="() => this.props.navigation.openDrawer()"
-        >
+        <nb-button transparent
+          :on-press="() => this.props.navigation.openDrawer()" >
           <nb-icon name="menu" />
         </nb-button>
       </nb-left>
