@@ -23,13 +23,6 @@
                 <nb-spinner v-if="loaded"></nb-spinner>
             </nb-list-->
     <nb-content class="container" v-if="loaded">
-      <!--
-      <view class="btn">
-        <nb-button rounded large on-press="save">
-          <nb-text>Save</nb-text>
-        </nb-button>
-      </view>
-        -->
       <nb-form>
         <nb-item floatingLabel>
           <nb-label>Date </nb-label>
@@ -56,6 +49,11 @@
           <nb-input v-model="situation" />
         </nb-item>
       </nb-form>
+      <view class="btn">
+        <nb-button rounded large :on-press="save">
+          <nb-text>Save</nb-text>
+        </nb-button>
+      </view>
     </nb-content>
     <nb-spinner v-if="!loaded"></nb-spinner>
   <nb-footer>
@@ -106,7 +104,7 @@ export default {
         return this.value;
       },
       set(val) {
-        store.commit("updateDate", val);
+        store.commit("updtIncdntDate", val);
       }
     },
     incidentNum: {
@@ -114,7 +112,7 @@ export default {
         return this.value;
       },
       set(val) {
-        store.commit("updateIncidentNum", val);
+        store.commit("updtIncdntNum", val);
       }
     },
     incidentRep: {
@@ -122,7 +120,7 @@ export default {
         return this.value;
       },
       set(val) {
-        store.commit("updateIncidentRep", val);
+        store.commit("updtIncdntRep", val);
       }
     },
     personnelNum: {
@@ -130,7 +128,7 @@ export default {
         return this.value;
       },
       set(val) {
-        store.commit("updatePersonnelNum", val);
+        store.commit("updtIncdntPerson", val);
       }
     },
     medicUnits: {
@@ -138,7 +136,7 @@ export default {
         return this.value;
       },
       set(val) {
-        store.commit("updateMedicUnits", val);
+        store.commit("updtIncdntMedic", val);
       }
     },
     situation: {
@@ -146,13 +144,16 @@ export default {
         return this.value;
       },
       set(val) {
-        store.commit("updateSituation", val);
+        store.commit("updtIncdntSituation", val);
       }
     }
   },
   methods: {
     fetchList(type) {
       //return store.dispatch("FETCH_LIST_DATA", { type: type });
+    },
+    save(){
+      console.log("save", store.state);
     }
   }
 };
