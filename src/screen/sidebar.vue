@@ -3,7 +3,7 @@
     <nb-content :style="stylesObj.drawerContent" :bounces="false">
       <nb-list>
         <nb-list-item>
-          <nb-text>{{userData.fname}}</nb-text>
+          <nb-text>Hello {{ userData.fname }}</nb-text>
         </nb-list-item>
         <nb-list-item>
           <nb-text :on-press="logout">Logout</nb-text>
@@ -16,17 +16,17 @@
 <script>
 import { Dimensions, Platform } from "react-native";
 import drawerCover from "../../assets/drawer-cover.png";
-import { NavigationActions, StackActions } from 'vue-native-router';
+import { NavigationActions, StackActions } from "vue-native-router";
 import drawerImage from "../../assets/logo-kitchen-sink.png";
 import thumbnail from "../../assets/user.png";
-import store from '../store';
+import store from "../store";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 const resetAction = StackActions.reset({
-                        index: 0,
-                        actions: [NavigationActions.navigate({routeName: "Login"})]
-                    })
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: "Login" })]
+});
 export default {
   props: {
     navigation: {
@@ -34,26 +34,26 @@ export default {
     }
   },
   methods: {
-      logout() {
-          store.dispatch('LOGOUT', () => this.navigation.dispatch(resetAction))
-        }
-        //openPage(){ this.navigation.dispatch(page)}
+    logout() {
+      //store.dispatch('LOGOUT', () => this.navigation.dispatch(resetAction))
+    }
+    //openPage(){ this.navigation.dispatch(page)}
   },
   computed: {
-    userData () {
+    userData() {
       return store.state.userObj;
     }
   },
   data: {
     stylesObj: {
       profilePic: {
-            height: 40,
-            width: 40,
-            borderRadius: Platform.OS === "android" ? 40 : 20
-        },
-        drawerContent: {
-            paddingTop: Platform.OS === "android" ? 20 : 30
-        }
+        height: 40,
+        width: 40,
+        borderRadius: Platform.OS === "android" ? 40 : 20
+      },
+      drawerContent: {
+        paddingTop: Platform.OS === "android" ? 20 : 30
+      }
     },
     thumbnail: thumbnail
   }

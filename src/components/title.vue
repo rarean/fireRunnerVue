@@ -8,6 +8,9 @@
 export default {
   props: {
     name: { Type: String }
+  },
+  created(){
+    //console.log("title.vue", this.props)
   }
 };
 </script>

@@ -17,68 +17,142 @@
         </nb-header>
             <!--nb-list>
                 <item
-                    v-if="!loading"
+                    v-if="!loaded"
                     v-for="(itemType, types) in items"
                     :data="itemType" />
-                <nb-spinner v-if="loading"></nb-spinner>
+                <nb-spinner v-if="loaded"></nb-spinner>
             </nb-list-->
-    <nb-content class="container">
-      <nb-form>
-        <input-text label="Date" v-model="dateValue" />
-        <input-text label="Incident#" v-model="incident" />
-        <input-text label="Incident Reported:" v-model="inciReported" />
-        <input-text label="Personnel#" v-model="personnelNum" />
-        <input-text label="Medic Unit(s)" v-model="medicUnit" />
-        <input-text label="Situation Found#" v-model="situation" />
-      </nb-form>
+    <nb-content class="container" v-if="loaded">
+      <!--
       <view class="btn">
         <nb-button rounded large on-press="save">
           <nb-text>Save</nb-text>
         </nb-button>
       </view>
+        -->
+      <nb-form>
+        <nb-item floatingLabel>
+          <nb-label>Date </nb-label>
+          <nb-input v-model="date" />
+        </nb-item>
+        <nb-item floatingLabel>
+          <nb-label>Incident #</nb-label>
+          <nb-input v-model="incidentNum" />
+        </nb-item>
+        <nb-item floatingLabel>
+          <nb-label>Incident Reported</nb-label>
+          <nb-input v-model="incidentRep" />
+        </nb-item>
+        <nb-item floatingLabel>
+          <nb-label>Personnel # </nb-label>
+          <nb-input v-model="personnelNum" />
+        </nb-item>
+        <nb-item floatingLabel>
+          <nb-label>Medic Unit(s) </nb-label>
+          <nb-input v-model="medicUnits" />
+        </nb-item>
+        <nb-item floatingLabel>
+          <nb-label>Situation Found </nb-label>
+          <nb-input v-model="situation" />
+        </nb-item>
+      </nb-form>
     </nb-content>
+    <nb-spinner v-if="!loaded"></nb-spinner>
+  <nb-footer>
+    <nb-left>
+      <nb-button :on-press="()=> this.props.navigation.goBack()">
+        <nb-icon name="arrow-back" />
+       </nb-button>
+   </nb-left>
+    <nb-body class="center">
+      <nb-button :on-press="()=> this.props.navigation.navigate('Home')">
+        <nb-icon name="home" />
+       </nb-button>
+    </nb-body>
+    <nb-right>
+      <nb-button :on-press="()=> this.props.navigation.goBack()">
+        <nb-icon name="arrow-forward" />
+       </nb-button>
+   </nb-right>
+  </nb-footer>
   </nb-container>
+
 </template>
 
 <script>
 import React from "react";
-import Item from "../components/item";
-import { Dimensions } from "react-native";
 import Title from "../components/title";
-import InputText from "../components/inputText";
 import store from "../store";
 
-const SCREEN_WIDTH = Dimensions.get("window").width;
-
 export default {
-  components: { Item, Title, InputText },
+  components: { Title },
   props: { navigation: Object },
   data: function () {
     return {
-      dateValue: "",
-      incident: "",
-      inciReported: "",
-      personnelNum: "",
-      medicUnit: "",
-      situation: ""
+      loaded: false
     };
+  },
+  created() {
+    this.loaded = true;
+    console.log("created", store.state);
+    //this.fetchList(store.state.activeType);
   },
   computed: {
     titleName() {
       return this.navigation.state.routeName;
+    },
+    date: {
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updateDate", val);
+      }
+    },
+    incidentNum: {
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updateIncidentNum", val);
+      }
+    },
+    incidentRep: {
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updateIncidentRep", val);
+      }
+    },
+    personnelNum: {
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updatePersonnelNum", val);
+      }
+    },
+    medicUnits: {
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updateMedicUnits", val);
+      }
+    },
+    situation: {
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updateSituation", val);
+      }
     }
-  },
-  created() {
-    console.log("created", store.state);
-    console.log("created2", this.navigation);
-    //this.fetchList(store.state.activeType);
   },
   methods: {
     fetchList(type) {
-      return store.dispatch("FETCH_LIST_DATA", { type: type });
-    },
-    onHandleMenu() {
-      console.log("handleMenu");
+      //return store.dispatch("FETCH_LIST_DATA", { type: type });
     }
   }
 };
@@ -92,6 +166,10 @@ export default {
 .btn {
   margin: 20;
   padding: 20;
+  justify-content: center;
+  align-items: center;
+}
+.center {
   justify-content: center;
   align-items: center;
 }
