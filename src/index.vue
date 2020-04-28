@@ -15,7 +15,7 @@ import { Root } from "native-base";
 import LoginScreen from "./screen/login.vue";
 import HomeScreen from "./screen/home.vue";
 import Sidebar from "./screen/sidebar.vue";
-import PdfScreen from "./screen/pdf.vue";
+import PdfScreen from "./screen/createPdf.vue";
 
 console.disableYellowBox = true;
 const Drawer = createDrawerNavigator(
@@ -25,7 +25,7 @@ const Drawer = createDrawerNavigator(
     PDF: {screen: PdfScreen}
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Login",
     contentOptions: {
       activeTintColor: "#e91e63"
     },
@@ -36,11 +36,10 @@ const Drawer = createDrawerNavigator(
 const AppNavigation = createAppContainer(
   createStackNavigator(
     {
-      Login: { screen: LoginScreen },
       Drawer: { screen: Drawer }
     },
     {
-      initialRouteName: "Login",
+      initialRouteName: "Drawer",
       headerMode: "none"
     }
   )
