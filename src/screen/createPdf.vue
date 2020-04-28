@@ -7,10 +7,7 @@
           <nb-icon name="menu" />
         </nb-button>
       </nb-left>
-      <title
-        :name="titleName"
-        v-on:handle-menu="() => console.log('handleMenu')"
-      />
+      <title :name="titleName" />
       <nb-right>
         <nb-button transparent>
           <nb-icon name="flame" />
@@ -18,43 +15,10 @@
         </nb-button>
       </nb-right>
     </nb-header>
-    <!--nb-list>
-                <item
-                    v-if="!loaded"
-                    v-for="(itemType, types) in items"
-                    :data="itemType" />
-                <nb-spinner v-if="loaded"></nb-spinner>
-            </nb-list-->
     <nb-content class="container" v-if="loaded">
-      <nb-form>
-        <nb-item floatingLabel>
-          <nb-label>Date </nb-label>
-          <nb-input v-model="date" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Incident #</nb-label>
-          <nb-input v-model="incidentNum" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Incident Reported</nb-label>
-          <nb-input v-model="incidentRep" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Personnel # </nb-label>
-          <nb-input v-model="personnelNum" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Medic Unit(s) </nb-label>
-          <nb-input v-model="medicUnits" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Situation Found </nb-label>
-          <nb-input v-model="situation" />
-        </nb-item>
-      </nb-form>
       <view class="btn">
-        <nb-button rounded large :on-press="save">
-          <nb-text>Save</nb-text>
+        <nb-button rounded large :on-press="createPDF">
+          <nb-text>Create PDF</nb-text>
         </nb-button>
       </view>
     </nb-content>
@@ -89,73 +53,44 @@ export default {
   props: { navigation: Object },
   data: function () {
     return {
-      loaded: false
+      loaded: false,
+      title:'File Run Worksheet',
     };
   },
   created() {
     this.loaded = true;
-    console.log("created", store.state);
-    //this.fetchList(store.state.activeType);
+    //console.log("created", store.state);
   },
   computed: {
     titleName() {
       return this.navigation.state.routeName;
     },
-    date: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntDate", val);
-      }
-    },
-    incidentNum: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntNum", val);
-      }
-    },
-    incidentRep: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntRep", val);
-      }
-    },
-    personnelNum: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntPerson", val);
-      }
-    },
-    medicUnits: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntMedic", val);
-      }
-    },
-    situation: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntSituation", val);
-      }
-    }
   },
-  methods: {
-    fetchList(type) {
-      //return store.dispatch("FETCH_LIST_DATA", { type: type });
-    },
-    save() {
-      console.log("save", store.state);
+  methods:{
+    async createPDF(){
+      const title = this.title;
+      const html=`<h1>${title}</h1><p>Hello</p>`;
+      const options = {
+        html: html,
+        fileName: 'FRworksheet',
+        directory: 'docs',
+        height: 800,
+        width: 1056,
+        padding:24
+      };
+      console.log("html", options);
+
+      try{
+        //await convert(options).then((filePath) =>{
+        //  console.log('PDF file', filePath);
+        //}).catch((error)=>{
+        //  console.log("error", error.message)
+
+        //});
+      }catch(error){
+        console.log("something wrong", error.message)
+        alert("Something went wrong");
+      }
     }
   }
 };
