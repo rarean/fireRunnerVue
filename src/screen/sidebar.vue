@@ -33,7 +33,7 @@ const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 const resetAction = StackActions.reset({
   index: 0,
-  actions: [NavigationActions.navigate({ routeName: "Login" })]
+  actions: [NavigationActions.navigate({ routeName: "Home" })]
 });
 
 export default {
@@ -64,8 +64,8 @@ export default {
     },
     screens:[
       {
-      name:"Login",
-      route:"Login",
+      name:"Home",
+      route:"Home",
       icon:"",
       bg:"#C5F422"
       },

@@ -100,7 +100,6 @@ export default {
       const usr = store.state.userObj;
       //console.log("login", this.navigation);
       if (usr.fname && usr.lname) {
-        //store.dispatch('LOGIN', { navigate: this.navigation });
         store.commit("LOGGING_IN", true);
         this.navigation.navigate("Incident");
       } else {
