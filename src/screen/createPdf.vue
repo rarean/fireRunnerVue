@@ -47,6 +47,11 @@
 import React from "react";
 import Title from "../components/title";
 import store from "../store";
+import PdfMake from 'pdfmake/build/pdfmake.js';
+import PdfFonts from 'pdfmake/build/vfs_fonts.js';
+import * as FileSystem from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
+import * as ImagePicker from 'expo-image-picker';
 
 export default {
   components: { Title },
@@ -54,12 +59,19 @@ export default {
   data: function () {
     return {
       loaded: false,
-      title:'File Run Worksheet',
     };
   },
   created() {
     this.loaded = true;
-    //console.log("created", store.state);
+    //assign fonts to use w/pdfmake
+    PdfMake.fonts = {
+      Roboto: {
+        normal: 'Roboto-Regular.ttf',
+        bold: 'Roboto-Medium.ttf',
+        italics: 'Roboto-Italic.ttf',
+        bolditalics: 'Roboto-MediumItalic.ttf'
+      }
+    };
   },
   computed: {
     titleName() {
@@ -68,27 +80,75 @@ export default {
   },
   methods:{
     async createPDF(){
-      const title = this.title;
-      const html=`<h1>${title}</h1><p>Hello</p>`;
-      const options = {
-        html: html,
-        fileName: 'FRworksheet',
-        directory: 'docs',
-        height: 800,
-        width: 1056,
-        padding:24
+
+      const docDefinition = {
+        content: [
+          { text: 'Tables', style: 'header' },
+          'Official documentation is in progress, this document is just a glimpse of what is possible with pdfmake and its layout engine.',
+          { text: 'A simple table (no headers, no width specified, no spans, no styling)', style: 'subheader' },
+          'The following table has nothing more than a body array',
+          { style: 'tableExample',
+            table: {
+              body: [
+                ['Column 1', 'Column 2', 'Column 3'],
+                ['One value goes here', 'Another one here', 'OK?']
+              ]
+            }
+          },
+          { text: 'A simple table with nested elements', style: 'subheader' },
+          'It is of course possible to nest any other type of nodes available in pdfmake inside table cells',
+          { style: 'tableExample',
+            table: {
+              body: [
+                ['Column 1', 'Column 2', 'Column 3'], [ {
+                    stack: [ 'Let\'s try an unordered list', {
+                        ul: [ 'item 1', 'item 2' ]
+                      }
+                    ]
+                  }, [ 'or a nested table', {
+                      table: {
+                        body: [
+                          ['Col1', 'Col2', 'Col3'],
+                          ['1', '2', '3'],
+                          ['1', '2', '3']
+                        ]
+                      },
+                    }
+                  ],
+                  { text: [ 'Inlines can be ',
+                      { text: 'styled\n', italics: true },
+                      { text: 'easily as everywhere else', fontSize: 10 }]
+                  }
+                ]
+              ]
+            }
+          }
+          ]
       };
-      console.log("html", options);
 
       try{
-        //await convert(options).then((filePath) =>{
-        //  console.log('PDF file', filePath);
-        //}).catch((error)=>{
-        //  console.log("error", error.message)
+         const DIR = FileSystem.documentDirectory;
+         const FILE = DIR+'worksheet.pdf';
+         const ENCODE = FileSystem.EncodingType.Base64;
+         const PDF = PdfMake.createPdf(docDefinition);
+         PDF.getBase64((data) =>{
+           FileSystem.writeAsStringAsync(FILE, data, {encoding:ENCODE});
+           async ()=>{
+           consol.log("check shareing");
+              if(!(await Sharing.isAvailableAsync())){
+                alert('Sharing is not available on your device');
+              }
+           };
 
-        //});
-      }catch(error){
-        console.log("something wrong", error.message)
+           Sharing.shareAsync(FILE,{
+             mimeType:'application/pdf',
+             dialogTitle:'WorksheetPDF',
+             UTI:'public.item'
+            });
+
+         });
+      } catch(error){
+        console.log("something wrong", error)
         alert("Something went wrong");
       }
     }
