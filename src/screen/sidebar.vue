@@ -70,8 +70,8 @@ export default {
       bg:"#C5F422"
       },
       {
-      name:"Home",
-      route:"Home",
+      name:"Incident",
+      route:"Incident",
       icon:"home",
       bg:"#C5F422"
       },

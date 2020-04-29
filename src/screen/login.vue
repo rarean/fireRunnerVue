@@ -89,7 +89,7 @@ export default {
     // AsyncStorage.getItem('fname').then((val) => {
     //   if (val) {
     //     this.loaded = true
-    //     this.navigation.navigate('Home')
+    //     this.navigation.navigate('Incident')
     //     store.dispatch('SET_USER', {userObj: {fname: val}})
     //   } else {
     //   }
@@ -102,7 +102,7 @@ export default {
       if (usr.fname && usr.lname) {
         //store.dispatch('LOGIN', { navigate: this.navigation });
         store.commit("LOGGING_IN", true);
-        this.navigation.navigate("Home");
+        this.navigation.navigate("Incident");
       } else {
         Toast.show({
           text: "First and Last Name Required",

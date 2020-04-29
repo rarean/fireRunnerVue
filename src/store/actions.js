@@ -15,7 +15,7 @@ export function LOGIN({ commit, state }, { userObj, navigate }) {
     setTimeout(() => {
       commit("LOGIN_SUCCESFULL", { userObj });
       AsyncStorage.setItem("fname", userObj.fname);
-      navigate("Home");
+      navigate("Incident");
       resolve();
     }, 1000);
   });

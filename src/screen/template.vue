@@ -37,7 +37,7 @@
         </nb-button>
       </nb-left>
       <nb-body class="center">
-        <nb-button :on-press="() => this.props.navigation.navigate('Home')">
+        <nb-button :on-press="() => this.props.navigation.navigate('Incident')">
           <nb-icon name="home" />
         </nb-button>
       </nb-body>

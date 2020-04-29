@@ -13,7 +13,7 @@ import {
 } from "vue-native-router";
 import { Root } from "native-base";
 import LoginScreen from "./screen/login.vue";
-import HomeScreen from "./screen/home.vue";
+import IncidentScreen from "./screen/incident.vue";
 import Sidebar from "./screen/sidebar.vue";
 import PdfScreen from "./screen/createPdf.vue";
 
@@ -21,7 +21,7 @@ console.disableYellowBox = true;
 const Drawer = createDrawerNavigator(
   {
     Login: {screen: LoginScreen },
-    Home: { screen: HomeScreen },
+    Incident: { screen: IncidentScreen },
     PDF: {screen: PdfScreen}
   },
   {
