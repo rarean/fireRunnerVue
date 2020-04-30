@@ -29,11 +29,7 @@
           <nb-icon name="arrow-back" />
         </nb-button>
       </nb-left>
-      <nb-body class="center">
-        <nb-button :on-press="() => this.props.navigation.navigate('Incident')">
-          <nb-icon name="home" />
-        </nb-button>
-      </nb-body>
+      </nb-body />
       <nb-right>
         <nb-button :on-press="() => this.props.navigation.navigate('PDF')">
           <nb-icon name="arrow-forward" />

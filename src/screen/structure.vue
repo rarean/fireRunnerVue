@@ -15,38 +15,12 @@
         </nb-button>
       </nb-right>
     </nb-header>
-    <!--nb-list>
-                <item
-                    v-if="!loaded"
-                    v-for="(itemType, types) in items"
-                    :data="itemType" />
-                <nb-spinner v-if="loaded"></nb-spinner>
-            </nb-list-->
     <nb-content class="container" v-if="loaded">
       <nb-form>
+      <nb-text>page content goes here</nb-text>
         <nb-item floatingLabel>
           <nb-label>Date </nb-label>
           <nb-input v-model="date" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Incident #</nb-label>
-          <nb-input v-model="incidentNum" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Incident Reported</nb-label>
-          <nb-input v-model="incidentRep" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Personnel # </nb-label>
-          <nb-input v-model="personnelNum" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Medic Unit(s) </nb-label>
-          <nb-input v-model="medicUnits" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Situation Found </nb-label>
-          <nb-input v-model="situation" />
         </nb-item>
       </nb-form>
       <view class="btn">
@@ -62,9 +36,14 @@
           <nb-icon name="arrow-back" />
         </nb-button>
       </nb-left>
-      </nb-body />
+      <nb-body class="center">
+        <nb-button :on-press="() => this.props.navigation.navigate('Incident')">
+          <nb-icon name="home" />
+        </nb-button>
+      </nb-body>
       <nb-right>
-        <nb-button :on-press="() => this.props.navigation.goBack()">
+        <!-- update next page -->
+        <nb-button :on-press="() => this.props.navigation.navigate('PDF')">
           <nb-icon name="arrow-forward" />
         </nb-button>
       </nb-right>
@@ -88,7 +67,6 @@ export default {
   created() {
     this.loaded = true;
     console.log("created", store.state);
-    //this.fetchList(store.state.activeType);
   },
   computed: {
     titleName() {
@@ -102,53 +80,13 @@ export default {
         store.commit("updtIncdntDate", val);
       }
     },
-    incidentNum: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntNum", val);
-      }
-    },
-    incidentRep: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntRep", val);
-      }
-    },
-    personnelNum: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntPerson", val);
-      }
-    },
-    medicUnits: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntMedic", val);
-      }
-    },
-    situation: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntSituation", val);
-      }
-    }
+    //add getter and setter for each v-model
   },
   methods: {
-    fetchList(type) {
-      //return store.dispatch("FETCH_LIST_DATA", { type: type });
-    },
     save() {
       console.log("save", store.state);
+      //navigate to next page
+      this.props.navigation.navigate('PDF');
     }
   }
 };

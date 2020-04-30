@@ -72,7 +72,55 @@ export default {
       {
       name:"Incident",
       route:"Incident",
-      icon:"home",
+      icon:"",
+      bg:"#C5F422"
+      },
+      {
+      name:"Alarms",
+      route:"Alarms",
+      icon:"",
+      bg:"#C5F422"
+      },
+      {
+      name:"Location",
+      route:"Location",
+      icon:"",
+      bg:"#C5F422"
+      },
+      {
+      name:"Response",
+      route:"Response",
+      icon:"",
+      bg:"#C5F422"
+      },
+      {
+      name:"Actions",
+      route:"Actions",
+      icon:"",
+      bg:"#C5F422"
+      },
+      {
+      name:"Injuries",
+      route:"Injuries",
+      icon:"",
+      bg:"#C5F422"
+      },
+      {
+      name:"Structure",
+      route:"Structure",
+      icon:"",
+      bg:"#C5F422"
+      },
+      {
+      name:"BCFMO",
+      route:"BCFMO",
+      icon:"",
+      bg:"#C5F422"
+      },
+      {
+      name:"MutualAid",
+      route:"MutualAid",
+      icon:"",
       bg:"#C5F422"
       },
       {
