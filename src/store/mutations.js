@@ -27,4 +27,11 @@ export {
   updtIncdntSituation
 } from './incidents';
 //Alarms
+export {
+  updateAlarmTime,
+  updateEnrouteTime,
+  updateOnsceneTime,
+  updateFireControlTime,
+  updateClearSceneTime
+} from './alarms';
 

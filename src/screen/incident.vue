@@ -50,7 +50,7 @@
         </nb-item>
       </nb-form>
       <view class="btn">
-        <nb-button rounded large :on-press="save">
+        <nb-button rounded large :on-press="() => this.props.navigation.navigate('Alarms')">
           <nb-text>Save</nb-text>
         </nb-button>
       </view>
@@ -64,7 +64,7 @@
       </nb-left>
       </nb-body />
       <nb-right>
-        <nb-button :on-press="() => this.props.navigation.goBack()">
+        <nb-button :on-press="() => this.props.navigation.navigate('Alarms')">
           <nb-icon name="arrow-forward" />
         </nb-button>
       </nb-right>
@@ -81,75 +81,47 @@ export default {
   components: { Title },
   props: { navigation: Object },
   data: function () {
-    return {
-      loaded: false
-    };
+    return { loaded: false };
   },
   created() {
     this.loaded = true;
-    console.log("created", store.state);
+    //console.log("created", store.state);
     //this.fetchList(store.state.activeType);
   },
   computed: {
-    titleName() {
-      return this.navigation.state.routeName;
-    },
+    titleName() { return this.navigation.state.routeName; },
     date: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntDate", val);
-      }
+      get() { return this.value; },
+      set(val) { store.commit("updtIncdntDate", val); }
     },
     incidentNum: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntNum", val);
-      }
+      get() { return this.value; },
+      set(val) { store.commit("updtIncdntNum", val); }
     },
     incidentRep: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntRep", val);
-      }
+      get() { return this.value; },
+      set(val) { store.commit("updtIncdntRep", val); }
     },
     personnelNum: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntPerson", val);
-      }
+      get() { return this.value; },
+      set(val) { store.commit("updtIncdntPerson", val); }
     },
     medicUnits: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntMedic", val);
-      }
+      get() { return this.value; },
+      set(val) { store.commit("updtIncdntMedic", val); }
     },
     situation: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntSituation", val);
-      }
+      get() { return this.value; },
+      set(val) { store.commit("updtIncdntSituation", val); }
     }
   },
   methods: {
-    fetchList(type) {
-      //return store.dispatch("FETCH_LIST_DATA", { type: type });
-    },
-    save() {
-      console.log("save", store.state);
-    }
+   // fetchList(type) {
+   //   //return store.dispatch("FETCH_LIST_DATA", { type: type });
+   // },
+   // save() {
+   //   console.log("save", store.state);
+   // }
   }
 };
 </script>

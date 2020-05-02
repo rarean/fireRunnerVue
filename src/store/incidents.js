@@ -17,11 +17,12 @@ const updtIncdntMedic = function (state, value) {
 const updtIncdntSituation = function (state, value) {
   state.incident.situation = value;
 };
-export { //export mutations
+export {
+  //export mutations
   updtIncdntDate,
   updtIncdntNum,
   updtIncdntRep,
   updtIncdntPerson,
   updtIncdntMedic,
-  updtIncdntSituation
+  updtIncdntSituation,
 };

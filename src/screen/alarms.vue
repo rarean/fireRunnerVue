@@ -17,14 +17,31 @@
     </nb-header>
     <nb-content class="container" v-if="loaded">
       <nb-form>
-      <nb-text>page content goes here</nb-text>
+        <!--nb-text>page content goes here</nb-text-->
         <nb-item floatingLabel>
-          <nb-label>Date </nb-label>
-          <nb-input v-model="date" />
+          <nb-label>Alarm Time: </nb-label>
+          <nb-input v-model="alarmTime" />
+        </nb-item>
+        <nb-item floatingLabel>
+          <nb-label>Enroute Time: </nb-label>
+          <nb-input v-model="enrouteTime" />
+        </nb-item>
+        <nb-item floatingLabel>
+          <nb-label>On Scene Time: </nb-label>
+          <nb-input v-model="onSceneTime" />
+        </nb-item>
+        <nb-item floatingLabel>
+          <nb-label>Fire Controlled Time: </nb-label>
+          <nb-input v-model="fireControlTime" />
+        </nb-item>
+        <nb-item floatingLabel>
+          <nb-label>Clear Scene Time: </nb-label>
+          <nb-input v-model="clearSceneTime" />
         </nb-item>
       </nb-form>
       <view class="btn">
-        <nb-button rounded large :on-press="save">
+        <nb-button rounded large
+          :on-press="() => this.props.navigation.navigate('Location')">
           <nb-text>Save</nb-text>
         </nb-button>
       </view>
@@ -37,13 +54,14 @@
         </nb-button>
       </nb-left>
       <nb-body class="center">
-        <nb-button :on-press="() => this.props.navigation.navigate('Incident')">
+        <nb-button
+          :on-press="() => this.props.navigation.navigate('Incident')" >
           <nb-icon name="home" />
         </nb-button>
       </nb-body>
       <nb-right>
         <!-- update next page -->
-        <nb-button :on-press="() => this.props.navigation.navigate('PDF')">
+        <nb-button :on-press="() => this.props.navigation.navigate('Location')">
           <nb-icon name="arrow-forward" />
         </nb-button>
       </nb-right>
@@ -66,28 +84,31 @@ export default {
   },
   created() {
     this.loaded = true;
-    console.log("created", store.state);
+    //console.log("created", store.state);
   },
   computed: {
-    titleName() {
-      return this.navigation.state.routeName;
+    titleName() { return this.navigation.state.routeName; },
+    alarmTime: {
+      get() { return this.value; },
+      set(val) { store.commit("updateAlarmTime", val); }
     },
-    date: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntDate", val);
-      }
+    enrouteTime: {
+      get() { return this.value; },
+      set(val) { store.commit("updateEnrouteTime", val); }
+    },
+    onSceneTime: {
+      get() { return this.value; },
+      set(val) { store.commit("updateOnsceneTime", val); }
+    },
+    fireControlTime: {
+      get() { return this.value; },
+      set(val) { store.commit("updateFireControlTime", val); }
+    },
+    clearSceneTime: {
+      get() { return this.value; },
+      set(val) { store.commit("updateClearSceneTime", val); }
     },
     //add getter and setter for each v-model
-  },
-  methods: {
-    save() {
-      console.log("save", store.state);
-      //navigate to next page
-      this.props.navigation.navigate('PDF');
-    }
   }
 };
 </script>
