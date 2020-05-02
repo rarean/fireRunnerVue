@@ -24,6 +24,13 @@ const store = new Vuex.Store({
       medic: "",
       situation: ""
     },
+    alarms:{
+      alarm_time:"",
+      enroute_time:"",
+      onscene_time:"",
+      fire_control_time:"",
+      clear_scene_time:""
+    },
     aid: {},
     structure: {},
     bcfmo: {},
@@ -49,26 +56,6 @@ const store = new Vuex.Store({
       //})
     }
   }
-  //must be syncronus
-  //mutations: {
-  //  //functions to be used in components
-  //  updateFname(state, value) {
-  //    state.userObj.fname = value;
-  //  },
-  //  updateLname(state, value) {
-  //    state.userObj.lname = value;
-  //  },
-  //  NAVIGATOR(state, navigate) {
-  //    state.navigation = navigate;
-  //  },
-  //  LOGGING_IN(state, status) {
-  //    state.logging_in = status;
-  //  },
-  //  LOGIN_SUCCESFULL(state, { userObj }) {
-  //    state.userObj = userObj;
-  //    state.logging_in = false;
-  //  }
-  //},
   //dispatch actions
 });
 

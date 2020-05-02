@@ -10,27 +10,21 @@ export function LOGIN_SUCCESFULL(state, { userObj }) {
 export function NAVIGATOR(state, navigate) {
   state.navigation = navigate;
 }
+//user
 export function updateFname(state, value) {
   state.userObj.fname = value;
 }
 export function updateLname(state, value) {
   state.userObj.lname = value;
 }
-export function updtIncdntDate(state, value) {
-  state.incident.date = value;
-}
-export function updtIncdntNum(state, value) {
-  state.incident.num = value;
-}
-export function updtIncdntRep(state, value) {
-  state.incident.rep = value;
-}
-export function updtIncdntPerson(state, value) {
-  state.incident.personnel = value;
-}
-export function updtIncdntMedic(state, value) {
-  state.incident.medic = value;
-}
-export function updtIncdntSituation(state, value) {
-  state.incident.situation = value;
-}
+//Incidents
+export {
+  updtIncdntDate,
+  updtIncdntNum,
+  updtIncdntRep,
+  updtIncdntPerson,
+  updtIncdntMedic,
+  updtIncdntSituation
+} from './incidents';
+//Alarms
+
