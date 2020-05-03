@@ -1,20 +1,6 @@
 <template>
   <nb-container v-if="loaded" :style="{ backgroundColor: '#fff' }">
-    <nb-header>
-      <nb-left>
-        <nb-button transparent
-          :on-press="() => this.props.navigation.openDrawer()" >
-          <nb-icon name="menu" />
-        </nb-button>
-      </nb-left>
-      <title :name="titleName" />
-      <nb-right>
-        <nb-button transparent>
-          <nb-icon name="flame" />
-          <nb-text>FireRunner</nb-text>
-        </nb-button>
-      </nb-right>
-    </nb-header>
+    <header :name="titleName" :menu-pressed="onMenu"/>
     <nb-content :style="{ margin: 20, padding: 20 }">
       <nb-form>
         <nb-item floatingLabel>
@@ -39,17 +25,17 @@
 <script>
 import { Dimensions, Platform, AsyncStorage } from "react-native";
 import { Toast } from "native-base";
-import launchScreenBg from "../../assets/launchscreen-bg.png";
-import launchscreenLogo from "../../assets/logo-kitchen-sink.png";
-import { required } from "vuelidate/lib/validators";
+//import launchScreenBg from "../../assets/launchscreen-bg.png";
+//import launchscreenLogo from "../../assets/logo-kitchen-sink.png";
+//import { required } from "vuelidate/lib/validators";
 import store from "../store";
-import Title from "../components/title";
+import Header from "../components/header";
 
 //Vue.set(obj, 'new prop', 123)
 //state.obj = { ...state.obj, newProp: 123 } //spread operator
 
 export default {
-  components: { Title },
+  components: { Header },
   props: {
     navigation: {
       type: Object
@@ -86,19 +72,13 @@ export default {
   },
   created() {
     this.loaded = true;
-    // AsyncStorage.getItem('fname').then((val) => {
-    //   if (val) {
-    //     this.loaded = true
-    //     this.navigation.navigate('Incident')
-    //     store.dispatch('SET_USER', {userObj: {fname: val}})
-    //   } else {
-    //   }
-    // });
   },
   methods: {
+    onMenu: function(){
+      this.navigation.openDrawer();
+    },
     login() {
       const usr = store.state.userObj;
-      //console.log("login", this.navigation);
       if (usr.fname && usr.lname) {
         store.commit("LOGGING_IN", true);
         this.navigation.navigate("Incident");
@@ -110,6 +90,14 @@ export default {
       }
     }
   }
+    // AsyncStorage.getItem('fname').then((val) => {
+    //   if (val) {
+    //     this.loaded = true
+    //     this.navigation.navigate('Incident')
+    //     store.dispatch('SET_USER', {userObj: {fname: val}})
+    //   } else {
+    //   }
+    // });
 };
 </script>
 

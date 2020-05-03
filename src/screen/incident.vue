@@ -1,20 +1,6 @@
 <template>
   <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
-    <nb-header>
-      <nb-left>
-        <nb-button transparent
-          :on-press="() => this.props.navigation.openDrawer()" >
-          <nb-icon name="menu" />
-        </nb-button>
-      </nb-left>
-      <title :name="titleName" />
-      <nb-right>
-        <nb-button transparent>
-          <nb-icon name="flame" />
-          <nb-text>FireRunner</nb-text>
-        </nb-button>
-      </nb-right>
-    </nb-header>
+  <header :name="titleName" :menu-pressed="onMenu"/>
     <!--nb-list>
                 <item
                     v-if="!loaded"
@@ -74,14 +60,27 @@
 
 <script>
 import React from "react";
-import Title from "../components/title";
 import store from "../store";
+import Header from "../components/header";
 
 export default {
-  components: { Title },
-  props: { navigation: Object },
+  components: { Header },
+  props: {
+    navigation: Object,
+  },
   data: function () {
     return { loaded: false };
+  },
+  methods: {
+    onMenu: function(){
+      this.navigation.openDrawer();
+    }
+   // fetchList(type) {
+   //   //return store.dispatch("FETCH_LIST_DATA", { type: type });
+   // },
+   // save() {
+   //   console.log("save", store.state);
+   // }
   },
   created() {
     this.loaded = true;
@@ -115,14 +114,6 @@ export default {
       set(val) { store.commit("updtIncdntSituation", val); }
     }
   },
-  methods: {
-   // fetchList(type) {
-   //   //return store.dispatch("FETCH_LIST_DATA", { type: type });
-   // },
-   // save() {
-   //   console.log("save", store.state);
-   // }
-  }
 };
 </script>
 

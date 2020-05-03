@@ -1,23 +1,8 @@
 <template>
   <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
-    <nb-header>
-      <nb-left>
-        <nb-button transparent
-          :on-press="() => this.props.navigation.openDrawer()" >
-          <nb-icon name="menu" />
-        </nb-button>
-      </nb-left>
-      <title :name="titleName" />
-      <nb-right>
-        <nb-button transparent>
-          <nb-icon name="flame" />
-          <nb-text>FireRunner</nb-text>
-        </nb-button>
-      </nb-right>
-    </nb-header>
+    <header :name="titleName" :menu-pressed="onMenu"/>
     <nb-content class="container" v-if="loaded">
       <nb-form>
-        <!--nb-text>page content goes here</nb-text-->
         <nb-item floatingLabel>
           <nb-label>Alarm Time: </nb-label>
           <nb-input v-model="alarmTime" />
@@ -71,16 +56,21 @@
 
 <script>
 import React from "react";
-import Title from "../components/title";
+import Header from "../components/header";
 import store from "../store";
 
 export default {
-  components: { Title },
+  components: { Header },
   props: { navigation: Object },
   data: function () {
     return {
       loaded: false
     };
+  },
+  methods: {
+    onMenu: function(){
+      this.navigation.openDrawer();
+    }
   },
   created() {
     this.loaded = true;

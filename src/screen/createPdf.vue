@@ -1,20 +1,6 @@
 <template>
   <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
-    <nb-header>
-      <nb-left>
-        <nb-button transparent
-          :on-press="() => this.props.navigation.openDrawer()" >
-          <nb-icon name="menu" />
-        </nb-button>
-      </nb-left>
-      <title :name="titleName" />
-      <nb-right>
-        <nb-button transparent>
-          <nb-icon name="flame" />
-          <nb-text>FireRunner</nb-text>
-        </nb-button>
-      </nb-right>
-    </nb-header>
+    <header :name="titleName" :menu-pressed="onMenu"/>
     <nb-content class="container" v-if="loaded">
       <view class="btn">
         <nb-button rounded large :on-press="createPDF">
@@ -41,7 +27,7 @@
 
 <script>
 import React from "react";
-import Title from "../components/title";
+import Header from "../components/header";
 import store from "../store";
 import PdfMake from 'pdfmake/build/pdfmake.js';
 import PdfFonts from 'pdfmake/build/vfs_fonts.js';
@@ -50,7 +36,7 @@ import * as Sharing from 'expo-sharing';
 import * as ImagePicker from 'expo-image-picker';
 
 export default {
-  components: { Title },
+  components: { Header },
   props: { navigation: Object },
   data: function () {
     return {
@@ -75,8 +61,10 @@ export default {
     },
   },
   methods:{
+    onMenu: function(){
+      this.navigation.openDrawer();
+    },
     async createPDF(){
-
       const docDefinition = {
         content: [
           { text: 'Tables', style: 'header' },
