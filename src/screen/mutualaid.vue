@@ -1,58 +1,47 @@
 <template>
   <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
-    <header :name="titleName" :menu-pressed="onMenu"/>
+    <header :name="titleName" :menu-pressed="onMenu" />
     <nb-content class="container" v-if="loaded">
       <nb-form>
-      <nb-text>page content goes here</nb-text>
+        <nb-text>page content goes here</nb-text>
         <nb-item floatingLabel>
           <nb-label>Date </nb-label>
           <nb-input v-model="date" />
         </nb-item>
       </nb-form>
       <view class="btn">
-        <nb-button rounded large :on-press="save">
+        <nb-button rounded large :on-press="onNext">
           <nb-text>Save</nb-text>
         </nb-button>
       </view>
     </nb-content>
     <nb-spinner v-if="!loaded"></nb-spinner>
-    <nb-footer>
-      <nb-left>
-        <nb-button :on-press="() => this.props.navigation.goBack()">
-          <nb-icon name="arrow-back" />
-        </nb-button>
-      </nb-left>
-      <nb-body class="center">
-        <nb-button :on-press="() => this.props.navigation.navigate('Incident')">
-          <nb-icon name="home" />
-        </nb-button>
-      </nb-body>
-      <nb-right>
-        <!-- update next page -->
-        <nb-button :on-press="() => this.props.navigation.navigate('PDF')">
-          <nb-icon name="arrow-forward" />
-        </nb-button>
-      </nb-right>
-    </nb-footer>
+    <footer
+      :back-pressed="onBack"
+      :home-pressed="onHome"
+      :next-pressed="onNext"
+    />
   </nb-container>
 </template>
 
 <script>
 import React from "react";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import store from "../store";
 
 export default {
-  components: { Header },
+  components: { Header,Footer },
   props: { navigation: Object },
   data: function () {
     return {
-      loaded: false
+      loaded: false,
+      backPage: "BCFMO",
+      nextPage: "PDF"//add vehicles
     };
   },
   created() {
     this.loaded = true;
-    console.log("created", store.state);
   },
   computed: {
     titleName() {
@@ -65,17 +54,21 @@ export default {
       set(val) {
         store.commit("updtIncdntDate", val);
       }
-    },
+    }
     //add getter and setter for each v-model
   },
   methods: {
-    onMenu: function(){
+    onMenu: function () {
       this.navigation.openDrawer();
     },
-    save() {
-      console.log("save", store.state);
-      //navigate to next page
-      this.props.navigation.navigate('PDF');
+    onBack: function () {
+      this.navigation.navigate(this.backPage);
+    },
+    onHome: function () {
+      this.navigation.navigate("Home");
+    },
+    onNext: function () {
+      this.navigation.navigate(this.nextPage);
     }
   }
 };

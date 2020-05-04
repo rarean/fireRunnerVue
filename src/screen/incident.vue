@@ -1,6 +1,6 @@
 <template>
   <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
-  <header :name="titleName" :menu-pressed="onMenu"/>
+    <header :name="titleName" :menu-pressed="onMenu" />
     <!--nb-list>
                 <item
                     v-if="!loaded"
@@ -36,25 +36,17 @@
         </nb-item>
       </nb-form>
       <view class="btn">
-        <nb-button rounded large :on-press="() => this.props.navigation.navigate('Alarms')">
+        <nb-button rounded large :on-press="onNext">
           <nb-text>Save</nb-text>
         </nb-button>
       </view>
     </nb-content>
     <nb-spinner v-if="!loaded"></nb-spinner>
-    <nb-footer>
-      <nb-left>
-        <nb-button :on-press="() => this.props.navigation.goBack()">
-          <nb-icon name="arrow-back" />
-        </nb-button>
-      </nb-left>
-      </nb-body />
-      <nb-right>
-        <nb-button :on-press="() => this.props.navigation.navigate('Alarms')">
-          <nb-icon name="arrow-forward" />
-        </nb-button>
-      </nb-right>
-    </nb-footer>
+    <footer
+      :back-pressed="onBack"
+      :home-pressed="onHome"
+      :next-pressed="onNext"
+    />
   </nb-container>
 </template>
 
@@ -62,25 +54,39 @@
 import React from "react";
 import store from "../store";
 import Header from "../components/header";
+import Footer from "../components/footer";
 
 export default {
-  components: { Header },
+  components: { Header, Footer },
   props: {
-    navigation: Object,
+    navigation: Object
   },
   data: function () {
-    return { loaded: false };
+    return {
+      loaded: false,
+      backPage: "Home",
+      nextPage: "Alarms"
+    };
   },
   methods: {
-    onMenu: function(){
+    onMenu: function () {
       this.navigation.openDrawer();
+    },
+    onBack: function () {
+      this.navigation.navigate(this.backPage);
+    },
+    onHome: function () {
+      this.navigation.navigate("Home");
+    },
+    onNext: function () {
+      this.navigation.navigate(this.nextPage);
     }
-   // fetchList(type) {
-   //   //return store.dispatch("FETCH_LIST_DATA", { type: type });
-   // },
-   // save() {
-   //   console.log("save", store.state);
-   // }
+    // fetchList(type) {
+    //   //return store.dispatch("FETCH_LIST_DATA", { type: type });
+    // },
+    // save() {
+    //   console.log("save", store.state);
+    // }
   },
   created() {
     this.loaded = true;
@@ -88,32 +94,58 @@ export default {
     //this.fetchList(store.state.activeType);
   },
   computed: {
-    titleName() { return this.navigation.state.routeName; },
+    titleName() {
+      return this.navigation.state.routeName;
+    },
     date: {
-      get() { return this.value; },
-      set(val) { store.commit("updtIncdntDate", val); }
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updtIncdntDate", val);
+      }
     },
     incidentNum: {
-      get() { return this.value; },
-      set(val) { store.commit("updtIncdntNum", val); }
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updtIncdntNum", val);
+      }
     },
     incidentRep: {
-      get() { return this.value; },
-      set(val) { store.commit("updtIncdntRep", val); }
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updtIncdntRep", val);
+      }
     },
     personnelNum: {
-      get() { return this.value; },
-      set(val) { store.commit("updtIncdntPerson", val); }
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updtIncdntPerson", val);
+      }
     },
     medicUnits: {
-      get() { return this.value; },
-      set(val) { store.commit("updtIncdntMedic", val); }
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updtIncdntMedic", val);
+      }
     },
     situation: {
-      get() { return this.value; },
-      set(val) { store.commit("updtIncdntSituation", val); }
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updtIncdntSituation", val);
+      }
     }
-  },
+  }
 };
 </script>
 

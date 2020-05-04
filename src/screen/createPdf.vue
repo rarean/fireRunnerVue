@@ -9,25 +9,18 @@
       </view>
     </nb-content>
     <nb-spinner v-if="!loaded"></nb-spinner>
-    <nb-footer>
-      <nb-left>
-        <nb-button :on-press="() => this.props.navigation.goBack()">
-          <nb-icon name="arrow-back" />
-        </nb-button>
-      </nb-left>
-      </nb-body />
-      <nb-right>
-        <nb-button :on-press="() => this.props.navigation.navigate('PDF')">
-          <nb-icon name="arrow-forward" />
-        </nb-button>
-      </nb-right>
-    </nb-footer>
+    <footer
+      :back-pressed="onBack"
+      :home-pressed="onHome"
+      :next-pressed="onNext"
+    />
   </nb-container>
 </template>
 
 <script>
 import React from "react";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import store from "../store";
 import PdfMake from 'pdfmake/build/pdfmake.js';
 import PdfFonts from 'pdfmake/build/vfs_fonts.js';
@@ -36,11 +29,13 @@ import * as Sharing from 'expo-sharing';
 import * as ImagePicker from 'expo-image-picker';
 
 export default {
-  components: { Header },
+  components: { Header, Footer },
   props: { navigation: Object },
   data: function () {
     return {
       loaded: false,
+      backPage: "MutualAid",
+      nextPage: "Home"
     };
   },
   created() {
@@ -63,6 +58,15 @@ export default {
   methods:{
     onMenu: function(){
       this.navigation.openDrawer();
+    },
+    onBack: function () {
+      this.navigation.navigate(this.backPage);
+    },
+    onHome: function () {
+      this.navigation.navigate("Home");
+    },
+    onNext: function () {
+      this.navigation.navigate(this.nextPage);
     },
     async createPDF(){
       const docDefinition = {

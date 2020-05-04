@@ -1,6 +1,6 @@
 <template>
   <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
-    <header :name="titleName" :menu-pressed="onMenu"/>
+    <header :name="titleName" :menu-pressed="onMenu" />
     <nb-content class="container" v-if="loaded">
       <nb-form>
         <nb-item floatingLabel>
@@ -25,51 +25,48 @@
         </nb-item>
       </nb-form>
       <view class="btn">
-        <nb-button rounded large
-          :on-press="() => this.props.navigation.navigate('Location')">
+        <nb-button rounded large :on-press="onNext">
           <nb-text>Save</nb-text>
         </nb-button>
       </view>
     </nb-content>
     <nb-spinner v-if="!loaded"></nb-spinner>
-    <nb-footer>
-      <nb-left>
-        <nb-button :on-press="() => this.props.navigation.goBack()">
-          <nb-icon name="arrow-back" />
-        </nb-button>
-      </nb-left>
-      <nb-body class="center">
-        <nb-button
-          :on-press="() => this.props.navigation.navigate('Incident')" >
-          <nb-icon name="home" />
-        </nb-button>
-      </nb-body>
-      <nb-right>
-        <!-- update next page -->
-        <nb-button :on-press="() => this.props.navigation.navigate('Location')">
-          <nb-icon name="arrow-forward" />
-        </nb-button>
-      </nb-right>
-    </nb-footer>
+    <footer
+      :back-pressed="onBack"
+      :home-pressed="onHome"
+      :next-pressed="onNext"
+    />
   </nb-container>
 </template>
 
 <script>
 import React from "react";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import store from "../store";
 
 export default {
-  components: { Header },
+  components: { Header, Footer },
   props: { navigation: Object },
   data: function () {
     return {
-      loaded: false
+      loaded: false,
+      backPage: "Incident",
+      nextPage: "Location"
     };
   },
   methods: {
-    onMenu: function(){
+    onMenu: function () {
       this.navigation.openDrawer();
+    },
+    onBack: function () {
+      this.navigation.navigate(this.backPage);
+    },
+    onHome: function () {
+      this.navigation.navigate("Home");
+    },
+    onNext: function () {
+      this.navigation.navigate(this.nextPage);
     }
   },
   created() {
@@ -77,27 +74,49 @@ export default {
     //console.log("created", store.state);
   },
   computed: {
-    titleName() { return this.navigation.state.routeName; },
+    titleName() {
+      return this.navigation.state.routeName;
+    },
     alarmTime: {
-      get() { return this.value; },
-      set(val) { store.commit("updateAlarmTime", val); }
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updateAlarmTime", val);
+      }
     },
     enrouteTime: {
-      get() { return this.value; },
-      set(val) { store.commit("updateEnrouteTime", val); }
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updateEnrouteTime", val);
+      }
     },
     onSceneTime: {
-      get() { return this.value; },
-      set(val) { store.commit("updateOnsceneTime", val); }
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updateOnsceneTime", val);
+      }
     },
     fireControlTime: {
-      get() { return this.value; },
-      set(val) { store.commit("updateFireControlTime", val); }
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updateFireControlTime", val);
+      }
     },
     clearSceneTime: {
-      get() { return this.value; },
-      set(val) { store.commit("updateClearSceneTime", val); }
-    },
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("updateClearSceneTime", val);
+      }
+    }
     //add getter and setter for each v-model
   }
 };

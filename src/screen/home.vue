@@ -36,9 +36,29 @@ import Header from "../components/header";
 
 export default {
   components: { Header },
-  props: {
-    navigation: {
-      type: Object
+  props: { navigation: { type: Object }
+  },
+  data: function () {
+    return {
+      loaded: false
+    };
+  },
+  created() { this.loaded = true; },
+  methods: {
+    onMenu: function(){
+      this.navigation.openDrawer();
+    },
+    login() {
+      const usr = store.state.userObj;
+      if (usr.fname && usr.lname) {
+        store.commit("LOGGING_IN", true);
+        this.navigation.navigate("Incident");
+      } else {
+        Toast.show({
+          text: "First and Last Name Required",
+          buttonText: "Okay"
+        });
+      }
     }
   },
   computed: {
@@ -65,31 +85,6 @@ export default {
       }
     }
   },
-  data: function () {
-    return {
-      loaded: false
-    };
-  },
-  created() {
-    this.loaded = true;
-  },
-  methods: {
-    onMenu: function(){
-      this.navigation.openDrawer();
-    },
-    login() {
-      const usr = store.state.userObj;
-      if (usr.fname && usr.lname) {
-        store.commit("LOGGING_IN", true);
-        this.navigation.navigate("Incident");
-      } else {
-        Toast.show({
-          text: "First and Last Name Required",
-          buttonText: "Okay"
-        });
-      }
-    }
-  }
     // AsyncStorage.getItem('fname').then((val) => {
     //   if (val) {
     //     this.loaded = true
