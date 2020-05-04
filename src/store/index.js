@@ -24,23 +24,56 @@ const store = new Vuex.Store({
       medic: "",
       situation: ""
     },
-    alarms:{
-      alarm_time:"",
-      enroute_time:"",
-      onscene_time:"",
-      fire_control_time:"",
-      clear_scene_time:""
+    alarms: {
+      alarm_time: "",
+      enroute_time: "",
+      onscene_time: "",
+      fire_control_time: "",
+      clear_scene_time: ""
     },
-    aid: {},
-    structure: {},
-    bcfmo: {},
-    location: {},
-    mutualaid: {},
-    vehicles: {},
-    equipment: {},
-    report: {},
-    narrative: {},
-    signature: {}
+    location: {
+      call_location:"",
+      call_zip:"",
+      owner_name:"",
+      owner_address:"",
+      owner_city:"",
+      owner_state:"",
+      owner_phone:""
+    },
+    response: {
+      dept:"",
+      mutual_aid_to:"",
+      mutual_aid_from:""
+    },
+    actions: {
+      taken:"",
+      water_used:"",
+      foam_used:""
+    },
+    injured:{
+      fatalities:"",
+      injuries:""
+    },
+    structure: {
+      type:"",
+      use:"",
+      suspected_cause:"",
+      arson_suspected:"",
+      estimated_cost:"",
+      property_damaged:"",
+      smoke_detector:"",
+      acerage_burned:"",
+      main_floor_size:""
+    },
+    bcfmo: {
+      case_num:"",
+      contact_for_arson:"",
+      investigator:""
+    },
+    mutualaid: [],
+    vehicles: [],
+    equipment: [],
+    narrative: "",
   },
   actions: {
     //invoke mutations asyncronusly

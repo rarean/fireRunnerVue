@@ -25,7 +25,7 @@ export {
   updtIncdntPerson,
   updtIncdntMedic,
   updtIncdntSituation
-} from './incidents';
+} from "./mutations/incidents";
 //Alarms
 export {
   updateAlarmTime,
@@ -33,5 +33,45 @@ export {
   updateOnsceneTime,
   updateFireControlTime,
   updateClearSceneTime
-} from './alarms';
-
+} from "./mutations/alarms";
+//Locations
+export {
+  updateCallLocation,
+  updateCallZip,
+  updateOwnerName,
+  updateOwnerAddress,
+  updateOwnerCity,
+  updateOwnerState,
+  updateOwnerPhone
+} from "./mutations/location";
+//Response
+export {
+  updateDept,
+  updateMutualAidTo,
+  updateMutualAidFrom
+} from "./mutations/response";
+//Action
+export {
+  updateActionTaken,
+  updateWaterUsed,
+  updateFoamUsed
+} from "./mutations/actions";
+//Injuries
+export { updateFatalities, updateInjuries } from "./mutations/injuries";
+//Structure
+export {
+updateStructType,
+updateStructUse,
+updateStructCause,
+updateStructCost,
+updateStructDamage,
+updateStructSmokeDetector,
+updateStructAcerageBurned,
+updateStructMainFloorSize
+} from "./mutations/structure";
+////BCFMO
+export {
+  updateBcfmoCaseNum,
+  updateBcfmoContactForArson,
+  updateBcfmoInvestigator
+} from "./mutations/bcfmo";
