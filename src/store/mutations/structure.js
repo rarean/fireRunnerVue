@@ -22,6 +22,9 @@ const updateStructAcerageBurned = function (state, value) {
 const updateStructMainFloorSize = function (state, value) {
   state.structure.main_floor_size = value;
 };
+const updateStructArsonSuspect = function (state, value) {
+  state.structure.arson_suspected = value;
+};
 export {
   updateStructType,
   updateStructUse,
@@ -30,5 +33,6 @@ export {
   updateStructDamage,
   updateStructSmokeDetector,
   updateStructAcerageBurned,
-  updateStructMainFloorSize
+  updateStructMainFloorSize,
+  updateStructArsonSuspect
 };

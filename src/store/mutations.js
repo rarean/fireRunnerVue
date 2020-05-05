@@ -60,14 +60,15 @@ export {
 export { updateFatalities, updateInjuries } from "./mutations/injuries";
 //Structure
 export {
-updateStructType,
-updateStructUse,
-updateStructCause,
-updateStructCost,
-updateStructDamage,
-updateStructSmokeDetector,
-updateStructAcerageBurned,
-updateStructMainFloorSize
+  updateStructType,
+  updateStructUse,
+  updateStructCause,
+  updateStructCost,
+  updateStructDamage,
+  updateStructSmokeDetector,
+  updateStructAcerageBurned,
+  updateStructMainFloorSize,
+  updateStructArsonSuspect
 } from "./mutations/structure";
 ////BCFMO
 export {

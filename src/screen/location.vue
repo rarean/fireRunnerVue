@@ -44,31 +44,31 @@ export default {
       inputs: [
         {
           label: "Addres/Location of Call:",
-          mutate: "updateAlarmTime"
+          mutate: "updateCallLocation"
         },
         {
           label: "Owners Name",
-          mutate: "updateEnrouteTime"
+          mutate: "updateOwnerName"
         },
         {
           label: "Address",
-          mutate: "updateOnsceneTime"
+          mutate: "updateOwnerAddress"
         },
         {
           label: "City",
-          mutate: "updateFireControlTime"
+          mutate: "updateOwnerCity"
         },
         {
           label: "State",
-          mutate: "updateFireControlTime"
+          mutate: "updateOwnerState"
         },
         {
           label: "Zip",
-          mutate: "updateFireControlTime"
+          mutate: "updateCallZip"
         },
         {
           label: "Phone#",
-          mutate: "updateClearSceneTime"
+          mutate: "updateOwnerPhone"
         }
       ]
     };

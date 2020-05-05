@@ -44,11 +44,11 @@ export default {
       inputs: [
         {
           label: "Fatalities:",
-          mutate: "updateAlarmTime"
+          mutate: "updateFatalities"
         },
         {
           label: "Injuries:",
-          mutate: "updateEnrouteTime"
+          mutate: "updateInjuries"
         }
       ]
     };

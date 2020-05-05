@@ -34,7 +34,7 @@ import InputText from "../components/inputText";
 import store from "../store";
 
 export default {
-  components: { Header,Footer,InputText },
+  components: { Header, Footer, InputText },
   props: { navigation: Object },
   data: function () {
     return {
@@ -44,15 +44,15 @@ export default {
       inputs: [
         {
           label: "BCFMO Case#:",
-          mutate: "updateAlarmTime"
+          mutate: "updateBcfmoCaseNum"
         },
         {
           label: "BCFMO Contacted for Arson Investigation: (Y/N)",
-          mutate: "updateAlarmTime"
+          mutate: "updateBcfmoContactForArson"
         },
         {
           label: "BCFMO Investigator Name",
-          mutate: "updateEnrouteTime"
+          mutate: "updateBcfmoInvestigator"
         }
       ]
     };
@@ -63,7 +63,7 @@ export default {
   computed: {
     titleName() {
       return this.navigation.state.routeName;
-    },
+    }
   },
   methods: {
     onMenu: function () {

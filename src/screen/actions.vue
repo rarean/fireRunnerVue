@@ -44,15 +44,15 @@ export default {
       inputs: [
         {
           label: "Actions Taken",
-          mutate: "updateAlarmTime"
+          mutate: "updateActionTaken"
         },
         {
           label: "Water Used:",
-          mutate: "updateEnrouteTime"
+          mutate: "updateWaterUsed"
         },
         {
           label: "Foam Used",
-          mutate: "updateOnsceneTime"
+          mutate: "updateFoamUsed"
         }
       ]
     };

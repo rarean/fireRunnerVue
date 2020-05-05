@@ -43,44 +43,40 @@ export default {
       nextPage: "BCFMO",
       inputs: [
         {
-          label: "Residential:",
-          mutate: "updateAlarmTime"
-        },
-        {
-          label: "Commercial:",
-          mutate: "updateAlarmTime"
+          label: "Type: (Residential/Commercial)",
+          mutate: "updateStructType"
         },
         {
           label: "What is building used for::",
-          mutate: "updateAlarmTime"
+          mutate: "updateStructUse"
         },
         {
           label: "Suspected Cause of Fire: (ignition source)",
-          mutate: "updateAlarmTime"
+          mutate: "updateStructCause"
         },
         {
           label: "Arson Suspected: (Y/N)",
-          mutate: "updateAlarmTime"
+          mutate: "updateStructArsonSuspect"
         },
         {
           label: "Estimated Cost of Damage:",
-          mutate: "updateAlarmTime"
+          mutate: "updateStructCost"
         },
         {
           label: "Property Damaged:",
-          mutate: "updateAlarmTime"
+          mutate: "updateStructDamage"
         },
         {
           label: "Smoke Detector Operation: (Y,N,N/A)",
-          mutate: "updateAlarmTime"
+          mutate: "updateStructSmokeDetector"
         },
         {
           label: "Acerage Burned:",
-          mutate: "updateAlarmTime"
+          mutate: "updateStructAcerageBurned"
         },
         {
           label: "Main Floor Size (LxW):",
-          mutate: "updateEnrouteTime"
+          mutate: "updateStructMainFloorSize"
         }
       ]
     };

@@ -34,7 +34,7 @@ import InputText from "../components/inputText";
 import store from "../store";
 
 export default {
-  components: { Header,Footer,InputText },
+  components: { Header, Footer, InputText },
   props: { navigation: Object },
   data: function () {
     return {
@@ -44,15 +44,15 @@ export default {
       inputs: [
         {
           label: "Responding Department(s)",
-          mutate: "updateAlarmTime"
+          mutate: "updateDept"
         },
         {
           label: "Mutual Aid To: (Y/N)",
-          mutate: "updateEnrouteTime"
+          mutate: "updateMutualAidTo"
         },
         {
           label: "Mutual Aid From: (Y/N)",
-          mutate: "updateOnsceneTime"
+          mutate: "updateMutualAidFrom"
         }
       ]
     };
@@ -63,7 +63,7 @@ export default {
   computed: {
     titleName() {
       return this.navigation.state.routeName;
-    },
+    }
   },
   methods: {
     onMenu: function () {
