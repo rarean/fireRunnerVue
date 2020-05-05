@@ -1,39 +1,15 @@
 <template>
   <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
     <header :name="titleName" :menu-pressed="onMenu" />
-    <!--nb-list>
-                <item
-                    v-if="!loaded"
-                    v-for="(itemType, types) in items"
-                    :data="itemType" />
-                <nb-spinner v-if="loaded"></nb-spinner>
-            </nb-list-->
     <nb-content class="container" v-if="loaded">
       <nb-form>
-        <nb-item floatingLabel>
-          <nb-label>Date </nb-label>
-          <nb-input v-model="date" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Incident #</nb-label>
-          <nb-input v-model="incidentNum" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Incident Reported</nb-label>
-          <nb-input v-model="incidentRep" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Personnel # </nb-label>
-          <nb-input v-model="personnelNum" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Medic Unit(s) </nb-label>
-          <nb-input v-model="medicUnits" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Situation Found </nb-label>
-          <nb-input v-model="situation" />
-        </nb-item>
+        <nb-list-item
+          v-for="input in inputs"
+          :key="input.mutate"
+          class="lister"
+        >
+          <input-text :mutation="input.mutate" :floater="input.label" />
+        </nb-list-item>
       </nb-form>
       <view class="btn">
         <nb-button rounded large :on-press="onNext">
@@ -55,9 +31,10 @@ import React from "react";
 import store from "../store";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import InputText from "../components/inputText";
 
 export default {
-  components: { Header, Footer },
+  components: { Header, Footer, InputText },
   props: {
     navigation: Object
   },
@@ -65,7 +42,33 @@ export default {
     return {
       loaded: false,
       backPage: "Home",
-      nextPage: "Alarms"
+      nextPage: "Alarms",
+      inputs: [
+        {
+          label: "Date",
+          mutate: "updtIncdntDate"
+        },
+        {
+          label: "Incident#",
+          mutate: "updtIncdntNum"
+        },
+        {
+          label: "Incident Reported",
+          mutate: "updtIncdntRep"
+        },
+        {
+          label: "Personnel#",
+          mutate: "updtIncdntPerson"
+        },
+        {
+          label: "Medic Unit(s)",
+          mutate: "updtIncdntMedic"
+        },
+        {
+          label: "Situation Found",
+          mutate: "updtIncdntSituation"
+        }
+      ]
     };
   },
   methods: {
@@ -81,69 +84,13 @@ export default {
     onNext: function () {
       this.navigation.navigate(this.nextPage);
     }
-    // fetchList(type) {
-    //   //return store.dispatch("FETCH_LIST_DATA", { type: type });
-    // },
-    // save() {
-    //   console.log("save", store.state);
-    // }
   },
   created() {
     this.loaded = true;
-    //console.log("created", store.state);
-    //this.fetchList(store.state.activeType);
   },
   computed: {
     titleName() {
       return this.navigation.state.routeName;
-    },
-    date: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntDate", val);
-      }
-    },
-    incidentNum: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntNum", val);
-      }
-    },
-    incidentRep: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntRep", val);
-      }
-    },
-    personnelNum: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntPerson", val);
-      }
-    },
-    medicUnits: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntMedic", val);
-      }
-    },
-    situation: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntSituation", val);
-      }
     }
   }
 };
@@ -160,33 +107,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.center {
-  justify-content: center;
-  align-items: center;
-}
-.score {
-  width: 40;
-  height: 40;
-  background-color: #fff;
-  border-radius: 20;
-  justify-content: center;
-  align-items: center;
-  margin-right: 16;
-}
-.score-text {
-  color: #ff6600;
-  font-weight: bold;
-}
-.detail {
-  flex: 1;
-}
-.name {
-  color: #666;
-  font-size: 12;
-  margin-bottom: 6;
-}
-.title {
-  color: #333;
-  font-size: 14;
+.lister {
+  border-color: "rgba(255,255,255,1)";
 }
 </style>

@@ -1,16 +1,15 @@
 <template>
   <nb-container v-if="loaded" :style="{ backgroundColor: '#fff' }">
-    <header :name="titleName" :menu-pressed="onMenu"/>
+    <header :name="titleName" :menu-pressed="onMenu" />
     <nb-content :style="{ margin: 20, padding: 20 }">
       <nb-form>
-        <nb-item floatingLabel>
-          <nb-label>First Name </nb-label>
-          <nb-input v-model="fname" />
-        </nb-item>
-        <nb-item floatingLabel>
-          <nb-label>Last Name </nb-label>
-          <nb-input v-model="lname" />
-        </nb-item>
+        <nb-list-item
+          v-for="input in inputs"
+          :key="input.mutate"
+          class="lister"
+        >
+          <input-text :mutation="input.mutate" :floater="input.label" />
+        </nb-list-item>
       </nb-form>
       <view class="btn">
         <nb-button large rounded :on-press="login">
@@ -23,29 +22,38 @@
 </template>
 
 <script>
-import { Dimensions, Platform, AsyncStorage } from "react-native";
+import React from "react";
 import { Toast } from "native-base";
-//import launchScreenBg from "../../assets/launchscreen-bg.png";
-//import launchscreenLogo from "../../assets/logo-kitchen-sink.png";
 //import { required } from "vuelidate/lib/validators";
 import store from "../store";
 import Header from "../components/header";
-
+import InputText from "../components/inputText";
 //Vue.set(obj, 'new prop', 123)
 //state.obj = { ...state.obj, newProp: 123 } //spread operator
 
 export default {
-  components: { Header },
-  props: { navigation: { type: Object }
-  },
+  components: { Header, InputText },
+  props: { navigation: { type: Object } },
   data: function () {
     return {
-      loaded: false
+      loaded: false,
+      inputs: [
+        {
+          label: "First Name",
+          mutate: "updateFname"
+        },
+        {
+          label: "Last Name",
+          mutate: "updateLname"
+        }
+      ]
     };
   },
-  created() { this.loaded = true; },
+  created() {
+    this.loaded = true;
+  },
   methods: {
-    onMenu: function(){
+    onMenu: function () {
       this.navigation.openDrawer();
     },
     login() {
@@ -67,32 +75,8 @@ export default {
     },
     titleName() {
       return this.navigation.state.routeName;
-    },
-    fname: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updateFname", val);
-      }
-    },
-    lname: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updateLname", val);
-      }
     }
-  },
-    // AsyncStorage.getItem('fname').then((val) => {
-    //   if (val) {
-    //     this.loaded = true
-    //     this.navigation.navigate('Incident')
-    //     store.dispatch('SET_USER', {userObj: {fname: val}})
-    //   } else {
-    //   }
-    // });
+  }
 };
 </script>
 
@@ -102,5 +86,8 @@ export default {
   padding: 20;
   justify-content: center;
   align-items: center;
+}
+.lister {
+  border-color: "rgba(255,255,255,1)";
 }
 </style>
