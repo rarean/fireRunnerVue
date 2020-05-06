@@ -17,6 +17,10 @@ export function updateFname(state, value) {
 export function updateLname(state, value) {
   state.userObj.lname = value;
 }
+export function addMutualAid(state, value){
+  state.mutualaid.push(value);
+  console.log("addAid",state.mutualaid);
+}
 //Incidents
 export {
   updtIncdntDate,
