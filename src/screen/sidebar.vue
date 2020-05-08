@@ -130,6 +130,12 @@ export default {
         bg:"#C5F422"
       },
       {
+        name:"Equipment 1",
+        route:"Equipment1",
+        icon:"",
+        bg:"#C5F422"
+      },
+      {
         name:"PDF",
         route:"PDF",
         icon:"",
