@@ -64,70 +64,76 @@ export default {
     },
     screens:[
       {
-      name:"Home",
-      route:"Home",
-      icon:"",
-      bg:"#C5F422"
+        name:"Home",
+        route:"Home",
+        icon:"",
+        bg:"#C5F422"
       },
       {
-      name:"Incident",
-      route:"Incident",
-      icon:"",
-      bg:"#C5F422"
+        name:"Incident",
+        route:"Incident",
+        icon:"",
+        bg:"#C5F422"
       },
       {
-      name:"Alarms",
-      route:"Alarms",
-      icon:"",
-      bg:"#C5F422"
+        name:"Alarms",
+        route:"Alarms",
+        icon:"",
+        bg:"#C5F422"
       },
       {
-      name:"Location",
-      route:"Location",
-      icon:"",
-      bg:"#C5F422"
+        name:"Location",
+        route:"Location",
+        icon:"",
+        bg:"#C5F422"
       },
       {
-      name:"Response",
-      route:"Response",
-      icon:"",
-      bg:"#C5F422"
+        name:"Response",
+        route:"Response",
+        icon:"",
+        bg:"#C5F422"
       },
       {
-      name:"Actions",
-      route:"Actions",
-      icon:"",
-      bg:"#C5F422"
+        name:"Actions",
+        route:"Actions",
+        icon:"",
+        bg:"#C5F422"
       },
       {
-      name:"Injuries",
-      route:"Injuries",
-      icon:"",
-      bg:"#C5F422"
+        name:"Injuries",
+        route:"Injuries",
+        icon:"",
+        bg:"#C5F422"
       },
       {
-      name:"Structure",
-      route:"Structure",
-      icon:"",
-      bg:"#C5F422"
+        name:"Structure",
+        route:"Structure",
+        icon:"",
+        bg:"#C5F422"
       },
       {
-      name:"BCFMO",
-      route:"BCFMO",
-      icon:"",
-      bg:"#C5F422"
+        name:"BCFMO",
+        route:"BCFMO",
+        icon:"",
+        bg:"#C5F422"
       },
       {
-      name:"MutualAid",
-      route:"MutualAid",
-      icon:"",
-      bg:"#C5F422"
+        name:"MutualAid",
+        route:"MutualAid",
+        icon:"",
+        bg:"#C5F422"
       },
       {
-      name:"PDF",
-      route:"PDF",
-      icon:"",
-      bg:"#C5F422"
+        name:"Vehicles",
+        route:"Vehicles",
+        icon:"",
+        bg:"#C5F422"
+      },
+      {
+        name:"PDF",
+        route:"PDF",
+        icon:"",
+        bg:"#C5F422"
       }
     ]
   }

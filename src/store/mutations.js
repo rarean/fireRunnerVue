@@ -19,7 +19,12 @@ export function updateLname(state, value) {
 }
 export function addMutualAid(state, value){
   state.mutualaid.push(value);
-  console.log("addAid",state.mutualaid);
+}
+export function addVehicle(state, value){
+  state.vehicles.push(value);
+}
+export function addEquipment(state, value){
+  state.equipment.push(value);
 }
 //Incidents
 export {

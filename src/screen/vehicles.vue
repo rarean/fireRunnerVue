@@ -2,9 +2,9 @@
   <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
     <header :name="titleName" :menu-pressed="onMenu" />
     <nb-content class="container" v-if="loaded">
-      <add-mutualaid :on-add="addAid" />
-      <view v-for="(aid, index) in mutualaid" :key="index">
-        <mutualaid-Item :aid="aid" :delete-item="deleteAid"/>
+      <add-vehicle :on-add="addVehicle" />
+      <view v-for="(item, index) in vehicles" :key="index">
+        <vehicle :car="item" :delete-item="deleteVehicle" />
       </view>
     </nb-content>
     <nb-spinner v-if="!loaded"></nb-spinner>
@@ -20,24 +20,24 @@
 import React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import AddMutualaid from "../components/addMutualaid";
-import MutualaidItem from "../components/mutualaidItem";
+import AddVehicle from "../components/addVehicle";
+import Vehicle from "../components/vehicle";
 import store from "../store";
 
 export default {
-  components: { Header, Footer, AddMutualaid, MutualaidItem },
+  components: { Header, Footer, AddVehicle, Vehicle },
   props: { navigation: Object },
   data: function () {
     return {
       loaded: false,
-      backPage: "BCFMO",
-      nextPage: "Vehicles",
-      mutualaid: []
+      backPage: "Mutualaid",
+      nextPage: "PDF", //add equipment
+      vehicles: []
     };
   },
   created() {
     this.loaded = true;
-    this.mutualaid = store.state.mutualaid;
+    this.vehicles = store.state.vehicles;
   },
   computed: {
     titleName() {
@@ -45,12 +45,12 @@ export default {
     }
   },
   methods: {
-    addAid: function (aid) {
-      store.commit("addMutualAid", aid);
+    addVehicle: function (obj) {
+      store.commit("addVehicle", obj);
     },
-    deleteAid: function(index){
-      this.mutualaid.splice(index, 1);
-      console.log("chk", store.state.mutualaid);
+    deleteVehicle: function (index) {
+      this.vehicles.splice(index, 1);
+      console.log("chk", store.state.vehicles);
     },
     onMenu: function () {
       this.navigation.openDrawer();
