@@ -1,3 +1,5 @@
+    License GPL3.0
+
     Copyright (C) 2020  aaron perez <db.robot@yahoo.com>
 
     This program is free software: you can redistribute it and/or modify
