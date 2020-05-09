@@ -100,3 +100,10 @@ export {
   updateReceiptsBagged,
   updateTruckRestocked
 } from "./mutations/equip2";
+//Signatures
+export {
+  updateReporter,
+  updateOfficer,
+  updateReporterSign,
+  updateOfficerSign
+} from "./mutations/signatures";

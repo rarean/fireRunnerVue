@@ -1,10 +1,19 @@
 <template>
-  <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
+  <nb-container :style="{ flex: 1, backgroundColor: '#fff', border: 1 }">
     <header :name="titleName" :menu-pressed="onMenu" />
     <nb-content class="container" v-if="loaded">
-      <add-equip :on-add="addEquipment" />
-      <view v-for="(equip, index) in equipment" :key="index">
-        <equip-item :itemObj="equip" :delete-item="deleteItem" />
+      <nb-form>
+        <nb-textarea
+          :rowSpan="9"
+          placeholder="Narrative"
+          bordered
+          v-model="narrate"
+        />
+      </nb-form>
+      <view class="btn">
+        <nb-button rounded large :on-press="attach">
+          <nb-text>Add Attachment</nb-text>
+        </nb-button>
       </view>
     </nb-content>
     <nb-spinner v-if="!loaded"></nb-spinner>
@@ -20,40 +29,36 @@
 import React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import AddEquip from "../components/addEquip";
-import EquipItem from "../components/equipItem";
 import store from "../store";
 
 export default {
-  components: { Header, Footer, AddEquip, EquipItem },
+  components: { Header, Footer },
   props: { navigation: Object },
   data: function () {
     return {
       loaded: false,
-      backPage: "Vehicles",
-      nextPage: "Equipment2",
-      equipment: []
+      backPage: "Equipment2",
+      nextPage: "Signatures"
     };
   },
   created() {
     this.loaded = true;
-    this.equipment = store.state.equipment;
-    console.log(this.equipment);
   },
   computed: {
     titleName() {
       return this.navigation.state.routeName;
+    },
+    narrate: {
+      get() {
+        return this.value;
+      },
+      set(val) {
+        store.commit("addNarrative", val);
+      }
     }
+    //add getter and setter for each v-model
   },
   methods: {
-    addEquipment: function (obj) {
-      store.commit("addEquipment", obj);
-      console.log("equip", store.state.equipment);
-    },
-    deleteItem: function (index) {
-      this.equipment.splice(index, 1);
-      console.log("chk", store.state.equipment);
-    },
     onMenu: function () {
       this.navigation.openDrawer();
     },
@@ -65,6 +70,9 @@ export default {
     },
     onNext: function () {
       this.navigation.navigate(this.nextPage);
+    },
+    attach: function(){
+      alert('TODO')
     }
   }
 };
@@ -74,5 +82,15 @@ export default {
 .container {
   margin: 20;
   padding: 20;
+}
+.btn {
+  margin: 20;
+  padding: 20;
+  justify-content: center;
+  align-items: center;
+}
+.textArea {
+  text-align: left;
+  border-top-width: 1;
 }
 </style>

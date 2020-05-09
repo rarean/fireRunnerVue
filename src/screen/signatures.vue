@@ -3,15 +3,22 @@
     <header :name="titleName" :menu-pressed="onMenu" />
     <nb-content class="container" v-if="loaded">
       <nb-form>
-        <nb-text>page content goes here</nb-text>
-        <nb-item floatingLabel>
-          <nb-label>Date </nb-label>
-          <nb-input v-model="date" />
-        </nb-item>
+        <nb-list-item
+          v-for="input in inputs"
+          :key="input.mutate"
+          class="lister"
+        >
+          <input-text :mutation="input.mutate" :floater="input.label" />
+        </nb-list-item>
       </nb-form>
       <view class="btn">
-        <nb-button rounded large :on-press="onNext">
-          <nb-text>Save</nb-text>
+        <nb-button rounded large :on-press="reporterSig">
+          <nb-text>Reporter Signature</nb-text>
+        </nb-button>
+      </view>
+      <view class="btn">
+        <nb-button rounded large :on-press="officerSig">
+          <nb-text>Officer Signature</nb-text>
         </nb-button>
       </view>
     </nb-content>
@@ -28,16 +35,27 @@
 import React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import InputText from "../components/inputText";
 import store from "../store";
 
 export default {
-  components: { Header,Footer },
+  components: { Header, Footer, InputText },
   props: { navigation: Object },
   data: function () {
     return {
       loaded: false,
-      backPage: "Incident",
-      nextPage: "Location"
+      backPage: "Narrative",
+      nextPage: "Share",
+      inputs: [
+        {
+          label: "Person Making Report(Print)",
+          mutate: "updateReporter"
+        },
+        {
+          label: "Officer In Charge(Print)",
+          mutate: "updateOfficer"
+        }
+      ]
     };
   },
   created() {
@@ -46,18 +64,15 @@ export default {
   computed: {
     titleName() {
       return this.navigation.state.routeName;
-    },
-    date: {
-      get() {
-        return this.value;
-      },
-      set(val) {
-        store.commit("updtIncdntDate", val);
-      }
     }
-    //add getter and setter for each v-model
   },
   methods: {
+    reporterSig: function(){
+      alert('TODO: capture signature from device');
+    },
+    officerSig: function(){
+      alert('TODO: capture signature from device');
+    },
     onMenu: function () {
       this.navigation.openDrawer();
     },
@@ -81,37 +96,10 @@ export default {
 }
 .btn {
   margin: 20;
-  padding: 20;
   justify-content: center;
   align-items: center;
 }
-.center {
-  justify-content: center;
-  align-items: center;
-}
-.score {
-  width: 40;
-  height: 40;
-  background-color: #fff;
-  border-radius: 20;
-  justify-content: center;
-  align-items: center;
-  margin-right: 16;
-}
-.score-text {
-  color: #ff6600;
-  font-weight: bold;
-}
-.detail {
-  flex: 1;
-}
-.name {
-  color: #666;
-  font-size: 12;
-  margin-bottom: 6;
-}
-.title {
-  color: #333;
-  font-size: 14;
+.lister {
+  border-color: "rgba(255,255,255,1)";
 }
 </style>

@@ -30,8 +30,8 @@ export default {
   data: function () {
     return {
       loaded: false,
-      backPage: "Mutualaid",
-      nextPage: "PDF", //add equipment
+      backPage: "MutualAid",
+      nextPage: "Equipment1", //add equipment
       vehicles: []
     };
   },

@@ -26,7 +26,9 @@ import MutualAidScreen from "./screen/mutualaid.vue";
 import VehicleScreen from "./screen/vehicles.vue";
 import Equip1Screen from "./screen/equipment.vue";
 import Equip2Screen from "./screen/equip2.vue";
-import PdfScreen from "./screen/createPdf.vue";
+import NarrativeScreen from "./screen/narrative.vue";
+import SignatureScreen from "./screen/signatures.vue";
+import ShareScreen from "./screen/share.vue";
 
 console.disableYellowBox = true;
 const Drawer = createDrawerNavigator(
@@ -44,7 +46,9 @@ const Drawer = createDrawerNavigator(
     Vehicles: { screen: VehicleScreen },
     Equipment1: { screen: Equip1Screen },
     Equipment2: { screen: Equip2Screen },
-    PDF: {screen: PdfScreen}
+    Narrative: { screen: NarrativeScreen },
+    Signatures: { screen: SignatureScreen },
+    Share: {screen: ShareScreen}
   },
   {
     initialRouteName: "Home",

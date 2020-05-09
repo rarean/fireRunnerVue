@@ -15,7 +15,7 @@
           <nb-text>{{screen.name}}
         </nb-list-item>
         <nb-list-item>
-          <nb-text :on-press="logout">Logout</nb-text>
+          <!--nb-text :on-press="logout">Logout</nb-text-->
         </nb-list-item>
       </nb-list>
     </nb-content>
@@ -59,7 +59,8 @@ export default {
   data: {
     stylesObj: {
       drawerContent: {
-        paddingTop: Platform.OS === "android" ? 20 : 30
+        paddingTop: Platform.OS === "android" ? 20 : 30,
+        paddingBottom: Platform.OS === "android" ? 20 : 30
       }
     },
     screens:[
@@ -142,8 +143,20 @@ export default {
         bg:"#C5F422"
       },
       {
-        name:"PDF",
-        route:"PDF",
+        name:"Narrative",
+        route:"Narrative",
+        icon:"",
+        bg:"#C5F422"
+      },
+      {
+        name:"Signatures",
+        route:"Signatures",
+        icon:"",
+        bg:"#C5F422"
+      },
+      {
+        name:"Share",
+        route:"Share",
         icon:"",
         bg:"#C5F422"
       }
@@ -151,3 +164,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.container {
+  margin: 20;
+  padding: 20;
+}
+</style>
