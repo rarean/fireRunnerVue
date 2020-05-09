@@ -25,6 +25,7 @@ import BCFMOScreen from "./screen/bcfmo.vue";
 import MutualAidScreen from "./screen/mutualaid.vue";
 import VehicleScreen from "./screen/vehicles.vue";
 import Equip1Screen from "./screen/equipment.vue";
+import Equip2Screen from "./screen/equip2.vue";
 import PdfScreen from "./screen/createPdf.vue";
 
 console.disableYellowBox = true;
@@ -42,6 +43,7 @@ const Drawer = createDrawerNavigator(
     MutualAid: { screen: MutualAidScreen },
     Vehicles: { screen: VehicleScreen },
     Equipment1: { screen: Equip1Screen },
+    Equipment2: { screen: Equip2Screen },
     PDF: {screen: PdfScreen}
   },
   {

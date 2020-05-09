@@ -73,7 +73,22 @@ const store = new Vuex.Store({
     mutualaid: [],
     vehicles: [],
     equipment: [],
+    equip:{
+     standby:"",
+     stolen:"",
+     lost:"",
+     broken:"",
+     receipts:"",
+     restocked:""
+    },
     narrative: "",
+    signatures:{
+      reporter:"",
+      reporter_image:"",
+      officer:"",
+      officer_image:""
+    },
+    attachment:""
   },
   actions: {
     //invoke mutations asyncronusly

@@ -17,14 +17,20 @@ export function updateFname(state, value) {
 export function updateLname(state, value) {
   state.userObj.lname = value;
 }
-export function addMutualAid(state, value){
+export function addMutualAid(state, value) {
   state.mutualaid.push(value);
 }
-export function addVehicle(state, value){
+export function addVehicle(state, value) {
   state.vehicles.push(value);
 }
-export function addEquipment(state, value){
+export function addEquipment(state, value) {
   state.equipment.push(value);
+}
+export function addNarrative(state, value) {
+  state.narrative = value;
+}
+export function addAttachment(state, value) {
+  state.attachment = value;
 }
 //Incidents
 export {
@@ -85,3 +91,12 @@ export {
   updateBcfmoContactForArson,
   updateBcfmoInvestigator
 } from "./mutations/bcfmo";
+//Equipment
+export {
+  updateStandby,
+  updateEquipStolen,
+  updateEquipLost,
+  updateEquipBroken,
+  updateReceiptsBagged,
+  updateTruckRestocked
+} from "./mutations/equip2";
