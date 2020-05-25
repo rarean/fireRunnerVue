@@ -53,7 +53,37 @@ export default {
   computed: {
     titleName() {
       return this.navigation.state.routeName;
-    }
+    },
+    userData() {
+      return store.state.userObj || {};
+    },
+    incidentObj(){
+      return store.state.incidnet || {};
+    },
+    //alarmsObj(){
+    //  return store.state.alarms;
+    //},
+    //locationObj(){
+    //  return store.state.location;
+    //},
+    //responseObj(){
+    //  return store.state.response;
+    //},
+    //actionsObj(){
+    //  return store.state.actions;
+    //}
+    //injuredObj(){
+    //  return store.state.injured;
+    //},
+    //structureObj(){
+    //  return store.state.structure;
+    //},
+    //bcfmoObj(){
+    //  return store.state.bcfmo;
+    //},
+    //mutualaidObj(){
+    //  return store.state.mutualaid
+    //},
   },
   methods: {
     onMenu: function () {
@@ -71,63 +101,62 @@ export default {
     async createPDF() {
       const docDefinition = {
         content: [
-          { text: "Tables", style: "header" },
-          "Official documentation is in progress, this document is just a glimpse of what is possible with pdfmake and its layout engine.",
           {
-            text:
-              "A simple table (no headers, no width specified, no spans, no styling)",
-            style: "subheader"
+            text: 'Castroville Vol. Fire Company',
+            style: 'header',
+            alignment: 'center'
           },
-          "The following table has nothing more than a body array",
           {
-            style: "tableExample",
-            table: {
-              body: [
-                ["Column 1", "Column 2", "Column 3"],
-                ["One value goes here", "Another one here", "OK?"]
-              ]
-            }
+            text: 'Fire Run Worksheet',
+            style: 'subheader',
+            alignment: 'center'
           },
-          { text: "A simple table with nested elements", style: "subheader" },
-          "It is of course possible to nest any other type of nodes available in pdfmake inside table cells",
           {
-            style: "tableExample",
+            style: "table",
             table: {
-              body: [
-                ["Column 1", "Column 2", "Column 3"],
+              body: [//number of columns must match in each row
                 [
-                  {
-                    stack: [
-                      "Let's try an unordered list",
-                      {
-                        ul: ["item 1", "item 2"]
-                      }
-                    ]
-                  },
-                  [
-                    "or a nested table",
-                    {
-                      table: {
-                        body: [
-                          ["Col1", "Col2", "Col3"],
-                          ["1", "2", "3"],
-                          ["1", "2", "3"]
-                        ]
-                      }
-                    }
-                  ],
-                  {
-                    text: [
-                      "Inlines can be ",
-                      { text: "styled\n", italics: true },
-                      { text: "easily as everywhere else", fontSize: 10 }
-                    ]
-                  }
-                ]
+                  `Date: ${incidentObj.date}`,
+                  `Incident#: ${incidentObj.num}`,
+                  `Incident Reported: ${incidentObj.report}`
+                ],
+                ["row-2,col-1", "col", "col"]
               ]
             }
+          },
+          {
+            pageBreak: 'before',
+            style: "table",
+            table: {
+              body: [ //number of columns must match in each row
+                ["Apparatus", "Personnel", "Equipment Used","Truck Times"],
+                ['','','','' ]
+              ]
+            },
+            layout:{
+              //make the first row gray
+              fillColor: function(rowIndex){
+                return (rowIndex === 0)? '#CCCCCC':null;
+              }
+            }
+          },
+          {text:'Version 5 Updated 09/29/2019'}
+        ],
+        styles: {
+          header:{
+            fontSize:16,
+            bold:true,
+            margin:[0,0,0,2]
+          },
+          subheader:{
+            fontSize:14,
+            bold:true,
+            margin:[0,0,0,5]
+          },
+          table:{
+            margin:[0,5,0,2]
           }
-        ]
+        }
       };
 
       try {
