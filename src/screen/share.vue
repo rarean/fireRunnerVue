@@ -35,7 +35,8 @@ export default {
     return {
       loaded: false,
       backPage: "Signatures",
-      nextPage: "Home"
+      nextPage: "Home",
+      incidentObj: store.state.incident || {}
     };
   },
   created() {
@@ -57,9 +58,9 @@ export default {
     userData() {
       return store.state.userObj || {};
     },
-    incidentObj(){
-      return store.state.incidnet || {};
-    },
+    //incidentObj(){
+    //  return store.state.incidnet || {};
+    //},
     //alarmsObj(){
     //  return store.state.alarms;
     //},
@@ -116,9 +117,9 @@ export default {
             table: {
               body: [//number of columns must match in each row
                 [
-                  `Date: ${incidentObj.date}`,
-                  `Incident#: ${incidentObj.num}`,
-                  `Incident Reported: ${incidentObj.report}`
+                  `Date: ${this.incidentObj.date}`,
+                  `Incident#: ${this.incidentObj.num}`,
+                  `Incident Reported: ${this.incidentObj.report}`
                 ],
                 ["row-2,col-1", "col", "col"]
               ]
