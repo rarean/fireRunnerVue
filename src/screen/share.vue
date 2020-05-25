@@ -36,7 +36,21 @@ export default {
       loaded: false,
       backPage: "Signatures",
       nextPage: "Home",
-      incidentObj: store.state.incident || {}
+      incident: store.state.incident || {},
+      alarm: store.state.alarms || {},
+      location: store.state.location || {},
+      response: store.state.response || {},
+      actions: store.state.actions || {},
+      injured: store.state.injured || {},
+      structure: store.state.structure || {},
+      bcfmo: store.state.bcfmo || {},
+      mutualaid: store.state.mutualaid || [],
+      vehicles: store.state.vehicles || [],
+      equipment: store.state.equipment || [],
+      equip: store.state.equip || {},
+      narrative: store.state.narrative || '',
+      signatures: store.state.signatures || {},
+      attachment: store.state.attachment || ''
     };
   },
   created() {
@@ -55,36 +69,6 @@ export default {
     titleName() {
       return this.navigation.state.routeName;
     },
-    userData() {
-      return store.state.userObj || {};
-    },
-    //incidentObj(){
-    //  return store.state.incidnet || {};
-    //},
-    //alarmsObj(){
-    //  return store.state.alarms;
-    //},
-    //locationObj(){
-    //  return store.state.location;
-    //},
-    //responseObj(){
-    //  return store.state.response;
-    //},
-    //actionsObj(){
-    //  return store.state.actions;
-    //}
-    //injuredObj(){
-    //  return store.state.injured;
-    //},
-    //structureObj(){
-    //  return store.state.structure;
-    //},
-    //bcfmoObj(){
-    //  return store.state.bcfmo;
-    //},
-    //mutualaidObj(){
-    //  return store.state.mutualaid
-    //},
   },
   methods: {
     onMenu: function () {
@@ -117,11 +101,20 @@ export default {
             table: {
               body: [//number of columns must match in each row
                 [
-                  `Date: ${this.incidentObj.date}`,
-                  `Incident#: ${this.incidentObj.num}`,
-                  `Incident Reported: ${this.incidentObj.report}`
+                  { text:`Date: ${this.incident.date}`, rowSpan: 2},
+                  { text: `Incident#: ${this.incident.num}`, rowSpan: 2},
+                  { text: `Incident Reported: ${this.incident.rep}`, rowSpan: 2},
+                  'Alarm Time',` ${this.alarm.alarm_time}`
                 ],
-                ["row-2,col-1", "col", "col"]
+                ['','','','Enroute Time',` ${this.alarm.enroute_time}`],
+                [
+                  { text:`Personnel# ${this.incident.personnel}`, rowSpan: 3},
+                  { text: `Medic Unit(s) ${this.incident.medic}`, rowSpan: 3},
+                  { text: `Situation Found: ${this.incident.situation}`, rowSpan: 3},
+                  'On Scene Time',` ${this.alarm.onscene_time}`
+                ],
+                ['','','','Fire Controlled Time',` ${this.alarm.fire_control_time}`],
+                ['','','','Clear Scene Time',` ${this.alarm.clear_scene_time}`]
               ]
             }
           },
