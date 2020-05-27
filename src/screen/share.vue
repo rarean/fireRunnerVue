@@ -27,6 +27,7 @@ import PdfFonts from "pdfmake/build/vfs_fonts.js";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as ImagePicker from "expo-image-picker";
+import dash from 'lodash';
 
 export default {
   components: { Header, Footer },
@@ -83,7 +84,39 @@ export default {
     onNext: function () {
       this.navigation.navigate(this.nextPage);
     },
+    setAutos(autos){
+      //have autos Array [
+      //  Object {
+      //    "address": "123 Somewhere",
+      //    "dl_num": "15983445",
+      //    "insurance": "Geico",
+      //    "make": "Chevy",
+      //    "model": "Impalla",
+      //    "owner_name": "John Doe",
+      //    "phone": "210-867-5309",
+      //    "plate_num": "DTY-D0G",
+      //    "vin": "12345TE8G5G23E964",
+      //    "year": "1960",
+      //  },
+      //]
+      let emptyRow1 = [{text:'Owner/Driver Name:'},{text:'Driver License:'}];
+      let emptyRow2 = ['Address','Insurance Info:'];
+      let emptyRow3 = ['Phone #']
+      let noVin = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+      let info = ['Make:','Model:','Year:','VIN'];
+      let emptyAutoRow4 = dash.flattenDeep([info,noVin,'License Plate#']);
+      emptyAutoRow4 = emptyAutoRow4.map(function(item){ return {text:item, rowSpan:2} });
+
+      if ( autos.length > 0) {
+        console.log('have autos',autos);
+
+      } else {
+        console.log('no autos')
+      }
+      return autos;
+    },
     async createPDF() {
+      let autos = this.setAutos(this.vehicles);
       const docDefinition = {
         content: [
           {
@@ -99,22 +132,51 @@ export default {
           {
             style: "table",
             table: {
+              //widths:[ '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*',
+              //'*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'
+              //],
               body: [//number of columns must match in each row
-                [
-                  { text:`Date: ${this.incident.date}`, rowSpan: 2},
-                  { text: `Incident#: ${this.incident.num}`, rowSpan: 2},
-                  { text: `Incident Reported: ${this.incident.rep}`, rowSpan: 2},
-                  'Alarm Time',` ${this.alarm.alarm_time}`
+                //[
+                //  { text:`Date: ${this.incident.date}`, rowSpan: 2},
+                //  { text: `Incident#: ${this.incident.num}`, rowSpan: 2},
+                //  { text: `Incident Reported: ${this.incident.rep}`, rowSpan: 2},
+                //  'Alarm Time',` ${this.alarm.alarm_time}`
+                //],
+                //['','','','Enroute Time',` ${this.alarm.enroute_time}`],
+                //[
+                //  { text:`Personnel# ${this.incident.personnel}`, rowSpan: 3},
+                //  { text: `Medic Unit(s) ${this.incident.medic}`, rowSpan: 3},
+                //  { text: `Situation Found: ${this.incident.situation}`, rowSpan: 3},
+                //  'On Scene Time',` ${this.alarm.onscene_time}`
+                //],
+                //['','','','Fire Controlled Time',` ${this.alarm.fire_control_time}`],
+                //['','','','Clear Scene Time',` ${this.alarm.clear_scene_time}`]
+                [{text:'Owner/Driver Name:',colSpan:10,border:[true,true,true,false]},
+                '0','0','0','1','2','3','4','5','6',
+                {text:'Driver License:', colSpan:12},
+                '8','9','0','1','2','3','4', '5','6','7','8'
                 ],
-                ['','','','Enroute Time',` ${this.alarm.enroute_time}`],
-                [
-                  { text:`Personnel# ${this.incident.personnel}`, rowSpan: 3},
-                  { text: `Medic Unit(s) ${this.incident.medic}`, rowSpan: 3},
-                  { text: `Situation Found: ${this.incident.situation}`, rowSpan: 3},
-                  'On Scene Time',` ${this.alarm.onscene_time}`
+                [{text:'Address:',colSpan:10,border:[true,false,true,false]},
+                '0','0','0','1','2','3','4','5','6',
+                {text:'Insureance Info:',colSpan:12,rowSpan:2},
+                '8','9','0','1','2','3','4', '5','6','7','8'
                 ],
-                ['','','','Fire Controlled Time',` ${this.alarm.fire_control_time}`],
-                ['','','','Clear Scene Time',` ${this.alarm.clear_scene_time}`]
+                [{text:'Phone#',colSpan:10,border:[true,false,true,true]},
+                '0','0','0','1','2','3','4','5','6','7',
+                '8','9','0','1','2','3','4', '5','6','7','8'
+                ],
+                [
+                {text:'Make: Chevy',rowSpan:2},
+                {text:'Model: Impalla',rowSpan:2},
+                {text:'Year: 2005',rowSpan:2},
+                {text:'VIN',rowSpan:2},
+                '2','G','6','1','S','5','S','3','9','E','9','1','5','8','4','9','8',
+                {text:'License Plate# DTY-2756',rowSpan:2}
+                ],
+                //control row to know how many cells we can use
+                ['0','0','0','0','1','2','3','4','5','6','7',
+                '8','9','0','1','2','3','4', '5','6','7','8'
+                ]
               ]
             }
           },
@@ -148,7 +210,8 @@ export default {
             margin:[0,0,0,5]
           },
           table:{
-            margin:[0,5,0,2]
+            margin:[0,5,0,2],
+            fontSize:9
           }
         }
       };
