@@ -132,51 +132,150 @@ export default {
           {
             style: "table",
             table: {
-              //widths:[ '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*',
-              //'*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'
-              //],
-              body: [//number of columns must match in each row
-                //[
-                //  { text:`Date: ${this.incident.date}`, rowSpan: 2},
-                //  { text: `Incident#: ${this.incident.num}`, rowSpan: 2},
-                //  { text: `Incident Reported: ${this.incident.rep}`, rowSpan: 2},
-                //  'Alarm Time',` ${this.alarm.alarm_time}`
-                //],
-                //['','','','Enroute Time',` ${this.alarm.enroute_time}`],
-                //[
-                //  { text:`Personnel# ${this.incident.personnel}`, rowSpan: 3},
-                //  { text: `Medic Unit(s) ${this.incident.medic}`, rowSpan: 3},
-                //  { text: `Situation Found: ${this.incident.situation}`, rowSpan: 3},
-                //  'On Scene Time',` ${this.alarm.onscene_time}`
-                //],
-                //['','','','Fire Controlled Time',` ${this.alarm.fire_control_time}`],
-                //['','','','Clear Scene Time',` ${this.alarm.clear_scene_time}`]
-                [{text:'Owner/Driver Name:',colSpan:10,border:[true,true,true,false]},
-                '0','0','0','1','2','3','4','5','6',
-                {text:'Driver License:', colSpan:12},
-                '8','9','0','1','2','3','4', '5','6','7','8'
+              body: [//number of columns must add up to 22 in each row
+                [
+                  { text:`Date:\n${this.incident.date}`,rowSpan: 2},
+                  { text: `Incident#:\n${this.incident.num}`,colSpan:2, rowSpan: 2}, '1',
+                  { text: `Incident Reported:\n${this.incident.rep}`,colSpan:11, rowSpan: 2},
+                  '1','2','3','4','5','6','7','8','9','10',
+                  {text:'Alarm Time',colSpan:7},'1','2','3','4','5','6',
+                  {text:`${this.alarm.alarm_time}`}
                 ],
-                [{text:'Address:',colSpan:10,border:[true,false,true,false]},
+                [
+                {text:'',colSpan:14},
+                '1','2','3','4','5','6','7','8','9','10','11','12','13',
+                {text:'Enroute Time',colSpan:7},'1','2','3','4','5','6',
+                {text:`${this.alarm.enroute_time}`}
+                ],
+                [
+                  {text:`Personnel#\n${this.incident.personnel}`,rowSpan: 3},
+                  {text: `Medic Unit(s)\n${this.incident.medic}`,colSpan:2,rowSpan: 3}, '1',
+                  {text: `Situation Found:\n${this.incident.situation}`,colSpan:11,rowSpan: 3},
+                  '1','2','3','4','5','6','7','8','9','10',
+                  {text:'On Scene Time',colSpan:7},'1','2','3','4','5','6',
+                  {text:` ${this.alarm.onscene_time}`}
+                ],
+                [
+                {text:'',colSpan:14},'1','2','3','4','5','6','7','8','9','10','11','12','13',
+                {text:'Fire Controlled Time',colSpan:7},'1','2','3','4','5','6',
+                {text:` ${this.alarm.fire_control_time}`}
+                ],
+                [
+                {text:'',colSpan:14},'1','2','3','4','5','6','7','8','9','10','11','12','13',
+                {text:'Clear Scene Time',colSpan:7},'1','2','3','4','5','6',
+                {text:`${this.alarm.clear_scene_time}`}
+                ],
+                [
+                {text:`Address/Location of Call: ${this.location.call_location}`, colSpan:8},
+                '1','2','3','4','5','6','7',
+                {text:`Zip Code: ${this.location.call_zip}`, colSpan:6},'1','2','3','4','5',
+                {text:`Responding Departments: ${this.response.dept}`,colSpan:8},'1','2','3','4','5','6','7'
+                ],
+                [
+                {text:`Owners Name\n${this.location.owner_name}` ,colSpan:2},'1',
+                {text:`Address\n${this.location.owner_address}`,colSpan:6},'1','2','3','4','5',
+                {text:`City\n${this.location.owner_city}`,colSpan:4},'1','2','3',
+                {text:`State\n${this.location.owner_state}`,colSpan:4},'1','2','3',
+                {text:`Phone#\n${this.location.owner_phone}`,colSpan:6},'1','2','3','4','5'
+                ],
+                //['0','1','2','3','4','5','6','7','8','9','10',
+                //'11','12','13','14','15','16','17', '18','19','20','21'
+                //],
+                [
+                {text:`Actions Taken\n${this.actions.taken}`, colSpan:16},
+                '1','2','3','4','5','6','7','8','9','10','11','12','13','14','15',
+                {text:`Water Used:\n${this.actions.water_used}`, colSpan:4},'1','2','3',
+                {text:`Foam Used:\n${this.actions.foam_used}`, colSpan:2},'1'
+                ],
+                [
+                //calculated based on this.structure.type
+                {text:'Residential: X',colSpan:5, rowSpan:2},'1','2','3','4',
+                {text:'Commercial: X',colSpan:5, rowSpan:2},'1','2','3','4',
+                {text:`What is building used for:\n${this.structure.use}`,colSpan:7,rowSpan:2},'1','2','3','4','5','6',
+                {text:`Mutial Aid to:(Y/N) ${this.response.mutual_aid_to}`,colSpan:5},'1','2','3','4'
+                ],
+                [
+                {text:'',colSpan:17},'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16',
+                {text:`Mutual Aid From:(Y/N) ${this.response.mutual_aid_from}`,colSpan:5},'1','2','3','4'
+                ],
+                [
+                {text:`Fatalities: ${this.injured.fatalities}`,colSpan:10},'1','2','3','4','5','6','7','8','9',
+                {text:`Injuries: ${this.injured.injuries}`,colSpan:12},'1','2','3','4','5','6','7','8','9','10','11'
+                ],
+                [
+                {text:'Fill out following for all Structure Fires ------>',colSpan:8},
+                '1','2','3','4','5','6','7',
+                {text:`Suspected Cause of Fire: (Ignition Source)
+                ${this.structure.suspected_cause}`,colSpan:14},
+                '1','2','3','4','5','6','7','8','9','10','11','12','13'
+                ],
+                [
+                {text:'Arson Suspected?  Yes:X No: ',colSpan:8},'1','2','3','4','5','6','7',
+                //calculated based on this.bcfmo.contact_for_arson
+                {text:'BCFMO Contacted for Arson Investigation?  Yes:X  No:',colSpan:14},
+                '1','2','3','4','5','6','7','8','9','10','11','12','13'
+                ],
+                [
+                {text:`BCFMO Case# ${this.bcfmo.case_num}`,colSpan:8},'1','2','3','4','5','6','7',
+                {text:`BCFMO Investigator Name: ${this.bcfmo.investigator}`,colSpan:14},
+                '1','2','3','4','5','6','7','8','9','10','11','12','13'
+                ],
+                [
+                {text:`Estimated Cost of Damage: ${this.structure.estimated_cost}`,colSpan:8},
+                '1','2','3','4','5','6','7',
+                {text:'Smoke Detector Operation:',colSpan:7},'1','2','3','4','5','6',
+                //calculated based on this.structure.smoke_detector
+                {text:'Yes:X No: N/A:',colSpan:7},'1','2','3','4','5','6'
+                ],
+                [
+                {text:`Property Damaged: ${this.structure.property_damaged}`,colSpan:8},
+                '1','2','3','4','5','6','7',
+                {text:`Acerage Burned: ${this.structure.acerage_burned}`,colSpan:7},
+                '1','2','3','4','5','6',
+                {text:`Main Floor Size (Lgth x Width): ${this.structure.main_floor_size}`,
+                colSpan:7}, '1','2','3','4','5','6'
+                ],
+                //Header row for mutual aid items
+                [
+                {text:'Mutual Aid Department',colSpan:2},'1',
+                {text:'Mutual Aid Apparatus',colSpan:5}, '1','2','3','4',
+                {text:'Mutual Aid Personnel',colSpan:5},'1','2','3','4',
+                {text:'Alarm Time',colSpan:4},'1','2','3',
+                {text:'On Scene Time',colSpan:4},'1','2','3',
+                {text:'Clear Scene Time',colSpan:2},'1'
+                ],
+                //need to populate Mutual Aid rows from array of mutual aid items
+                //need to populate vehicles from array of vehicle info
+                [
+                {text:'Owner/Driver Name:',colSpan:10,border:[true,true,true,false]},
+                '1','2','3','4','5','6','7','8','9',
+                {text:'Driver License:', colSpan:12},
+                '0','1','2','3','4','5','6', '7','8','9','10'
+                ],
+                [
+                {text:'Address: 123 Somewhere Dr',colSpan:10,border:[true,false,true,false]},
                 '0','0','0','1','2','3','4','5','6',
                 {text:'Insureance Info:',colSpan:12,rowSpan:2},
                 '8','9','0','1','2','3','4', '5','6','7','8'
                 ],
-                [{text:'Phone#',colSpan:10,border:[true,false,true,true]},
-                '0','0','0','1','2','3','4','5','6','7',
-                '8','9','0','1','2','3','4', '5','6','7','8'
+                [
+                {text:'Phone#',colSpan:10,border:[true,false,true,true]},
+                '1','2','3','4','5','6','7','8','9',
+                {text:'my phone #',colSpan:12},
+                '1','2','3','4','5','6','7', '8','9','10','11'
                 ],
                 [
-                {text:'Make: Chevy',rowSpan:2},
-                {text:'Model: Impalla',rowSpan:2},
-                {text:'Year: 2005',rowSpan:2},
-                {text:'VIN',rowSpan:2},
+                {text:'Make:\n Chevy'},
+                {text:'Model:\n Impalla'},
+                {text:'Year:\n 2005'},
+                'VIN',
                 '2','G','6','1','S','5','S','3','9','E','9','1','5','8','4','9','8',
-                {text:'License Plate# DTY-2756',rowSpan:2}
-                ],
-                //control row to know how many cells we can use
-                ['0','0','0','0','1','2','3','4','5','6','7',
-                '8','9','0','1','2','3','4', '5','6','7','8'
+                {text:'License Plate#\n DTY-2756'},
                 ]
+                //control row to know how many cells we can use per row
+                //['0','1','2','3','4','5','6','7','8','9','10',
+                //'11','12','13','14','15','16','17', '18','19','20','21'
+                //]
               ]
             }
           },
