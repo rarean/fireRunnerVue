@@ -84,39 +84,70 @@ export default {
     onNext: function () {
       this.navigation.navigate(this.nextPage);
     },
+    setIncident(incident, alarm){
+      let template = `[
+        { text:'Date:\n${incident.date}',rowSpan: 2},
+        { text: 'Incident#:\n${incident.num}',colSpan:2, rowSpan: 2}, '1',
+        { text: 'Incident Reported:\n${incident.rep}',colSpan:11, rowSpan: 2},
+        '1','2','3','4','5','6','7','8','9','10',
+        {text:'Alarm Time',colSpan:7},'1','2','3','4','5','6',
+        {text:'${alarm.alarm_time}'}
+      ],
+      [
+      {text:'',colSpan:14},
+      '1','2','3','4','5','6','7','8','9','10','11','12','13',
+      {text:'Enroute Time',colSpan:7},'1','2','3','4','5','6',
+      {text:'${alarm.enroute_time}'}
+      ],
+      [
+        {text:'Personnel#\n${incident.personnel}',rowSpan: 3},
+        {text: 'Medic Unit(s)\n${incident.medic}',colSpan:2,rowSpan: 3}, '1',
+        {text: 'Situation Found:\n${incident.situation}',colSpan:11,rowSpan: 3},
+        '1','2','3','4','5','6','7','8','9','10',
+        {text:'On Scene Time',colSpan:7},'1','2','3','4','5','6',
+        {text:'${alarm.onscene_time}'}
+      ],
+      [
+      {text:'',colSpan:14},'1','2','3','4','5','6','7','8','9','10','11','12','13',
+      {text:'Fire Controlled Time',colSpan:7},'1','2','3','4','5','6',
+      {text:'${alarm.fire_control_time}'}
+      ],
+      [
+      {text:'',colSpan:14},'1','2','3','4','5','6','7','8','9','10','11','12','13',
+      {text:'Clear Scene Time',colSpan:7},'1','2','3','4','5','6',
+      {text:'${alarm.clear_scene_time}'}
+      ]`;
+      return template;
+    },
     setAutos(autos){
-      //have autos Array [
-      //  Object {
-      //    "address": "123 Somewhere",
-      //    "dl_num": "15983445",
-      //    "insurance": "Geico",
-      //    "make": "Chevy",
-      //    "model": "Impalla",
-      //    "owner_name": "John Doe",
-      //    "phone": "210-867-5309",
-      //    "plate_num": "DTY-D0G",
-      //    "vin": "12345TE8G5G23E964",
-      //    "year": "1960",
-      //  },
-      //]
-      let emptyRow1 = [{text:'Owner/Driver Name:'},{text:'Driver License:'}];
-      let emptyRow2 = ['Address','Insurance Info:'];
-      let emptyRow3 = ['Phone #']
-      let noVin = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
-      let info = ['Make:','Model:','Year:','VIN'];
-      let emptyAutoRow4 = dash.flattenDeep([info,noVin,'License Plate#']);
-      emptyAutoRow4 = emptyAutoRow4.map(function(item){ return {text:item, rowSpan:2} });
-
-      if ( autos.length > 0) {
-        console.log('have autos',autos);
-
-      } else {
-        console.log('no autos')
+      let item = autos[0] || {}
+      let template = `
+      {text: 'Owner/Driver Name: ${item.owner_name}', colSpan:10,border:[true,true,true,false]},
+      '1','2','3','4','5','6','7','8','9',
+      {text:'Driver License: ${item.dl_num}', colSpan:12}, '0','1','2','3','4','5','6', '7','8','9','10'
+      |
+      {text:'Address: ${item.address}',colSpan:10,border:[true,false,true,false]},
+      '0','0','0','1','2','3','4','5','6',
+      {text:'Insureance Info: ${item.insurance}',colSpan:12,rowSpan:2}, '8','9','0','1','2','3','4', '5','6','7','8'
+      |
+      {text:'Phone#',colSpan:10,border:[true,false,true,true]},
+      '1','2','3','4','5','6','7','8','9',
+      {text:'${item.phone}',colSpan:12}, '1','2','3','4','5','6','7', '8','9','10','11',
+      |
+      {text:'Make:\n${item.make}'}, {text:'Model:\n${item.model}'}, {text:'Year:\n${item.year}'},
+      'VIN',
+      '2','G','6','1','S','5','S','3','9','E','9','1','5','8','4','9','8',
+      {text:'License Plate#\n${item.plate_num}'}`;
+      let autoTemplate = template.split('|');
+      if ( autos.length == 0) {
+        for(let i=0; i<4; i++){
+          autos.push(autoTemplate)
+        }
       }
       return autos;
     },
+    //See PDFmake https://pdfmake.github.io/docs/getting-started
     async createPDF() {
-      let autos = this.setAutos(this.vehicles);
       const docDefinition = {
         content: [
           {
@@ -129,42 +160,42 @@ export default {
             style: 'subheader',
             alignment: 'center'
           },
-          {
+          { id: "page1",
             style: "table",
             table: {
               body: [//number of columns must add up to 22 in each row
-                [
-                  { text:`Date:\n${this.incident.date}`,rowSpan: 2},
-                  { text: `Incident#:\n${this.incident.num}`,colSpan:2, rowSpan: 2}, '1',
-                  { text: `Incident Reported:\n${this.incident.rep}`,colSpan:11, rowSpan: 2},
-                  '1','2','3','4','5','6','7','8','9','10',
-                  {text:'Alarm Time',colSpan:7},'1','2','3','4','5','6',
-                  {text:`${this.alarm.alarm_time}`}
-                ],
-                [
-                {text:'',colSpan:14},
-                '1','2','3','4','5','6','7','8','9','10','11','12','13',
-                {text:'Enroute Time',colSpan:7},'1','2','3','4','5','6',
-                {text:`${this.alarm.enroute_time}`}
-                ],
-                [
-                  {text:`Personnel#\n${this.incident.personnel}`,rowSpan: 3},
-                  {text: `Medic Unit(s)\n${this.incident.medic}`,colSpan:2,rowSpan: 3}, '1',
-                  {text: `Situation Found:\n${this.incident.situation}`,colSpan:11,rowSpan: 3},
-                  '1','2','3','4','5','6','7','8','9','10',
-                  {text:'On Scene Time',colSpan:7},'1','2','3','4','5','6',
-                  {text:` ${this.alarm.onscene_time}`}
-                ],
-                [
-                {text:'',colSpan:14},'1','2','3','4','5','6','7','8','9','10','11','12','13',
-                {text:'Fire Controlled Time',colSpan:7},'1','2','3','4','5','6',
-                {text:` ${this.alarm.fire_control_time}`}
-                ],
-                [
-                {text:'',colSpan:14},'1','2','3','4','5','6','7','8','9','10','11','12','13',
-                {text:'Clear Scene Time',colSpan:7},'1','2','3','4','5','6',
-                {text:`${this.alarm.clear_scene_time}`}
-                ],
+                //[
+                //  { text:`Date:\n${this.incident.date}`,rowSpan: 2},
+                //  { text: `Incident#:\n${this.incident.num}`,colSpan:2, rowSpan: 2}, '1',
+                //  { text: `Incident Reported:\n${this.incident.rep}`,colSpan:11, rowSpan: 2},
+                //  '1','2','3','4','5','6','7','8','9','10',
+                //  {text:'Alarm Time',colSpan:7},'1','2','3','4','5','6',
+                //  {text:`${this.alarm.alarm_time}`}
+                //],
+                //[
+                //{text:'',colSpan:14},
+                //'1','2','3','4','5','6','7','8','9','10','11','12','13',
+                //{text:'Enroute Time',colSpan:7},'1','2','3','4','5','6',
+                //{text:`${this.alarm.enroute_time}`}
+                //],
+                //[
+                //  {text:`Personnel#\n${this.incident.personnel}`,rowSpan: 3},
+                //  {text: `Medic Unit(s)\n${this.incident.medic}`,colSpan:2,rowSpan: 3}, '1',
+                //  {text: `Situation Found:\n${this.incident.situation}`,colSpan:11,rowSpan: 3},
+                //  '1','2','3','4','5','6','7','8','9','10',
+                //  {text:'On Scene Time',colSpan:7},'1','2','3','4','5','6',
+                //  {text:` ${this.alarm.onscene_time}`}
+                //],
+                //[
+                //{text:'',colSpan:14},'1','2','3','4','5','6','7','8','9','10','11','12','13',
+                //{text:'Fire Controlled Time',colSpan:7},'1','2','3','4','5','6',
+                //{text:` ${this.alarm.fire_control_time}`}
+                //],
+                //[
+                //{text:'',colSpan:14},'1','2','3','4','5','6','7','8','9','10','11','12','13',
+                //{text:'Clear Scene Time',colSpan:7},'1','2','3','4','5','6',
+                //{text:`${this.alarm.clear_scene_time}`}
+                //],
                 [
                 {text:`Address/Location of Call: ${this.location.call_location}`, colSpan:8},
                 '1','2','3','4','5','6','7',
@@ -246,32 +277,32 @@ export default {
                 ],
                 //need to populate Mutual Aid rows from array of mutual aid items
                 //need to populate vehicles from array of vehicle info
-                [
-                {text:'Owner/Driver Name:',colSpan:10,border:[true,true,true,false]},
-                '1','2','3','4','5','6','7','8','9',
-                {text:'Driver License:', colSpan:12},
-                '0','1','2','3','4','5','6', '7','8','9','10'
-                ],
-                [
-                {text:'Address: 123 Somewhere Dr',colSpan:10,border:[true,false,true,false]},
-                '0','0','0','1','2','3','4','5','6',
-                {text:'Insureance Info:',colSpan:12,rowSpan:2},
-                '8','9','0','1','2','3','4', '5','6','7','8'
-                ],
-                [
-                {text:'Phone#',colSpan:10,border:[true,false,true,true]},
-                '1','2','3','4','5','6','7','8','9',
-                {text:'my phone #',colSpan:12},
-                '1','2','3','4','5','6','7', '8','9','10','11'
-                ],
-                [
-                {text:'Make:\n Chevy'},
-                {text:'Model:\n Impalla'},
-                {text:'Year:\n 2005'},
-                'VIN',
-                '2','G','6','1','S','5','S','3','9','E','9','1','5','8','4','9','8',
-                {text:'License Plate#\n DTY-2756'},
-                ]
+                //[
+                //{text:'Owner/Driver Name:',colSpan:10,border:[true,true,true,false]},
+                //'1','2','3','4','5','6','7','8','9',
+                //{text:'Driver License:', colSpan:12},
+                //'0','1','2','3','4','5','6', '7','8','9','10'
+                //],
+                //[
+                //{text:'Address: 123 Somewhere Dr',colSpan:10,border:[true,false,true,false]},
+                //'0','0','0','1','2','3','4','5','6',
+                //{text:'Insureance Info:',colSpan:12,rowSpan:2},
+                //'8','9','0','1','2','3','4', '5','6','7','8'
+                //],
+                //[
+                //{text:'Phone#',colSpan:10,border:[true,false,true,true]},
+                //'1','2','3','4','5','6','7','8','9',
+                //{text:'my phone #',colSpan:12},
+                //'1','2','3','4','5','6','7', '8','9','10','11'
+                //],
+                //[
+                //{text:'Make:\n Chevy'},
+                //{text:'Model:\n Impalla'},
+                //{text:'Year:\n 2005'},
+                //'VIN',
+                //'2','G','6','1','S','5','S','3','9','E','9','1','5','8','4','9','8',
+                //{text:'License Plate#\n DTY-2756'},
+                //]
                 //control row to know how many cells we can use per row
                 //['0','1','2','3','4','5','6','7','8','9','10',
                 //'11','12','13','14','15','16','17', '18','19','20','21'
@@ -314,6 +345,12 @@ export default {
           }
         }
       };
+
+      //docDefinition.content.
+      let autos = dash.flatten(this.setAutos(this.vehicles));
+      let page1 = dash.filter(docDefinition.content,{id:"page1"}) || [];
+      //console.log(dash.flatten(page1[0].table.body, autos));
+      page1[0].table.body = dash.flatten(page1[0].table.body, autos);
 
       try {
         const DIR = FileSystem.documentDirectory;
