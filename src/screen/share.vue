@@ -85,6 +85,10 @@ export default {
       this.navigation.navigate(this.nextPage);
     },
     setMain(incident,alarm,location,actions,structure,response,injured,bcfmo,){
+      let sType = structure.type;
+      let arson = bcfmo.contact_for_arson;
+      let smoke = structure.smoke_detector;
+
       return [
                 [
                   { text:`Date:\n${incident.date}`,rowSpan: 2},
@@ -138,9 +142,9 @@ export default {
                 {text:`Foam Used:\n${actions.foam_used}`, colSpan:2},'1'
                 ],
                 [
-                //calculated based on this.structure.type
-                {text:'Residential: X',colSpan:5, rowSpan:2},'1','2','3','4',
-                {text:'Commercial: X',colSpan:5, rowSpan:2},'1','2','3','4',
+                //calculated based on this.structure.type (sType)
+                {text:`Residential: ${sType.match(/residential/ig)? 'X':''}`,colSpan:5, rowSpan:2},'1','2','3','4',
+                {text:`Commercial: ${sType.match(/commercial/ig)? 'X':''}`,colSpan:5, rowSpan:2},'1','2','3','4',
                 {text:`What is building used for:\n${structure.use}`,colSpan:7,rowSpan:2},'1','2','3','4','5','6',
                 {text:`Mutial Aid to:(Y/N) ${response.mutual_aid_to}`,colSpan:5},'1','2','3','4'
                 ],
@@ -161,8 +165,10 @@ export default {
                 ],
                 [
                 {text:'Arson Suspected?  Yes:X No: ',colSpan:8},'1','2','3','4','5','6','7',
-                //calculated based on this.bcfmo.contact_for_arson
-                {text:'BCFMO Contacted for Arson Investigation?  Yes:X  No:',colSpan:14},
+                //calculated based on this.bcfmo.contact_for_arson (arson)
+                {text:`BCFMO Contacted for Arson Investigation?
+                Yes:${arson.match(/Y/ig)? 'X':''}  No:${arson.match(/N/ig)?
+                'X':''}`,colSpan:14},
                 '1','2','3','4','5','6','7','8','9','10','11','12','13'
                 ],
                 [
@@ -174,8 +180,10 @@ export default {
                 {text:`Estimated Cost of Damage: ${structure.estimated_cost}`,colSpan:8},
                 '1','2','3','4','5','6','7',
                 {text:'Smoke Detector Operation:',colSpan:7},'1','2','3','4','5','6',
-                //calculated based on this.structure.smoke_detector
-                {text:'Yes:X No: N/A:',colSpan:7},'1','2','3','4','5','6'
+                //calculated based on this.structure.smoke_detector (smoke)
+                {text:`Yes:${smoke.match(/Y/ig)? 'X':'' }
+                No:${smoke.match(/N/ig)? 'X':''} N/A:${smoke.match(/NA/ig)?
+                'X':''}`,colSpan:7},'1','2','3','4','5','6'
                 ],
                 [
                 {text:`Property Damaged: ${structure.property_damaged}`,colSpan:8},
@@ -231,6 +239,11 @@ export default {
     setAutos(vehicles){
       //vehicles is empty array or array of objects
       vehicles = dash.isEmpty(vehicles)? new Array({},{},{}): vehicles;
+      if (vehicles.length < 3){
+        for(let i=vehicles.length; i< vehicles.length; i++){
+          vehicles.push({})
+        }
+      }
       let autos = [];
       vehicles = vehicles.map(function(auto, index){
         return [
@@ -240,26 +253,24 @@ export default {
           row4(auto,index)
         ];
       });
-
+      //get two dimensional array
       vehicles.map(function(auto){
         auto.map(function(car){
           autos.push(car)
         });
       });
-
-    console.log('here', autos)
-
+      //number of columns must add up to 22 in each row
       function row1(auto, index){
         let col =[];
         for(let i=1; i<=22; i++){
           switch(i){
             case 1:
               col.push({id:`1${index}.${i}`,text:`Owner/Driver Name:
-              ${auto.owner_name || ' '}`, colSpan:10,border:[true,true,true,false]});
+              ${auto.owner_name || ''}`, colSpan:10,border:[true,true,true,false]});
               break;
             case 11:
               col.push({id:`1${index}.${i}`,text:`Driver License:
-              ${auto.dl_num || ' '}`, colSpan:12});
+              ${auto.dl_num || ''}`, colSpan:12});
               break;
             default:
               col.push({id:`1${index}.${i}`,text:''})
@@ -274,11 +285,11 @@ export default {
           switch(i){
             case 1:
               col.push({id:`2${index}.${i}`,text:`Address:
-              ${auto.address || ' '}`, colSpan:10,border:[true,false,true,false]});
+              ${auto.address || ''}`, colSpan:10,border:[true,false,true,false]});
               break;
             case 11:
               col.push({id:`2${index}.${i}`,text:`Insureance Info:
-              ${auto.insureance || ' '}`, colSpan:12, rowSpan:2});
+              ${auto.insureance || ''}`, colSpan:12, rowSpan:2});
               break;
             default:
               col.push({id:`2${index}.${i}`,text:''})
@@ -295,7 +306,7 @@ export default {
               col.push({id:`3${index}.${i}`,text:`Phone#:`, colSpan:10,border:[true,false,true,true]});
               break;
             case 11:
-              col.push({id:`3${index}.${i}`,text:`${auto.phone || ' '}`, colSpan:12});
+              col.push({id:`3${index}.${i}`,text:`${auto.phone || ''}`, colSpan:12});
               break;
             default:
               col.push({id:`3${index}.${i}`,text:''})
@@ -341,8 +352,9 @@ export default {
       let autos = this.setAutos(this.vehicles);
       let body = this.setMain(this.incident,this.alarm,this.location,
         this.actions,this.structure,this.response,this.injured,this.bcfmo);
-      //body = dash.concat(body,autos);
-      //console.log('vehicles', autos)
+      autos.map(function(auto){
+        body.push(auto)
+      });
       const docDefinition = {
         content: [
           {
@@ -359,7 +371,7 @@ export default {
             style: "table",
             table: {
               //number of columns must add up to 22 in each row
-              body: autos
+              body: body
             }
           },
           {
