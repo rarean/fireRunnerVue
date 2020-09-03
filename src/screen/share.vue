@@ -230,17 +230,24 @@ export default {
     },
     setAutos(vehicles){
       //vehicles is empty array or array of objects
-      let autos = dash.isEmpty(vehicles)? new Array({},{},{}): vehicles;
-      autos = autos.map(function(auto, index){
+      vehicles = dash.isEmpty(vehicles)? new Array({},{},{}): vehicles;
+      let autos = [];
+      vehicles = vehicles.map(function(auto, index){
         return [
           row1(auto,index),
           row2(auto,index),
           row3(auto,index),
-          row4(auto, index)
+          row4(auto,index)
         ];
       });
 
-    console.log('here', autos[0])
+      vehicles.map(function(auto){
+        auto.map(function(car){
+          autos.push(car)
+        });
+      });
+
+    console.log('here', autos)
 
       function row1(auto, index){
         let col =[];
@@ -352,7 +359,7 @@ export default {
             style: "table",
             table: {
               //number of columns must add up to 22 in each row
-              body: autos[0]
+              body: autos
             }
           },
           {
