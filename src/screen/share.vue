@@ -231,31 +231,28 @@ export default {
     setAutos(vehicles){
       //vehicles is empty array or array of objects
       let autos = dash.isEmpty(vehicles)? new Array({},{},{}): vehicles;
-      var rows = [];
-      var item ={};
       autos = autos.map(function(auto, index){
-        let one = row1(auto, index);
-        let two = row2(auto, index);
-        let thre = row3(auto, index);
-        let four = row4(auto, index);
-
-        let cars = dash.concat(one,two,thre,four);
-        console.log('cars', cars.toString())
-        return dash.sortedUniq(cars)
+        return [
+          row1(auto,index),
+          row2(auto,index),
+          row3(auto,index),
+          row4(auto, index)
+        ];
       });
+
+    console.log('here', autos[0])
 
       function row1(auto, index){
         let col =[];
-        let i;
-        for(i=1; i<=22; i++){
+        for(let i=1; i<=22; i++){
           switch(i){
             case 1:
               col.push({id:`1${index}.${i}`,text:`Owner/Driver Name:
-              ${auto.owner_name || null}`, colSpan:10,border:[true,true,true,false]});
+              ${auto.owner_name || ' '}`, colSpan:10,border:[true,true,true,false]});
               break;
             case 11:
               col.push({id:`1${index}.${i}`,text:`Driver License:
-              ${auto.dl_num || null}`, colSpan:12});
+              ${auto.dl_num || ' '}`, colSpan:12});
               break;
             default:
               col.push({id:`1${index}.${i}`,text:''})
@@ -270,11 +267,11 @@ export default {
           switch(i){
             case 1:
               col.push({id:`2${index}.${i}`,text:`Address:
-              ${auto.address || null}`, colSpan:10,border:[true,false,true,false]});
+              ${auto.address || ' '}`, colSpan:10,border:[true,false,true,false]});
               break;
             case 11:
               col.push({id:`2${index}.${i}`,text:`Insureance Info:
-              ${auto.insureance || null}`, colSpan:12, rowSpan:2});
+              ${auto.insureance || ' '}`, colSpan:12, rowSpan:2});
               break;
             default:
               col.push({id:`2${index}.${i}`,text:''})
@@ -291,7 +288,7 @@ export default {
               col.push({id:`3${index}.${i}`,text:`Phone#:`, colSpan:10,border:[true,false,true,true]});
               break;
             case 11:
-              col.push({id:`3${index}.${i}`,text:`${auto.phone || null}`, colSpan:12});
+              col.push({id:`3${index}.${i}`,text:`${auto.phone || ' '}`, colSpan:12});
               break;
             default:
               col.push({id:`3${index}.${i}`,text:''})
@@ -305,22 +302,23 @@ export default {
         for(i=1; i<=22; i++){
           switch(i){
             case 1:
-              col.push({id:`4${index}.${i}`,text:`Make:\n${auto.make}`});
+              col.push({id:`4${index}.${i}`,text:`Make:\n${auto.make || ' '}`});
               break;
             case 2:
-              col.push({id:`4${index}.${i}`,text:`Model:\n${auto.model}`});
+              col.push({id:`4${index}.${i}`,text:`Model:\n${auto.model || ''}`});
               break;
             case 3:
-              col.push({id:`4${index}.${i}`,text:`Year:\n${auto.year}`});
+              col.push({id:`4${index}.${i}`,text:`Year:\n${auto.year || ' '}`});
               break;
             case 4:
               col.push({id:`4${index}.${i}`,text:`VIN`});
               break;
             case 5:
-              col.push({id:`4${index}.${i}`,text:`${auto.vin || null}`, colSpan:17});
+              col.push({id:`4${index}.${i}`,text:`${auto.vin || ' '}`, colSpan:17});
               break;
             case 22:
-              col.push({id:`4${index}.${i}`,text:`License Plate#\n${auto.plate_num || null}`});
+              col.push({id:`4${index}.${i}`,text:`License
+              Plate#\n${auto.plate_num || ' '}`});
               break;
             default:
               col.push({id:`4${index}.${i}`,text:''})
@@ -333,7 +331,7 @@ export default {
     },
     //See PDFmake https://pdfmake.github.io/docs/getting-started
     async createPDF() {
-      let autos = [this.setAutos(this.vehicles)];
+      let autos = this.setAutos(this.vehicles);
       let body = this.setMain(this.incident,this.alarm,this.location,
         this.actions,this.structure,this.response,this.injured,this.bcfmo);
       //body = dash.concat(body,autos);
@@ -354,7 +352,7 @@ export default {
             style: "table",
             table: {
               //number of columns must add up to 22 in each row
-              body: autos
+              body: autos[0]
             }
           },
           {
