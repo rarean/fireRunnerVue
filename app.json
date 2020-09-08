@@ -2,15 +2,14 @@
   "expo": {
     "name": "fireRunnerVue",
     "slug": "fireRunnerVue",
-    "privacy":"unlisted",
+    "privacy": "unlisted",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "sdkVersion":"37.0.1",
     "version": "0.1.0",
-    "githubUrl":"https://github.com/rarean/fireRunnerVue",
+    "githubUrl": "https://github.com/rarean/fireRunnerVue",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
