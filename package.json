@@ -29,7 +29,7 @@
     "react-native-paper": "^3.8.0",
     "react-native-reanimated": "^1.7.1",
     "react-native-screens": "^2.2.0",
-    "react-native-web": "^0.11.7",
+    "react-native-web": "^0.13.11",
     "vue-native-core": "0.1.4",
     "vue-native-helper": "0.1.4",
     "vue-native-router": "^0.1.1",
