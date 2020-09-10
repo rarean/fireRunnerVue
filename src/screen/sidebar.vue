@@ -12,7 +12,7 @@
           noBorder
           :onPress="() => handleListItemClick(screen)"
         >
-          <nb-text>{{screen.name}}
+          <nb-text>{{ screen.name }}</nb-text>
         </nb-list-item>
         <nb-list-item>
           <!--nb-text :on-press="logout">Logout</nb-text-->
@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-    handleListItemClick(dataObj){
+    handleListItemClick(dataObj) {
       this.navigation.navigate(dataObj.route);
     },
     logout() {
@@ -63,102 +63,102 @@ export default {
         paddingBottom: Platform.OS === "android" ? 20 : 30
       }
     },
-    screens:[
+    screens: [
       {
-        name:"Home",
-        route:"Home",
-        icon:"",
-        bg:"#C5F422"
+        name: "Home",
+        route: "Home",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Incident",
-        route:"Incident",
-        icon:"",
-        bg:"#C5F422"
+        name: "Incident",
+        route: "Incident",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Alarms",
-        route:"Alarms",
-        icon:"",
-        bg:"#C5F422"
+        name: "Alarms",
+        route: "Alarms",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Location",
-        route:"Location",
-        icon:"",
-        bg:"#C5F422"
+        name: "Location",
+        route: "Location",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Response",
-        route:"Response",
-        icon:"",
-        bg:"#C5F422"
+        name: "Response",
+        route: "Response",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Actions",
-        route:"Actions",
-        icon:"",
-        bg:"#C5F422"
+        name: "Actions",
+        route: "Actions",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Injuries",
-        route:"Injuries",
-        icon:"",
-        bg:"#C5F422"
+        name: "Injuries",
+        route: "Injuries",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Structure",
-        route:"Structure",
-        icon:"",
-        bg:"#C5F422"
+        name: "Structure",
+        route: "Structure",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"BCFMO",
-        route:"BCFMO",
-        icon:"",
-        bg:"#C5F422"
+        name: "BCFMO",
+        route: "BCFMO",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"MutualAid",
-        route:"MutualAid",
-        icon:"",
-        bg:"#C5F422"
+        name: "MutualAid",
+        route: "MutualAid",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Vehicles",
-        route:"Vehicles",
-        icon:"",
-        bg:"#C5F422"
+        name: "Vehicles",
+        route: "Vehicles",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Equipment 1",
-        route:"Equipment1",
-        icon:"",
-        bg:"#C5F422"
+        name: "Equipment 1",
+        route: "Equipment1",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Equipment 2",
-        route:"Equipment2",
-        icon:"",
-        bg:"#C5F422"
+        name: "Equipment 2",
+        route: "Equipment2",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Narrative",
-        route:"Narrative",
-        icon:"",
-        bg:"#C5F422"
+        name: "Narrative",
+        route: "Narrative",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Signatures",
-        route:"Signatures",
-        icon:"",
-        bg:"#C5F422"
+        name: "Signatures",
+        route: "Signatures",
+        icon: "",
+        bg: "#C5F422"
       },
       {
-        name:"Share",
-        route:"Share",
-        icon:"",
-        bg:"#C5F422"
+        name: "Share",
+        route: "Share",
+        icon: "",
+        bg: "#C5F422"
       }
     ]
   }
