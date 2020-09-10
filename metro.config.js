@@ -9,7 +9,7 @@ const { getDefaultConfig } = require("metro-config");
 
 module.exports = (async () => {
   const {
-    resolver: { sourceExts }
+    resolver: { sourceExts },
   } = await getDefaultConfig();
   return {
     transformer: {
@@ -19,10 +19,10 @@ module.exports = (async () => {
           experimentalImportSupport: false,
           inlineRequires: false,
         },
-      })
+      }),
     },
     resolver: {
-      sourceExts: [...sourceExts, "vue"]
-    }
+      sourceExts: [...sourceExts, "vue"],
+    },
   };
 })();

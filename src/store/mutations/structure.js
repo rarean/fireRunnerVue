@@ -34,5 +34,5 @@ export {
   updateStructSmokeDetector,
   updateStructAcerageBurned,
   updateStructMainFloorSize,
-  updateStructArsonSuspect
+  updateStructArsonSuspect,
 };

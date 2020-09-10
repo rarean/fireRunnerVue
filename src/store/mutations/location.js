@@ -27,6 +27,5 @@ export {
   updateOwnerAddress,
   updateOwnerCity,
   updateOwnerState,
-  updateOwnerPhone
+  updateOwnerPhone,
 };
-
