@@ -20,5 +20,5 @@ export {
   updateEnrouteTime,
   updateOnsceneTime,
   updateFireControlTime,
-  updateClearSceneTime
+  updateClearSceneTime,
 };

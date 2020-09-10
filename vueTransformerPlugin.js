@@ -1,4 +1,4 @@
-var semver = require('semver');
+var semver = require("semver");
 var vueNativeScripts = require("vue-native-scripts");
 
 var reactNativeVersionString = require("react-native/package.json").version;
@@ -21,13 +21,13 @@ if (reactNativeMinorVersion >= 59) {
   upstreamTransformer = {
     transform({ src, filename, options }) {
       return oldUpstreamTransformer.transform(src, filename, options);
-    }
+    },
   };
 }
 var vueExtensions = ["vue"]; // <-- Add other extensions if needed.
 
-module.exports.transform = function({ src, filename, options }) {
-  if (vueExtensions.some(ext => filename.endsWith("." + ext))) {
+module.exports.transform = function ({ src, filename, options }) {
+  if (vueExtensions.some((ext) => filename.endsWith("." + ext))) {
     return vueNativeScripts.transform({ src, filename, options });
   }
   return upstreamTransformer.transform({ src, filename, options });
