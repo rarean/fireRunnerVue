@@ -35,6 +35,7 @@
         "tsx",
         "vue"
       ]
-    }
+    },
+    "description": "Fire Runner Worksheet data gathering app for Castroville Fire Dept"
   }
 }
