@@ -16,12 +16,12 @@ This project adheres to the [Contributor](./Contributing.mg) Covenant [code of c
 These instructions will get you a copy of the project to running on your local machine for development and testing.
 
 ## Prerequisites
-* [NodeJs](https://nodejs.org/en/) tested with v12.9
+* [NodeJs](https://nodejs.org/en/) tested with v14.10.1
 * [Expo](https://expo.io/learn)
 * [Android Studio](https://developer.android.com/studio) for AVD emulator
 
 ## Installation & Run
-* Fork & clone repo `git clone https://`
+* Fork & clone repo `git clone https://github.com/rarean/fireRunnerVue`
 * Change into the repo dir `cd fireRunnerVue`
 * Install packages `npm install`
 * Open Adroid Stuido and AVD manager (create new device if don't have one already)
