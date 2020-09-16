@@ -50,7 +50,6 @@ export default {
     },
     deleteVehicle: function (index) {
       this.vehicles.splice(index, 1);
-      console.log("chk", store.state.vehicles);
     },
     onMenu: function () {
       this.navigation.openDrawer();
