@@ -17,9 +17,4 @@ const updateOfficerSign = function (state, value) {
   state.signatures.officer_image = value;
 };
 
-export {
-  updateReporter,
-  updateOfficer,
-  updateReporterSign,
-  updateOfficerSign
-};
+export { updateReporter, updateOfficer, updateReporterSign, updateOfficerSign };

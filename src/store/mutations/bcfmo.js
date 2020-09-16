@@ -10,5 +10,5 @@ const updateBcfmoInvestigator = function (state, value) {
 export {
   updateBcfmoCaseNum,
   updateBcfmoContactForArson,
-  updateBcfmoInvestigator
+  updateBcfmoInvestigator,
 };

@@ -39,7 +39,7 @@ export {
   updtIncdntRep,
   updtIncdntPerson,
   updtIncdntMedic,
-  updtIncdntSituation
+  updtIncdntSituation,
 } from "./mutations/incidents";
 //Alarms
 export {
@@ -47,7 +47,7 @@ export {
   updateEnrouteTime,
   updateOnsceneTime,
   updateFireControlTime,
-  updateClearSceneTime
+  updateClearSceneTime,
 } from "./mutations/alarms";
 //Locations
 export {
@@ -57,19 +57,19 @@ export {
   updateOwnerAddress,
   updateOwnerCity,
   updateOwnerState,
-  updateOwnerPhone
+  updateOwnerPhone,
 } from "./mutations/location";
 //Response
 export {
   updateDept,
   updateMutualAidTo,
-  updateMutualAidFrom
+  updateMutualAidFrom,
 } from "./mutations/response";
 //Action
 export {
   updateActionTaken,
   updateWaterUsed,
-  updateFoamUsed
+  updateFoamUsed,
 } from "./mutations/actions";
 //Injuries
 export { updateFatalities, updateInjuries } from "./mutations/injuries";
@@ -83,13 +83,13 @@ export {
   updateStructSmokeDetector,
   updateStructAcerageBurned,
   updateStructMainFloorSize,
-  updateStructArsonSuspect
+  updateStructArsonSuspect,
 } from "./mutations/structure";
 ////BCFMO
 export {
   updateBcfmoCaseNum,
   updateBcfmoContactForArson,
-  updateBcfmoInvestigator
+  updateBcfmoInvestigator,
 } from "./mutations/bcfmo";
 //Equipment
 export {
@@ -98,12 +98,12 @@ export {
   updateEquipLost,
   updateEquipBroken,
   updateReceiptsBagged,
-  updateTruckRestocked
+  updateTruckRestocked,
 } from "./mutations/equip2";
 //Signatures
 export {
   updateReporter,
   updateOfficer,
   updateReporterSign,
-  updateOfficerSign
+  updateOfficerSign,
 } from "./mutations/signatures";

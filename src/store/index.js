@@ -14,7 +14,7 @@ const store = new Vuex.Store({
     logging_in: false,
     userObj: {
       fname: "",
-      lname: ""
+      lname: "",
     },
     incident: {
       date: "",
@@ -22,73 +22,73 @@ const store = new Vuex.Store({
       rep: "",
       personnel: "",
       medic: "",
-      situation: ""
+      situation: "",
     },
     alarms: {
       alarm_time: "",
       enroute_time: "",
       onscene_time: "",
       fire_control_time: "",
-      clear_scene_time: ""
+      clear_scene_time: "",
     },
     location: {
-      call_location:"",
-      call_zip:"",
-      owner_name:"",
-      owner_address:"",
-      owner_city:"",
-      owner_state:"",
-      owner_phone:""
+      call_location: "",
+      call_zip: "",
+      owner_name: "",
+      owner_address: "",
+      owner_city: "",
+      owner_state: "",
+      owner_phone: "",
     },
     response: {
-      dept:"",
-      mutual_aid_to:"",
-      mutual_aid_from:""
+      dept: "",
+      mutual_aid_to: "",
+      mutual_aid_from: "",
     },
     actions: {
-      taken:"",
-      water_used:"",
-      foam_used:""
+      taken: "",
+      water_used: "",
+      foam_used: "",
     },
-    injured:{
-      fatalities:"",
-      injuries:""
+    injured: {
+      fatalities: "",
+      injuries: "",
     },
     structure: {
-      type:"",
-      use:"",
-      suspected_cause:"",
-      arson_suspected:"",
-      estimated_cost:"",
-      property_damaged:"",
-      smoke_detector:"",
-      acerage_burned:"",
-      main_floor_size:""
+      type: "",
+      use: "",
+      suspected_cause: "",
+      arson_suspected: "",
+      estimated_cost: "",
+      property_damaged: "",
+      smoke_detector: "",
+      acerage_burned: "",
+      main_floor_size: "",
     },
     bcfmo: {
-      case_num:"",
-      contact_for_arson:"",
-      investigator:""
+      case_num: "",
+      contact_for_arson: "",
+      investigator: "",
     },
     mutualaid: [],
     vehicles: [],
     equipment: [],
-    equip:{
-     standby:"",
-     stolen:"",
-     lost:"",
-     broken:"",
-     receipts:"",
-     restocked:""
+    equip: {
+      standby: "",
+      stolen: "",
+      lost: "",
+      broken: "",
+      receipts: "",
+      restocked: "",
     },
     narrative: "",
-    signatures:{
-      reporter:"",
-      reporter_image:"",
-      officer:"",
-      officer_image:""
+    signatures: {
+      reporter: "",
+      reporter_image: "",
+      officer: "",
+      officer_image: "",
     },
-    attachment:""
+    attachment: "",
   },
   actions: {
     //invoke mutations asyncronusly
@@ -102,8 +102,8 @@ const store = new Vuex.Store({
       //    resolve();
       //  }, 1000)
       //})
-    }
-  }
+    },
+  },
   //dispatch actions
 });
 

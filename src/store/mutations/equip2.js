@@ -23,5 +23,5 @@ export {
   updateEquipLost,
   updateEquipBroken,
   updateReceiptsBagged,
-  updateTruckRestocked
+  updateTruckRestocked,
 };
