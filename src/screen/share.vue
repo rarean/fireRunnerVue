@@ -423,7 +423,6 @@ export default {
         return col;
       }
       function row2(item){
-        console.log('chk', item)
         let col =[];
         let i;
         for(i=1; i<=22; i++){
@@ -467,7 +466,6 @@ export default {
       sigs = dash.isEmpty(sigs)? {} : sigs;
       narrate = dash.isEmpty(narrate)? '  ' : narrate;
       let data = [];
-      console.log('here',sigs, narrate);
       data.push([
         {text:`Person Making Report (Print):  ${sigs.reporter || ' '}`, colSpan:11},
         '2','3','4','5','6','7','8','9','10','11',
@@ -486,7 +484,6 @@ export default {
         {text:`Officer In Charge: ${sigs.officer_image || ' '}`, colSpan:10},
         ,'14','15','16','17','18','19','20','21'
       ]);
-      console.log('here', data)
       return data;
     },
     //See PDFmake https://pdfmake.github.io/docs/getting-started

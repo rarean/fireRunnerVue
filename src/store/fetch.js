@@ -1,7 +1,7 @@
 const baseURL = "https://jsonplaceholder.typicode.com";
 
 export function _fetch(path) {
-  console.log("path", path);
+  //console.log("path", path);
   return fetch({
     method: "GET",
     url: `${baseURL}/${path}`,

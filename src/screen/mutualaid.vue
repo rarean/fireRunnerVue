@@ -50,7 +50,6 @@ export default {
     },
     deleteAid: function(index){
       this.mutualaid.splice(index, 1);
-      console.log("chk", store.state.mutualaid);
     },
     onMenu: function () {
       this.navigation.openDrawer();

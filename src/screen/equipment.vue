@@ -38,7 +38,6 @@ export default {
   created() {
     this.loaded = true;
     this.equipment = store.state.equipment;
-    console.log(this.equipment);
   },
   computed: {
     titleName() {
@@ -48,11 +47,9 @@ export default {
   methods: {
     addEquipment: function (obj) {
       store.commit("addEquipment", obj);
-      console.log("equip", store.state.equipment);
     },
     deleteItem: function (index) {
       this.equipment.splice(index, 1);
-      console.log("chk", store.state.equipment);
     },
     onMenu: function () {
       this.navigation.openDrawer();
