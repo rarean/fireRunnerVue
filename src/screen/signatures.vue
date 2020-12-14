@@ -3,13 +3,6 @@
     <header :name="titleName" :menu-pressed="onMenu" />
     <nb-content class="container" v-if="loaded">
       <nb-form>
-        <nb-list-item
-          v-for="input in inputs"
-          :key="input.mutate"
-          class="lister"
-        >
-          <input-text :mutation="input.mutate" :floater="input.label" />
-        </nb-list-item>
       </nb-form>
       <view class="btn">
         <nb-button rounded large :on-press="reporterSig">
@@ -35,27 +28,16 @@
 import React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import InputText from "../components/inputText";
 import store from "../store";
 
 export default {
-  components: { Header, Footer, InputText },
+  components: { Header, Footer },
   props: { navigation: Object },
   data: function () {
     return {
       loaded: false,
       backPage: "Narrative",
       nextPage: "Share",
-      inputs: [
-        {
-          label: "Person Making Report(Print)",
-          mutate: "updateReporter"
-        },
-        {
-          label: "Officer In Charge(Print)",
-          mutate: "updateOfficer"
-        }
-      ]
     };
   },
   created() {

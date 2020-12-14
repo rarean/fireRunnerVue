@@ -9,10 +9,17 @@
           bordered
           v-model="narrate"
         />
+        <nb-list-item
+          v-for="input in inputs"
+          :key="input.mutate"
+          class="lister"
+        >
+          <input-text :mutation="input.mutate" :floater="input.label" />
+        </nb-list-item>
       </nb-form>
       <view class="btn">
-        <nb-button rounded large :on-press="attach">
-          <nb-text>Add Attachment</nb-text>
+        <nb-button rounded large :on-press="onNext">
+          <nb-text>Save</nb-text>
         </nb-button>
       </view>
     </nb-content>
@@ -29,16 +36,27 @@
 import React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import InputText from "../components/inputText";
 import store from "../store";
 
 export default {
-  components: { Header, Footer },
+  components: { Header, Footer, InputText },
   props: { navigation: Object },
   data: function () {
     return {
       loaded: false,
       backPage: "Equipment2",
-      nextPage: "Signatures"
+      nextPage: "Signatures",
+      inputs: [
+        {
+          label: "Person Making Report (Print)",
+          mutate: "updateReporter"
+        },
+        {
+          label: "Officer In Charge (Print)",
+          mutate: "updateOfficer"
+        }
+      ]
     };
   },
   created() {
@@ -48,7 +66,7 @@ export default {
     titleName() {
       return this.navigation.state.routeName;
     },
-    narrate: {
+    narrate: { //add getter and setter for each v-model
       get() {
         return this.value;
       },
@@ -56,7 +74,6 @@ export default {
         store.commit("addNarrative", val);
       }
     }
-    //add getter and setter for each v-model
   },
   methods: {
     onMenu: function () {
@@ -71,9 +88,9 @@ export default {
     onNext: function () {
       this.navigation.navigate(this.nextPage);
     },
-    attach: function(){
-      alert('TODO')
-    }
+    //attach: function(){
+    //  alert('TODO')
+    //}
   }
 };
 </script>
