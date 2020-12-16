@@ -69,7 +69,6 @@ export default {
 
 <style>
 .container {
-  margin: 20;
-  padding: 20;
+  margin: 10;
 }
 </style>

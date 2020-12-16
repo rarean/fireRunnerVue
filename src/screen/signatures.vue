@@ -73,13 +73,12 @@ export default {
 
 <style>
 .container {
-  margin: 20;
-  padding: 20;
+  align-self:center;
+  margin-top: 20;
 }
 .btn {
-  margin: 20;
-  justify-content: center;
-  align-items: center;
+  align-self:center;
+  margin-top: 20;
 }
 .lister {
   border-color: "rgba(255,255,255,1)";

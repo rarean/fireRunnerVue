@@ -26,7 +26,6 @@ import PdfMake from "pdfmake/build/pdfmake.js";
 import PdfFonts from "pdfmake/build/vfs_fonts.js";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
-import * as ImagePicker from "expo-image-picker";
 import dash from 'lodash';
 
 export default {
@@ -599,14 +598,13 @@ export default {
 
 <style>
 .container {
-  margin: 20;
-  padding: 20;
+  align-self: center;
+  margin-top: 20;
 }
 .btn {
-  margin: 20;
+  align-self: center;
+  margin-top: 20;
   padding: 20;
-  justify-content: center;
-  align-items: center;
 }
 .center {
   justify-content: center;

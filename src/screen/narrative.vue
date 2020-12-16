@@ -87,24 +87,20 @@ export default {
     },
     onNext: function () {
       this.navigation.navigate(this.nextPage);
-    },
-    //attach: function(){
-    //  alert('TODO')
-    //}
+    }
   }
 };
 </script>
 
 <style>
 .container {
-  margin: 20;
-  padding: 20;
+  align-self:center;
+  margin: 10;
 }
 .btn {
-  margin: 20;
+  align-self:center;
+  margin-top: 20;
   padding: 20;
-  justify-content: center;
-  align-items: center;
 }
 .textArea {
   text-align: left;

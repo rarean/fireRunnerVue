@@ -82,10 +82,9 @@ export default {
 
 <style>
 .btn {
-  margin: 20;
+  align-self: center;
+  margin-top: 20;
   padding: 20;
-  justify-content: center;
-  align-items: center;
 }
 .lister {
   border-color: "rgba(255,255,255,1)";
