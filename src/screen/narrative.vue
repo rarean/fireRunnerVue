@@ -4,18 +4,11 @@
     <nb-content class="container" v-if="loaded">
       <nb-form>
         <nb-textarea
-          :rowSpan="9"
+          :rowSpan="15"
           placeholder="Narrative"
           bordered
           v-model="narrate"
         />
-        <nb-list-item
-          v-for="input in inputs"
-          :key="input.mutate"
-          class="lister"
-        >
-          <input-text :mutation="input.mutate" :floater="input.label" />
-        </nb-list-item>
       </nb-form>
       <view class="btn">
         <nb-button rounded large :on-press="onNext">
@@ -46,17 +39,7 @@ export default {
     return {
       loaded: false,
       backPage: "Equipment2",
-      nextPage: "Signatures",
-      inputs: [
-        {
-          label: "Person Making Report (Print)",
-          mutate: "updateReporter"
-        },
-        {
-          label: "Officer In Charge (Print)",
-          mutate: "updateOfficer"
-        }
-      ]
+      nextPage: "Signatures"
     };
   },
   created() {
@@ -94,7 +77,6 @@ export default {
 
 <style>
 .container {
-  align-self:center;
   margin: 10;
 }
 .btn {

@@ -27,7 +27,8 @@ import VehicleScreen from "./screen/vehicles.vue";
 import Equip1Screen from "./screen/equipment.vue";
 import Equip2Screen from "./screen/equip2.vue";
 import NarrativeScreen from "./screen/narrative.vue";
-import SignatureScreen from "./screen/signatures.vue";
+import Signature1Screen from "./screen/signatures1.vue";
+import Signature2Screen from "./screen/signatures2.vue";
 import ShareScreen from "./screen/share.vue";
 
 console.disableYellowBox = true;
@@ -47,7 +48,8 @@ const Drawer = createDrawerNavigator(
     Equipment1: { screen: Equip1Screen },
     Equipment2: { screen: Equip2Screen },
     Narrative: { screen: NarrativeScreen },
-    Signatures: { screen: SignatureScreen },
+    Signatures1: { screen: Signature1Screen },
+    Signatures2: { screen: Signature2Screen },
     Share: {screen: ShareScreen}
   },
   {

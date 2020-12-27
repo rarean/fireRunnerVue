@@ -149,8 +149,14 @@ export default {
         bg: "#C5F422"
       },
       {
-        name: "Signatures",
-        route: "Signatures",
+        name: "Reporter Signature",
+        route: "Signatures1",
+        icon: "",
+        bg: "#C5F422"
+      },
+      {
+        name: "Officer Signature",
+        route: "Signatures2",
         icon: "",
         bg: "#C5F422"
       },
