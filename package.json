@@ -20,7 +20,7 @@
     "expo-sharing": "~8.2.1",
     "lodash": "^4.17.19",
     "native-base": "^2.13.14",
-    "pdfmake": "^0.1.65",
+    "pdfmake": "^0.1.69",
     "react": "16.11.0",
     "react-dom": "16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
