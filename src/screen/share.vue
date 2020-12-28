@@ -34,7 +34,7 @@ export default {
   data: function () {
     return {
       loaded: false,
-      backPage: "Signatures",
+      backPage: "Signatures2",
       nextPage: "Home",
       incident: store.state.incident || {},
       alarm: store.state.alarms || {},

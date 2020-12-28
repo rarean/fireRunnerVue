@@ -2,7 +2,7 @@
   "expo": {
     "name": "fireRunnerVue",
     "slug": "fireRunnerVue",
-    "privacy": "unlisted",
+    "privacy": "public",
     "platforms": [
       "ios",
       "android",
@@ -10,10 +10,10 @@
     ],
     "version": "0.1.0",
     "githubUrl": "https://github.com/rarean/fireRunnerVue",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "orientation": "default",
+    "icon": "./assets/fire-ico.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/fire2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
