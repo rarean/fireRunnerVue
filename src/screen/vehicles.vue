@@ -1,7 +1,7 @@
 <template>
-  <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
+  <nb-container class="container">
     <header :name="titleName" :menu-pressed="onMenu" />
-    <nb-content class="container" v-if="loaded">
+    <nb-content class="content" v-if="loaded">
       <add-vehicle :on-add="addVehicle" />
       <view v-for="(item, index) in vehicles" :key="index">
         <vehicle :car="item" :delete-item="deleteVehicle" />
@@ -45,22 +45,22 @@ export default {
     }
   },
   methods: {
-    addVehicle: function (obj) {
+    addVehicle (obj) {
       store.commit("addVehicle", obj);
     },
-    deleteVehicle: function (index) {
+    deleteVehicle (index) {
       this.vehicles.splice(index, 1);
     },
-    onMenu: function () {
+    onMenu () {
       this.navigation.openDrawer();
     },
-    onBack: function () {
+    onBack () {
       this.navigation.navigate(this.backPage);
     },
-    onHome: function () {
+    onHome () {
       this.navigation.navigate("Home");
     },
-    onNext: function () {
+    onNext () {
       this.navigation.navigate(this.nextPage);
     }
   }
@@ -69,6 +69,10 @@ export default {
 
 <style>
 .container {
-  margin: 10;
+  flex: 1;
+  background-color: #fff;
+}
+.content {
+  margin-top: 1;
 }
 </style>

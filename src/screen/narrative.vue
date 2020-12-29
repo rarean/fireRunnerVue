@@ -1,5 +1,5 @@
 <template>
-  <nb-container :style="{ flex: 1, backgroundColor: '#fff', border: 1 }">
+  <nb-container class="container">
     <header :name="titleName" :menu-pressed="onMenu" />
     <nb-content class="container" v-if="loaded">
       <nb-form>
@@ -29,17 +29,16 @@
 import React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import InputText from "../components/inputText";
 import store from "../store";
 
 export default {
-  components: { Header, Footer, InputText },
+  components: { Header, Footer },
   props: { navigation: Object },
   data: function () {
     return {
       loaded: false,
       backPage: "Equipment2",
-      nextPage: "Signatures"
+      nextPage: "Signatures1"
     };
   },
   created() {
@@ -49,7 +48,8 @@ export default {
     titleName() {
       return this.navigation.state.routeName;
     },
-    narrate: { //add getter and setter for each v-model
+    narrate: {
+      //add getter and setter for each v-model
       get() {
         return this.value;
       },
@@ -59,16 +59,16 @@ export default {
     }
   },
   methods: {
-    onMenu: function () {
+    onMenu() {
       this.navigation.openDrawer();
     },
-    onBack: function () {
+    onBack() {
       this.navigation.navigate(this.backPage);
     },
-    onHome: function () {
+    onHome() {
       this.navigation.navigate("Home");
     },
-    onNext: function () {
+    onNext() {
       this.navigation.navigate(this.nextPage);
     }
   }
@@ -77,15 +77,19 @@ export default {
 
 <style>
 .container {
-  margin: 10;
+  flex: 1;
+  background-color: #fff;
+}
+.content {
+  margin-top: 10;
 }
 .btn {
-  align-self:center;
-  margin-top: 20;
-  padding: 20;
+  align-self: center;
+  margin-top: 10;
 }
 .textArea {
   text-align: left;
   border-top-width: 1;
+  margin:10;
 }
 </style>

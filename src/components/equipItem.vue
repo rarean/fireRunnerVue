@@ -1,16 +1,18 @@
 <template>
-  <nb-list class="wrapper">
-    <nb-list-item itemDivider class="button-wrapper">
-      <nb-text>{{ itemObj.apparatus }}</nb-text>
+  <nb-list>
+    <nb-list-item itemDivider class="title-wrapper">
+      <nb-text class="title">{{ itemObj.apparatus }}</nb-text>
       <nb-text class="grow" />
       <nb-button transparent :on-press="deleteIconPress">
         <nb-icon name="trash" />
       </nb-button>
     </nb-list-item>
-    <nb-text>Personnel: {{ itemObj.personnel }}</nb-text>
-    <nb-text>Equipment Used: {{ itemObj.equip_used }}</nb-text>
-    <nb-text>OnScene Time: {{ itemObj.onscene_time }}</nb-text>
-    <nb-text>ClearScene Time: {{ itemObj.clear_scene_time }}</nb-text>
+    <view class="item">
+      <nb-text>Personnel: {{ itemObj.personnel }}</nb-text>
+      <nb-text>Equipment Used: {{ itemObj.equip_used }}</nb-text>
+      <nb-text>OnScene Time: {{ itemObj.onscene_time }}</nb-text>
+      <nb-text>ClearScene Time: {{ itemObj.clear_scene_time }}</nb-text>
+    </view>
   </nb-list>
 </template>
 <script>
@@ -20,24 +22,29 @@ export default {
     deleteItem: Function
   },
   methods: {
-    deleteIconPress: function(index){
-      this.deleteItem(this.selectedIndex)
+    deleteIconPress(index) {
+      this.deleteItem(this.selectedIndex);
     }
   }
 };
 </script>
 <style>
-.button-wrapper {
+.title-wrapper {
   flex: 1;
   flex-direction: row;
   justify-content: space-between;
+  margin: -5;
+}
+.title {
+  font-weight: bold;
+  font-size: 20;
 }
 .grow {
   flex: 1;
   align-self: auto;
   flex-grow: 1;
 }
-.wrapper {
-  margin-bottom: 20;
+.item {
+  margin-left: 10;
 }
 </style>

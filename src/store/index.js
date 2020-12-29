@@ -96,12 +96,6 @@ const store = new Vuex.Store({
       //console.log('LOGIN', navigation);
       commit("NAVIGATOR", navigation);
       commit("LOGGING_IN", true);
-      //return new Promise((resolve, reject) => {
-      //  setTimeout(() => {
-      //    navigation.navigate('Incident');
-      //    resolve();
-      //  }, 1000)
-      //})
     },
   },
   //dispatch actions

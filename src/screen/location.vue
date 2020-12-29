@@ -1,7 +1,7 @@
 <template>
-  <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
+  <nb-container class="container">
     <header :name="titleName" :menu-pressed="onMenu"/>
-    <nb-content class="container" v-if="loaded">
+    <nb-content class="content" v-if="loaded">
       <nb-form>
         <nb-list-item
           v-for="input in inputs"
@@ -100,13 +100,15 @@ export default {
 
 <style>
 .container {
-  align-self:center;
-  margin-top: 20;
+  flex: 1;
+  background-color: #fff;
+}
+.content {
+  margin-top: 10;
 }
 .btn {
-  align-self:center;
-  margin-top: 20;
-  padding: 20;
+  align-self: center;
+  margin-top: 10;
 }
 .lister {
   border-color: "rgba(255,255,255,1)";

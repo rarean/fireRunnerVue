@@ -1,31 +1,30 @@
 <template>
-  <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
+  <nb-container class="container">
     <header :name="titleName" :menu-pressed="onMenu" />
-    <nb-content class="container" v-if="loaded">
+    <nb-content class="content" v-if="loaded">
       <nb-form>
         <nb-list-item>
           <input-text :mutation="input.mutate" :floater="input.label" />
         </nb-list-item>
         <nb-item stackedLabel last>
-          <nb-label >Signature</nb-label>
+          <nb-label>Signature</nb-label>
           <signature
             ref="sigpanel"
             :on-finger-up="handleSig"
             image-format="png"
             output-type="base64"
-            :height=150
-           />
+            :height="150"
+          />
         </nb-item>
       </nb-form>
-      <view >
-      </view>
       <view class="button-wrapper">
-        <nb-button rounded large :on-press="clearSig" >
+        <nb-button rounded large :on-press="clearSig">
           <nb-text>Clear</nb-text>
         </nb-button>
-        <nb-button rounded large :on-press="saveSig" >
+        <nb-button rounded large :on-press="saveSig">
           <nb-text>Save</nb-text>
         </nb-button>
+      </view>
     </nb-content>
     <nb-spinner v-if="!loaded"></nb-spinner>
     <footer
@@ -41,25 +40,24 @@ import React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import store from "../store";
-import Signature from 'react-native-signature-panel';
+import Signature from "react-native-signature-panel";
 import InputText from "../components/inputText";
-import * as FileSystem from "expo-file-system";
 
 export default {
-  components: { Header, Footer, Signature,InputText },
+  components: { Header, Footer, Signature, InputText },
   props: { navigation: Object },
   data: function () {
     return {
       loaded: false,
       backPage: "Narrative",
       nextPage: "Signatures2",
-      input:{
-        mutate:"updateReporter",
-        label:"Person Making Report (Print)",
-        sign:"updateReporterSign"
+      input: {
+        mutate: "updateReporter",
+        label: "Person Making Report (Print)",
+        sign: "updateReporterSign"
       },
-      digiSign:[],
-      image:""
+      digiSign: [],
+      image: ""
     };
   },
   created() {
@@ -71,36 +69,36 @@ export default {
     }
   },
   methods: {
-    handleSig(sig){
+    handleSig(sig) {
       this.digiSign.push(sig);
       this.image = this.digiSign.pop();
       //console.log('lastImage', this.image);
     },
-    clearSig(){
+    clearSig() {
       this.$refs.sigpanel.setState({
         paths: [],
         points: [],
         posX: 0,
-        posY: 0,
+        posY: 0
       });
       this.digiSign = [];
-      this.image = ""
+      this.image = "";
       store.commit(this.input.sign, "");
     },
-    saveSig(){
+    saveSig() {
       store.commit(this.input.sign, this.image);
       this.navigation.navigate(this.nextPage);
     },
-    onMenu: function () {
+    onMenu() {
       this.navigation.openDrawer();
     },
-    onBack: function () {
+    onBack() {
       this.navigation.navigate(this.backPage);
     },
-    onHome: function () {
+    onHome() {
       this.navigation.navigate("Home");
     },
-    onNext: function () {
+    onNext() {
       this.navigation.navigate(this.nextPage);
     }
   }
@@ -109,8 +107,12 @@ export default {
 
 <style>
 .container {
-  align-self:center;
+  flex: 1;
+  background-color: #fff;
+}
+.content {
   margin-top: 0;
+  align-self: center;
 }
 .button-wrapper {
   flex: 1;
@@ -119,5 +121,6 @@ export default {
   margin-top: 5;
   margin-left: 20;
   margin-right: 20;
+  padding: 10;
 }
 </style>
