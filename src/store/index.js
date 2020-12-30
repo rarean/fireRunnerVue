@@ -87,7 +87,7 @@ const store = new Vuex.Store({
       officer_image: "",
     },
     attachment: "",
-  }
+  },
 });
 
 export default store;
