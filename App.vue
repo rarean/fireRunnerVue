@@ -10,14 +10,12 @@ import Vue from "vue-native-core";
 import { VueNativeBase } from "native-base";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
-import Vuelidate from "vuelidate";
 import App from "./src/index.vue";
 import launchScreenBg from "./assets/launchscreen-bg.png";
 import launchscreenLogo from "./assets/logo-kitchen-sink.png";
 
 // registering all native-base components to the global scope of the Vue
 Vue.use(VueNativeBase);
-Vue.use(Vuelidate);
 
 export default {
   components: { App, AppLoading },
