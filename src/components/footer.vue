@@ -1,21 +1,21 @@
 <template>
-    <nb-footer>
-      <nb-left>
-        <nb-button :on-press="goBack" >
-          <nb-icon name="arrow-back" />
-        </nb-button>
-      </nb-left>
-      <nb-body class="center">
-        <nb-button :on-press="goHome" >
-          <nb-icon name="home" />
-        </nb-button>
-      </nb-body>
-      <nb-right>
-        <nb-button :on-press="goNext" >
-          <nb-icon name="arrow-forward" />
-        </nb-button>
-      </nb-right>
-    </nb-footer>
+  <nb-footer>
+    <nb-left>
+      <nb-button transparent :on-press="goBack">
+        <nb-icon name="arrow-back" />
+      </nb-button>
+    </nb-left>
+    <nb-body class="center">
+      <nb-button transparent :on-press="goHome">
+        <nb-icon type="FontAwesome" name="home" />
+      </nb-button>
+    </nb-body>
+    <nb-right>
+      <nb-button transparent :on-press="goNext">
+        <nb-icon name="arrow-forward" />
+      </nb-button>
+    </nb-right>
+  </nb-footer>
 </template>
 
 <script>
@@ -25,19 +25,16 @@ export default {
     backPressed: Function,
     nextPressed: Function
   },
-  methods:{
-    goBack:function(){
+  methods: {
+    goBack() {
       this.backPressed();
     },
-    goHome:function(){
+    goHome() {
       this.homePressed();
     },
-    goNext:function(){
+    goNext() {
       this.nextPressed();
     }
-  },
-  created() {
-    //console.log("title.vue", this.props)
   }
 };
 </script>

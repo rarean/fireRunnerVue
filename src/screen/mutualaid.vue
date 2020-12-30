@@ -1,10 +1,10 @@
 <template>
-  <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
+  <nb-container class="container">
     <header :name="titleName" :menu-pressed="onMenu" />
-    <nb-content class="container" v-if="loaded">
+    <nb-content class="content" v-if="loaded">
       <add-mutualaid :on-add="addAid" />
       <view v-for="(aid, index) in mutualaid" :key="index">
-        <mutualaid-Item :aid="aid" :delete-item="deleteAid"/>
+        <mutualaid-Item :aid="aid" :delete-item="deleteAid" />
       </view>
     </nb-content>
     <nb-spinner v-if="!loaded"></nb-spinner>
@@ -45,22 +45,22 @@ export default {
     }
   },
   methods: {
-    addAid: function (aid) {
+    addAid(aid) {
       store.commit("addMutualAid", aid);
     },
-    deleteAid: function(index){
+    deleteAid(index) {
       this.mutualaid.splice(index, 1);
     },
-    onMenu: function () {
+    onMenu() {
       this.navigation.openDrawer();
     },
-    onBack: function () {
+    onBack() {
       this.navigation.navigate(this.backPage);
     },
-    onHome: function () {
+    onHome() {
       this.navigation.navigate("Home");
     },
-    onNext: function () {
+    onNext() {
       this.navigation.navigate(this.nextPage);
     }
   }
@@ -69,7 +69,10 @@ export default {
 
 <style>
 .container {
-  margin-top: 0;
-  padding: 20;
+  flex: 1;
+  background-color: #fff;
+}
+.content {
+  margin-top: 10;
 }
 </style>

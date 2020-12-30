@@ -1,12 +1,10 @@
 import Vue from "vue-native-core";
 import Vuex from "vuex";
 import * as mutations from "./mutations";
-//import * as actions from './actions';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  //actions,
   mutations,
 
   state: {
@@ -90,21 +88,6 @@ const store = new Vuex.Store({
     },
     attachment: "",
   },
-  actions: {
-    //invoke mutations asyncronusly
-    LOGIN({ commit, state }, { navigation }) {
-      //console.log('LOGIN', navigation);
-      commit("NAVIGATOR", navigation);
-      commit("LOGGING_IN", true);
-      //return new Promise((resolve, reject) => {
-      //  setTimeout(() => {
-      //    navigation.navigate('Incident');
-      //    resolve();
-      //  }, 1000)
-      //})
-    },
-  },
-  //dispatch actions
 });
 
 export default store;

@@ -4,7 +4,6 @@
       mode="dropdown"
       :iosIcon="getIosIcon()"
       placeholder="Apparatus"
-      placeholderIconColor="#007aff"
       :selectedValue="apparatus"
       :onValueChange="onSelected"
     >
@@ -36,16 +35,16 @@
       <nb-input v-model="clear_scene_time" />
     </nb-item>
     <nb-item class="btn">
-    <nb-button rounded large :on-press="add">
-      <nb-text>ADD</nb-text>
-    </nb-button>
+      <nb-button rounded large :on-press="add">
+        <nb-text>ADD</nb-text>
+      </nb-button>
     </nb-item>
   </nb-form>
 </template>
 
 <script>
 import React from "react";
-import {Picker, Icon} from "native-base";
+import { Picker, Icon } from "native-base";
 
 export default {
   components: { Item: Picker.Item },
@@ -62,13 +61,13 @@ export default {
     };
   },
   methods: {
-    onSelected: function(value){
+    onSelected(value) {
       this.apparatus = value;
     },
-    getIosIcon: function(){
-      return <Icon name="ios-arrow-down-outline" />;
+    getIosIcon() {
+      return <Icon name="arrow-down" />;
     },
-    add: function () {
+    add() {
       let obj = {
         apparatus: this.apparatus,
         personnel: this.personnel,
@@ -87,14 +86,9 @@ export default {
 };
 </script>
 <style>
-.container {
-  margin: 20;
-  padding: 20;
-}
 .btn {
-  margin: 20;
-  padding: 20;
-  justify-content: center;
-  align-items: center;
+  margin: 10;
+  padding: 10;
+  align-self: center;
 }
 </style>

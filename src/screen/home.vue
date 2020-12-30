@@ -1,19 +1,30 @@
 <template>
-  <nb-container v-if="loaded" :style="{ backgroundColor: '#fff' }">
+  <nb-container v-if="loaded" class="container">
     <header :name="titleName" :menu-pressed="onMenu" />
-    <nb-content :style="{ margin: 20, padding: 20 }">
-      <nb-form>
-        <nb-list-item
-          v-for="input in inputs"
-          :key="input.mutate"
-          class="lister"
-        >
-          <input-text :mutation="input.mutate" :floater="input.label" />
-        </nb-list-item>
-      </nb-form>
+    <nb-content class="content">
+      <view>
+        <nb-text class="btn txt">Hello!</nb-text>
+        <nb-text class="txt">
+          This app was designed for Castroville Volunteer Fire Department.
+        </nb-text>
+        <nb-text class="txt">
+          All inputs (text,image,etc.) to this app are not saved to device and
+          exist in-memory of the app only.
+        </nb-text>
+        <nb-text class="txt">
+          The input data will be printed to PDF using the "Share" screen and
+          lost once the app is closed. However, input data will be maintained
+          in the app if it is running in the background (until closed).
+        </nb-text>
+        <nb-text class="txt">
+          Use the side menu (<nb-icon name="menu" />), left (<nb-icon name="arrow-back" />) 
+          and right (<nb-icon name="arrow-forward" />) arrows to navigate
+          the app.
+        </nb-text>
+      </view>
       <view class="btn">
-        <nb-button large rounded :on-press="login">
-          <nb-text class="center">New Worksheet</nb-text>
+        <nb-button rounded large :on-press="newSheet">
+          <nb-text>Continue</nb-text>
         </nb-button>
       </view>
     </nb-content>
@@ -23,13 +34,9 @@
 
 <script>
 import React from "react";
-import { Toast } from "native-base";
-//import { required } from "vuelidate/lib/validators";
 import store from "../store";
 import Header from "../components/header";
 import InputText from "../components/inputText";
-//Vue.set(obj, 'new prop', 123)
-//state.obj = { ...state.obj, newProp: 123 } //spread operator
 
 export default {
   components: { Header, InputText },
@@ -37,42 +44,21 @@ export default {
   data: function () {
     return {
       loaded: false,
-      inputs: [
-        {
-          label: "First Name",
-          mutate: "updateFname"
-        },
-        {
-          label: "Last Name",
-          mutate: "updateLname"
-        }
-      ]
+      nextPage: "Incident"
     };
   },
   created() {
     this.loaded = true;
   },
   methods: {
-    onMenu: function () {
+    onMenu() {
       this.navigation.openDrawer();
     },
-    login() {
-      const usr = store.state.userObj;
-      if (usr.fname && usr.lname) {
-        store.commit("LOGGING_IN", true);
-        this.navigation.navigate("Incident");
-      } else {
-        Toast.show({
-          text: "First and Last Name Required",
-          buttonText: "Okay"
-        });
-      }
+    newSheet() {
+      this.navigation.navigate(this.nextPage);
     }
   },
   computed: {
-    logging_in() {
-      return store.state.logging_in;
-    },
     titleName() {
       return this.navigation.state.routeName;
     }
@@ -81,12 +67,21 @@ export default {
 </script>
 
 <style>
+.container {
+  flex: 1;
+  background-color: #fff;
+}
+.content {
+  margin-top: 20;
+  padding: 20;
+}
 .btn {
   align-self: center;
   margin-top: 20;
   padding: 20;
 }
-.lister {
-  border-color: "rgba(255,255,255,1)";
+.txt {
+  font-size: 20;
+  margin: 5;
 }
 </style>

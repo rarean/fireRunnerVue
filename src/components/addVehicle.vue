@@ -41,9 +41,9 @@
       <nb-input v-model="plate_num" />
     </nb-item>
     <nb-item class="btn">
-    <nb-button rounded large :on-press="addAid">
-      <nb-text>ADD</nb-text>
-    </nb-button>
+      <nb-button rounded large :on-press="addAid">
+        <nb-text>ADD</nb-text>
+      </nb-button>
     </nb-item>
   </nb-form>
 </template>
@@ -61,14 +61,14 @@ export default {
       dl_num: "",
       insurance: "",
       make: "",
-      model:"",
+      model: "",
       year: "",
-      vin:"",
-      plate_num:""
+      vin: "",
+      plate_num: ""
     };
   },
   methods: {
-    addAid: function () {
+    addAid() {
       let obj = {
         owner_name: this.owner_name,
         address: this.address,
@@ -88,23 +88,18 @@ export default {
       this.dl_num = "";
       this.insurance = "";
       this.make = "";
-      this.model="";
-      this.year= "";
-      this.vin="";
-      this.plate_num="";
+      this.model = "";
+      this.year = "";
+      this.vin = "";
+      this.plate_num = "";
     }
   }
 };
 </script>
 <style>
-.container {
-  margin: 20;
-  padding: 20;
-}
 .btn {
-  margin: 20;
-  padding: 20;
-  justify-content: center;
-  align-items: center;
+  margin: 10;
+  padding: 10;
+  align-self: center;
 }
 </style>

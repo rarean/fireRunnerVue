@@ -1,9 +1,7 @@
 <template>
-  <view v-if="!isAppReady" class="container">
-    <app-loading></app-loading>
-  </view>
-  <view v-else-if="isAppReady" class="container">
-    <app></app>
+  <view class="container">
+    <app-loading v-if="!isAppReady"></app-loading>
+    <app v-else-if="isAppReady"></app>
   </view>
 </template>
 

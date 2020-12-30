@@ -1,7 +1,7 @@
 <template>
-  <nb-container :style="{ flex: 1, backgroundColor: '#fff' }">
+  <nb-container class="container">
     <header :name="titleName" :menu-pressed="onMenu" />
-    <nb-content class="container" v-if="loaded">
+    <nb-content class="content" v-if="loaded">
       <nb-form>
         <nb-list-item
           v-for="input in inputs"
@@ -34,7 +34,7 @@ import InputText from "../components/inputText";
 import store from "../store";
 
 export default {
-  components: { Header,Footer,InputText },
+  components: { Header, Footer, InputText },
   props: { navigation: Object },
   data: function () {
     return {
@@ -59,19 +59,19 @@ export default {
   computed: {
     titleName() {
       return this.navigation.state.routeName;
-    },
+    }
   },
   methods: {
-    onMenu: function () {
+    onMenu() {
       this.navigation.openDrawer();
     },
-    onBack: function () {
+    onBack() {
       this.navigation.navigate(this.backPage);
     },
-    onHome: function () {
+    onHome() {
       this.navigation.navigate("Home");
     },
-    onNext: function () {
+    onNext() {
       this.navigation.navigate(this.nextPage);
     }
   }
@@ -80,13 +80,15 @@ export default {
 
 <style>
 .container {
-  align-self:center;
-  margin-top: 20;
+  flex: 1;
+  background-color: #fff;
+}
+.content {
+  margin-top: 10;
 }
 .btn {
-  align-self:center;
-  margin-top: 20;
-  padding: 20;
+  align-self: center;
+  margin-top: 10;
 }
 .lister {
   border-color: "rgba(255,255,255,1)";

@@ -25,9 +25,9 @@
       <nb-input v-model="clearScene" />
     </nb-item>
     <nb-item class="btn">
-    <nb-button rounded large :on-press="addAid">
-      <nb-text>ADD</nb-text>
-    </nb-button>
+      <nb-button rounded large :on-press="addAid">
+        <nb-text>ADD</nb-text>
+      </nb-button>
     </nb-item>
   </nb-form>
 </template>
@@ -69,14 +69,9 @@ export default {
 };
 </script>
 <style>
-.container {
-  margin: 20;
-  padding: 20;
-}
 .btn {
-  margin: 20;
-  padding: 20;
-  justify-content: center;
-  align-items: center;
+  margin: 10;
+  padding: 10;
+  align-self: center;
 }
 </style>
