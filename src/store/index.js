@@ -10,10 +10,6 @@ const store = new Vuex.Store({
   state: {
     navigation: {},
     logging_in: false,
-    userObj: {
-      fname: "",
-      lname: "",
-    },
     incident: {
       date: "",
       num: "",

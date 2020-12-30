@@ -3,7 +3,7 @@
     <nb-content :style="stylesObj.drawerContent" :bounces="false">
       <nb-list>
         <nb-list-item>
-          <nb-text>Hello {{ userData.fname }}</nb-text>
+          <nb-text>Menu</nb-text>
         </nb-list-item>
         <nb-list-item
           v-for="screen in screens"
@@ -15,7 +15,6 @@
           <nb-text>{{ screen.name }}</nb-text>
         </nb-list-item>
         <nb-list-item>
-          <!--nb-text :on-press="logout">Logout</nb-text-->
         </nb-list-item>
       </nb-list>
     </nb-content>
@@ -24,10 +23,7 @@
 
 <script>
 import { Dimensions, Platform } from "react-native";
-import drawerCover from "../../assets/drawer-cover.png";
-import drawerImage from "../../assets/logo-kitchen-sink.png";
 import { NavigationActions, StackActions } from "vue-native-router";
-import store from "../store";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -45,15 +41,6 @@ export default {
   methods: {
     handleListItemClick(dataObj) {
       this.navigation.navigate(dataObj.route);
-    },
-    logout() {
-      //store.dispatch('LOGOUT', () => this.navigation.dispatch(resetAction))
-    }
-    //openPage(){ this.navigation.dispatch(page)}
-  },
-  computed: {
-    userData() {
-      return store.state.userObj;
     }
   },
   data: {
