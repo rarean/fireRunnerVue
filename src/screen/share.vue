@@ -949,73 +949,21 @@ export default {
         { text: "Standby", colSpan: 2 },
         "2",
         { text: "", colSpan: 20 },
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "20",
-        "21",
-        "22"
+        "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"
       ]);
       info.push([
         { text: `Equipment Stolen:\n${equip.stolen || " "}`, colSpan: 7 },
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
+        "2", "3", "4", "5", "6", "7",
         { text: `Equipment Lost:\n${equip.lost || " "}`, colSpan: 8 },
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
+        "9", "10", "11", "12", "13", "14", "15",
         { text: `Equipment Broken:\n${equip.broken || " "}`, colSpan: 7 },
-        "17",
-        "18",
-        "19",
-        "20",
-        "21",
-        "22"
+        "17", "18", "19", "20", "21", "22"
       ]);
       info.push([
         { text: `Receipts Bagged: ${equip.receipts || " "}`, colSpan: 11 },
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
+        "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
         { text: `Truck Restocked: ${equip.restocked || " "}`, colSpan: 11 },
-        "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "20",
-        "21",
-        "22"
+        "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"
       ]);
       return info;
     },
@@ -1023,89 +971,36 @@ export default {
       sigs = dash.isEmpty(sigs) ? {} : sigs;
       narrate = dash.isEmpty(narrate) ? "  " : narrate;
       let data = [];
+      let img = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg==';
       data.push([
         {
           text: `Person Making Report (Print):  ${sigs.reporter || " "}`,
           colSpan: 11
         },
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
+        "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
         {
           text: `Officer In Charge (Print):  ${sigs.officer || " "}`,
           colSpan: 11
         },
-        "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "20",
-        "21",
-        "22"
+        "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"
       ]);
       data.push([
         { text: `Narrative:\n${narrate}`, colSpan: 22 },
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "20",
-        "21",
-        "22"
+        "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"
       ]);
-      data.push([
-        { text: `Signature\nRequired`, colSpan: 2 },
-        "2",
-        {
-          text: `Person Making Report: ${sigs.reporter_image || " "}`,
-          colSpan: 10
-        },
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        {
-          text: `Officer In Charge: ${sigs.officer_image || " "}`,
-          colSpan: 10
-        },
-        ,
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "20",
-        "21"
+      data.push(
+      [
+        { text: `Signature\nRequired`, colSpan: 2 }, "2",
+        { text: `Person Making Report:`, colSpan: 4, border:[true,false,false,true] },
+        "4", "5", "6",
+        { image: `data:image/png;base64, ${sigs.reporter_image || img}`, 
+        colSpan: 5,border:[false,true,true,true], height:50,width:125 },
+        "8", "9", "10","11",
+        { text: `Officer In Charge:`, colSpan: 5, border:[true,false,false,true] },
+        "13", "14", "15", "16",
+        { image: `data:image/png;base64, ${sigs.officer_image || img}`,
+        colSpan: 6,border:[false,true,true,true], height:50,width:125 },
+        "18", "19", "20", "21","22"
       ]);
       return data;
     },
@@ -1166,28 +1061,7 @@ export default {
             style: "table",
             table: {
               widths: [
-                "*",
-                "*",
-                "*",
-                "*",
-                "*",
-                "*",
-                "*",
-                "*",
-                "*",
-                "*",
-                "*",
-                "auto",
-                "auto",
-                "auto",
-                "auto",
-                "auto",
-                "auto",
-                "*",
-                "*",
-                "*",
-                "*",
-                "*"
+                "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "auto", "auto", "auto", "auto", "auto", "auto", "*", "*", "*", "*", "*"
               ],
               body: page2
             },
@@ -1261,35 +1135,4 @@ export default {
   margin-top: 20;
   padding: 20;
 }
-/*
-.center {
-  justify-content: center;
-  align-items: center;
-}
-.score {
-  width: 40;
-  height: 40;
-  background-color: #fff;
-  border-radius: 20;
-  justify-content: center;
-  align-items: center;
-  margin-right: 16;
-}
-.score-text {
-  color: #ff6600;
-  font-weight: bold;
-}
-.detail {
-  flex: 1;
-}
-.name {
-  color: #666;
-  font-size: 12;
-  margin-bottom: 6;
-}
-.title {
-  color: #333;
-  font-size: 14;
-}
-*/
 </style>

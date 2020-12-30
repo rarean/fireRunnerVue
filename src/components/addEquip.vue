@@ -4,7 +4,6 @@
       mode="dropdown"
       :iosIcon="getIosIcon()"
       placeholder="Apparatus"
-      placeholderIconColor="#007aff"
       :selectedValue="apparatus"
       :onValueChange="onSelected"
     >
@@ -66,7 +65,7 @@ export default {
       this.apparatus = value;
     },
     getIosIcon() {
-      return <Icon name="ios-arrow-down-outline" />;
+      return <Icon name="arrow-down" />;
     },
     add() {
       let obj = {

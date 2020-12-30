@@ -13,6 +13,7 @@
             :on-finger-up="handleSig"
             image-format="png"
             output-type="base64"
+            image-output-size="300"
             :height="150"
           />
         </nb-item>
@@ -72,7 +73,6 @@ export default {
     handleSig(sig) {
       this.digiSign.push(sig);
       this.image = this.digiSign.pop();
-      //console.log('lastImage', this.image);
     },
     clearSig() {
       this.$refs.sigpanel.setState({

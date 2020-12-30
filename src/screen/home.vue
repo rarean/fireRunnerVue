@@ -2,9 +2,29 @@
   <nb-container v-if="loaded" class="container">
     <header :name="titleName" :menu-pressed="onMenu" />
     <nb-content class="content">
+      <view>
+        <nb-text class="btn txt">Hello!</nb-text>
+        <nb-text class="txt">
+          This app was designed for Castroville Volunteer Fire Department.
+        </nb-text>
+        <nb-text class="txt">
+          All inputs (text,image,etc.) to this app are not saved to device and
+          exist in-memory of the app only.
+        </nb-text>
+        <nb-text class="txt">
+          The input data will be printed to PDF using the "Share" screen and
+          lost once the app is closed. However, input data will be maintained
+          in the app if it is running in the background (until closed).
+        </nb-text>
+        <nb-text class="txt">
+          Use the side menu (<nb-icon name="menu" />), left (<nb-icon name="arrow-back" />) 
+          and right (<nb-icon name="arrow-forward" />) arrows to navigate
+          the app.
+        </nb-text>
+      </view>
       <view class="btn">
         <nb-button rounded large :on-press="newSheet">
-          <nb-text>New Worksheet</nb-text>
+          <nb-text>Continue</nb-text>
         </nb-button>
       </view>
     </nb-content>
@@ -35,25 +55,6 @@ export default {
       this.navigation.openDrawer();
     },
     newSheet() {
-      /*
-      incident: store.state.incident || {},
-      alarm: store.state.alarms || {},
-      location: store.state.location || {},
-      response: store.state.response || {},
-      actions: store.state.actions || {},
-      injured: store.state.injured || {},
-      structure: store.state.structure || {},
-      bcfmo: store.state.bcfmo || {},
-      mutualaid: store.state.mutualaid || [],
-      vehicles: store.state.vehicles || [],
-      equipment: store.state.equipment || [],
-      equip: store.state.equip || {},
-      narrative: store.state.narrative || '',
-      signatures: store.state.signatures || {},
-      attachment: store.state.attachment || ''
-      
-      store.commit(this.mutation, null);
-      */
       this.navigation.navigate(this.nextPage);
     }
   },
@@ -78,5 +79,9 @@ export default {
   align-self: center;
   margin-top: 20;
   padding: 20;
+}
+.txt {
+  font-size: 20;
+  margin: 5;
 }
 </style>

@@ -81,7 +81,6 @@ export default {
   },
   created() {
     this.loaded = true;
-    //console.log("created", store.state);
   },
   computed: {
     titleName() {
