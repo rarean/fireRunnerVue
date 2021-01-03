@@ -111,47 +111,16 @@ export default {
             colSpan: 11,
             rowSpan: 2
           },
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
+          "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
           { text: "Alarm Time", colSpan: 7 },
-          "16",
-          "17",
-          "18",
-          "19",
-          "20",
-          "21",
+          "16", "17", "18", "19", "20", "21",
           { text: `${alarm.alarm_time}` }
         ],
         [
           { text: "", colSpan: 14 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
+          "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",
           { text: "Enroute Time", colSpan: 7 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
+          "1", "2", "3", "4", "5", "6",
           { text: `${alarm.enroute_time}` }
         ],
         [
@@ -163,71 +132,22 @@ export default {
             colSpan: 11,
             rowSpan: 3
           },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
+          "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
           { text: "On Scene Time", colSpan: 7 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          { text: ` ${alarm.onscene_time}` }
+          "1", "2", "3", "4", "5", "6", { text: ` ${alarm.onscene_time}` }
         ],
         [
           { text: "", colSpan: 14 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
+          "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",
           { text: "Fire Controlled Time", colSpan: 7 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
+          "1", "2", "3", "4", "5", "6",
           { text: ` ${alarm.fire_control_time}` }
         ],
         [
           { text: "", colSpan: 14 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
+          "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",
           { text: "Clear Scene Time", colSpan: 7 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
+          "1", "2", "3", "4", "5", "6",
           { text: `${alarm.clear_scene_time}` }
         ],
         [
@@ -235,74 +155,29 @@ export default {
             text: `Address/Location of Call: ${location.call_location}`,
             colSpan: 8
           },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
+          "1", "2", "3", "4", "5", "6", "7",
           { text: `Zip Code: ${location.call_zip}`, colSpan: 6 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
+          "1", "2", "3", "4", "5",
           { text: `Responding Departments: ${response.dept}`, colSpan: 8 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7"
+          "1", "2", "3", "4", "5", "6", "7"
         ],
         [
           { text: `Owners Name\n${location.owner_name}`, colSpan: 2 },
           "1",
           { text: `Address\n${location.owner_address}`, colSpan: 6 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
+          "1", "2", "3", "4", "5",
           { text: `City\n${location.owner_city}`, colSpan: 4 },
-          "1",
-          "2",
-          "3",
+          "1", "2", "3",
           { text: `State\n${location.owner_state}`, colSpan: 4 },
-          "1",
-          "2",
-          "3",
+          "1", "2", "3",
           { text: `Phone#\n${location.owner_phone}`, colSpan: 6 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
+          "1", "2", "3", "4", "5"
         ],
         [
           { text: `Actions Taken\n${actions.taken}`, colSpan: 16 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
+          "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15",
           { text: `Water Used:\n${actions.water_used}`, colSpan: 4 },
-          "1",
-          "2",
-          "3",
-          { text: `Foam Used:\n${actions.foam_used}`, colSpan: 2 },
+          "1", "2", "3", { text: `Foam Used:\n${actions.foam_used}`, colSpan: 2 },
           "1"
         ],
         [
@@ -312,130 +187,56 @@ export default {
             colSpan: 5,
             rowSpan: 2
           },
-          "1",
-          "2",
-          "3",
-          "4",
+          "1", "2", "3", "4",
           {
             text: `Commercial: ${sType.match(/commercial/gi) ? "X" : " "}`,
             colSpan: 5,
             rowSpan: 2
           },
-          "1",
-          "2",
-          "3",
-          "4",
+          "1", "2", "3", "4",
           {
             text: `What is building used for:\n${structure.use}`,
             colSpan: 7,
             rowSpan: 2
           },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
+          "1", "2", "3", "4", "5", "6",
           {
             text: `Mutial Aid to:(Y/N) ${response.mutual_aid_to}`,
             colSpan: 5
           },
-          "1",
-          "2",
-          "3",
-          "4"
+          "1", "2", "3", "4"
         ],
         [
           { text: "", colSpan: 17 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
+          "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
           {
             text: `Mutual Aid From:(Y/N) ${response.mutual_aid_from}`,
             colSpan: 5
           },
-          "1",
-          "2",
-          "3",
-          "4"
+          "1", "2", "3", "4"
         ],
         [
           { text: `Fatalities: ${injured.fatalities}`, colSpan: 10 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
+          "1", "2", "3", "4", "5", "6", "7", "8", "9",
           { text: `Injuries: ${injured.injuries}`, colSpan: 12 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11"
+          "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"
         ],
         [
           {
             text: "Fill out following for all Structure Fires ------>",
             colSpan: 8
           },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
+          "1", "2", "3", "4", "5", "6", "7",
           {
             text: `Suspected Cause of Fire: (Ignition Source)
         ${structure.suspected_cause}`,
             colSpan: 14
           },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13"
+          "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"
         ],
         [
-          { text: "Arson Suspected?  Yes:X No: ", colSpan: 8 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
+          { text: "Arson Suspected?  Yes/No: ", colSpan: 8 },
+          "1", "2", "3", "4", "5", "6", "7",
           //calculated based on this.bcfmo.contact_for_arson (arson)
           {
             text: `BCFMO Contacted for Arson Investigation?
@@ -444,66 +245,25 @@ export default {
             }`,
             colSpan: 14
           },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13"
+          "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"
         ],
         [
           { text: `BCFMO Case# ${bcfmo.case_num}`, colSpan: 8 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
+          "1", "2", "3", "4", "5", "6", "7",
           {
             text: `BCFMO Investigator Name: ${bcfmo.investigator}`,
             colSpan: 14
           },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13"
+          "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"
         ],
         [
           {
             text: `Estimated Cost of Damage: ${structure.estimated_cost}`,
             colSpan: 8
           },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
+          "1", "2", "3", "4", "5", "6", "7",
           { text: "Smoke Detector Operation:", colSpan: 7 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
+          "1", "2", "3", "4", "5", "6",
           //calculated based on this.structure.smoke_detector (smoke)
           {
             text: `Yes:${smoke.match(/Y/gi) ? "X" : " "}
@@ -512,42 +272,21 @@ export default {
             }`,
             colSpan: 7
           },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6"
+          "1", "2", "3", "4", "5", "6"
         ],
         [
           {
             text: `Property Damaged: ${structure.property_damaged}`,
             colSpan: 8
           },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
+          "1", "2", "3", "4", "5", "6", "7",
           { text: `Acerage Burned: ${structure.acerage_burned}`, colSpan: 7 },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
+          "1", "2", "3", "4", "5", "6",
           {
             text: `Main Floor Size (Lgth x Width): ${structure.main_floor_size}`,
             colSpan: 7
           },
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6"
+          "1", "2", "3", "4", "5", "6"
         ]
       ];
     },
@@ -831,25 +570,11 @@ export default {
         { text: "Apparatus", colSpan: 2 },
         "2",
         { text: "Personnel", colSpan: 9 },
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
+        "4", "5", "6", "7", "8", "9", "10", "11",
         { text: "Equipment Used", colSpan: 3 },
-        "11",
-        "12",
+        "13", "14",
         { text: "Truck Times", colSpan: 8 },
-        "16",
-        "17",
-        "18",
-        "19",
-        "20",
-        "21",
-        "22"
+        "16", "17", "18", "19", "20", "21", "22"
       ];
 
       list = equipList.map(function (item) {
@@ -894,13 +619,14 @@ export default {
               col.push({
                 id: `1${item.apparatus}-1.${i}`,
                 text: "On Scene Time",
-                colSpan: 7
+                colSpan: 6
               });
               break;
-            case 22:
+            case 21:
               col.push({
                 id: `1${item.apparatus}-1.${i}`,
-                text: `${item.onscene_time || " "}`
+                text: `${item.onscene_time || " "}`,
+                colSpan: 2
               });
               break;
             default:
@@ -925,13 +651,14 @@ export default {
               col.push({
                 id: `${item.apparatus}-2.${i}`,
                 text: "Clear Scene Time",
-                colSpan: 7
+                colSpan: 6
               });
               break;
-            case 22:
+            case 21:
               col.push({
                 id: `${item.apparatus}-2.${i}`,
-                text: `${item.clear_scene_time || " "}`
+                text: `${item.clear_scene_time || " "}`,
+                colSpan: 2
               });
               break;
             default:
