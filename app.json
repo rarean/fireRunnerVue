@@ -5,10 +5,12 @@
     "version": "1.0.1",
     "slug": "fireRunnerVue",
     "privacy": "public",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "githubUrl": "https://github.com/rarean/fireRunnerVue",
     "orientation": "default",
-    "sdkVersion": "38.0.0",
     "splash": {
       "image": "./assets/flame-splash.png",
       "resizeMode": "contain",
@@ -17,7 +19,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "io.github.rarean",
@@ -30,7 +34,13 @@
     },
     "packagerOpts": {
       "config": "metro.config.js",
-      "sourceExts": ["js", "json", "ts", "tsx", "vue"]
+      "sourceExts": [
+        "js",
+        "json",
+        "ts",
+        "tsx",
+        "vue"
+      ]
     },
     "description": "Fire Runner Worksheet data gathering app for Castroville Fire Dept"
   }
