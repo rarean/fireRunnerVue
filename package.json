@@ -30,7 +30,7 @@
     "expo-font": "~8.3.0",
     "expo-screen-orientation": "~2.0.0",
     "expo-sharing": "~8.4.1",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "native-base": "^2.13.14",
     "pdfmake": "^0.1.65",
     "react": "16.13.1",
