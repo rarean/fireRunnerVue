@@ -12,7 +12,7 @@
 <script>
 import Vue from "vue-native-core";
 import { VueNativeBase } from "native-base";
-import { AppLoading } from "expo";
+import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import App from "./src/index.vue";
 
